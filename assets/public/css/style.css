@@ -1,0 +1,132 @@
+:root{
+    --primary_text_color: #fff;
+    --secondary_text_color: #000000; 
+    --backgroung_color: #379DDD;
+    --lilac_color: #CAABCC;
+    --yellow_color: #F7E07A;
+    --cyan_color: #49DBE2;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--backgroung_color);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.logo{
+    display: flex;
+    justify-content: space-between;
+}
+.logo img {
+   
+    height: 80px;
+}
+
+.site-name h1 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.user-actions a {
+    display: inline-block;
+   
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+.login-button {
+    background-color: var(--lilac_color);
+}
+
+.signup-button {
+    background-color: var(--yellow_color);
+}
+
+
+h1 {
+    margin:10px 0;
+    font-size: 48px;
+    font-weight: bold;
+    color: var(--primary_text_color);
+}
+
+.services_nanny {
+
+    text-transform: uppercase;
+    margin: 50px 0 0 0 ;
+    text-align: center;
+    font-size: 40px;
+    background-color: var(--backgroung_color);
+    padding: 80px;
+    color: var(--primary_text_color);
+}
+
+em{
+    color: var(--lilac_color);
+}
+
+.nounou{
+    text-transform: uppercase;
+    margin: 50px 0 0 0 ;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 10px;
+    padding: 80px;
+    background-color: var(--yellow_color);
+    color: var(--primary_text_color);
+}
+
+li{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 10px;
+    
+}
+
+.second_li{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 50px;
+
+}
+
+.first_img{
+    width: 40%;
+    border: solid 1px var(--backgroung_color);
+    border-radius: 5px;
+    box-shadow: 0px 10px 5px 5px #f3f2f2;
+
+    margin: 20px;
+}
+
+.first_article{
+    padding: 100px;
+    text-align: justify;
+
+    margin: 5em;
+}
+
+footer{
+    background-color: var(--backgroung_color);
+    color: var(--primary_text_color);
+    padding: 80px;
+}
