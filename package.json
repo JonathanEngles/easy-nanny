@@ -1,0 +1,29 @@
+{
+  "name": "projet-o-nounou",
+  "version": "1.0.0",
+  "description": "## Suppression des commits en local",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "table:import": "psql -U nanny -d nanny -f app/data/import_tables.sql"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Olduvai/projet-o-nounou.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/O-clock-Olduvai/projet-o-nounou/issues"
+  },
+  "homepage": "https://github.com/O-clock-Olduvai/projet-o-nounou#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "pg": "^8.10.0"
+  }
+}
