@@ -17,7 +17,7 @@ router.get('/', mainController.getHomePage);
  * secondary router for parents and nannys
  */
 router.use('/parent', parentRouter);
-// router.use('/nanny', nannyRouter);
+router.use('/nanny', nannyRouter);
 
 
 module.exports = router;
