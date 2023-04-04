@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS "nanny" (
     "first_name" VARCHAR(255) NOT NULL,
     "email" VARCHAR(255) NOT NULL UNIQUE,
     "password" VARCHAR(255) NOT NULL,
-    "adress" VARCHAR(255) NOT NULL,
+    "address" VARCHAR(255) NOT NULL,
     "zip_code" INTEGER NOT NULL,
     "city" VARCHAR(255) NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
