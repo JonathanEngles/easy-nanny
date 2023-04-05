@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/assets/public/css/reset.css">
+    <link rel="stylesheet" href="/assets/public/css/dashboard.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Roboto&display=swap" rel="stylesheet">
+
+    <title>Easy Nanny | Dashboard</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img class="img_logo" src="/assets/public/images/Logo.png" alt="Logo Easy Nanny">
+
+        </div>
+        <div class="burger-menu">
+            <div class="burger-menu-icon">&#9776;</div>
+            <ul class="burger-menu-list">
+              <li><a href="#">Mon profil</a></li>
+              <li><a href="#">Chat</a></li>
+              <li><a href="#">Suggestions</a></li>
+              <li><a href="#">Deconnexion</a></li>
+            </ul>
+          </div>
+    </header>
+
+    <!-- Mise en place de la barre latérale pour le profil de la nounou -->
+    <section class="contener">
+        <aside class="left_side">
+            <div class="profil_info">
+                <img class="profil_img" src="/assets/public/images/Luimar_Cavani.JPG" alt="Photo de profile">
+                <p class="profil_name">Luimar Cavani</p>
+            </div>
+
+            <span class="kids_title">Enfants</span>
+            <div class="kids_contener">
+                <div class="kids_info">
+                    <img src="/assets/public/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
+                    <p class="kids_name">Nicolas Pelletier</p>
+                </div>
+                <div class="kids_info">
+                    <img src="/assets/public/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
+                    <p class="kids_name">Analis Cavani</p>
+                </div>
+                <div class="kids_info">
+                    <img src="/assets/public/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
+                    <p class="kids_name">Patrick Zappala</p>
+                </div>
+
+            </div>
+
+            <span class="chat_title">Chat</span>
+            <div class="chat_contener">
+            </div>
+
+            <span class="suggestion_title">Suggestions</span>
+            <div class="suggestion_contener">
+            </div>
+        </aside>
+        <aside class="right_side">
+            <div class="planning_contener">
+                <span class="planning_title">Calendrier des tâches</span>
+                <div class="planning">dfgqsfgqsfq</div>
+            </div>
+            <div class="diary_contener">
+                <span class="diary_title">Journal de suivi</span>
+                <div class="diary_content">
+                    <textarea>
+                        Ici écrivez votre compte-rendu de la journée.
+                    </textarea>
+
+                    <div class="bouton">
+                        <input type="submit" value="Soumettre">
+
+                        <select>
+                            <option value="nom1">Nicolas Pelletier</option>
+                            <option value="nom2" selected>Analis Cavani</option>
+                            <option value="nom3">Patrick Zappala</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </section>
+    <footer>
+        <p class="mentions">Mention légales</p>
+    </footer>
+    <script src="/assets/public/integration/javascript/burger.js"></script>
+</body>
+
+</html>

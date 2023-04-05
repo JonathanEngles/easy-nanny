@@ -3,10 +3,13 @@ body, html {
     padding: 0;
 };
 
-*{box-sizing: border-box;}
+*{box-sizing: border-box;
+     
+}
 
 *:focus {
     box-shadow: 0 0 10px blue;
+    
 }
 
 .modal {
@@ -20,6 +23,7 @@ body, html {
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     animation: fadeIn .3s both;
+    
 }
 
 .modal-wrapper {
