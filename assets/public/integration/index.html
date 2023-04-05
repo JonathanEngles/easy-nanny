@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mon site pour nounous</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/modale.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-NZtJ+aZ/AFlo8tRb2t+YyNgbhcytG+LXHKPd3rN7o5zJZu/I8VouW5Dv/VmVmkH2Q2m8gIc5oLwxO8GNT/ZMw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+            <div class="modal-wrapper js-modal-stop">
+                <button class="js-modal-close">Fermer la modale</button>
+                <form class="signup-form" action="/signup" method="POST">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="firstname">Prénom :</label>
+                    <input type="text" id="firstname" name="firstname" required>
+
+                    <label for="email">Adresse e-mail :</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="confirm-password">Confirmez votre mot de passe :</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+
+                    <label for="address">Adresse :</label>
+                    <input type="text" id="address" name="address" required>
+
+                    <label for="postal-code">Code postal :</label>
+                    <input type="text" id="postal-code" name="postal-code" required>
+
+                    <label for="city">Ville :</label>
+                    <input type="text" id="city" name="city" required>
+
+                    <input type="submit" value="S'inscrire">
+                </form>
+            </div>
+        </aside>
+        <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+            <div class="modal-wrapper js-modal-stop">
+                <button class="js-modal-close">Fermer la modale</button>
+                <form class="signup-form" action="/signup" method="POST">
+                    <!-- <label for="name">Nom :</label>
+              <input type="text" id="name" name="name" required>
+            <label for="firstname">Prénom :</label>
+            <input type="text" id="firstname" name="firstname" required> -->
+
+                    <label for="email">Adresse e-mail :</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+
+
+                    <input type="submit" value="Se connecter">
+                </form>
+            </div>
+        </aside>
+
+        <div class="logo">
+            <img src="../images/Logo.png" alt="Logo Easy Nanny">
+
+        </div>
+        <!-- <div class="site-name">
+        </div> -->
+        <div class="user-actions">
+            <a href="#modal1" class="js-modal signup-button">signup </a>
+            <a href="#modal2" class="js-modal login-button">login </a>
+        </div>
+    </header>
+
+    <div class="principal_img">
+        <img src="../images/children.jpg" alt="Picture" class="img_principale">
+    </div>
+
+    <h2 class="services_nanny">
+        Nos services à <em>votre service</em>
+    </h2>
+    <section class="services">
+        <ul>
+            <li class="first_li">
+                <img src="../images/calendar.jpg" alt="Image outil" class="first_img">
+                <article class="first_article">
+                    <h3 class="first_title  content">Le tableau de bord</h3>
+                    <p class="first_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Repellendus, ab consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem,
+                        nesciunt minus placeat ipsum officiis distinctio reprehenderit quos amet aliquam expedita
+                        tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nihil quibusdam
+                        laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt laborum non
+                        voluptas velit, aut rem. Ullam, quidem ad.</p>
+                    <a href="#" class="first_anchor">En savoir plus</a>
+                </article>
+
+            </li>
+            <li class="second_li">
+                <img src="../images/Chat.jpg" alt="Image outil" class="first_img">
+                <article class="first_article">
+                    <h3 class="first_title  content">Un chat sécurisé</h3>
+                    <p class="first_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Repellendus, ab consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem,
+                        nesciunt minus placeat ipsum officiis distinctio reprehenderit quos amet aliquam expedita
+                        tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nihil quibusdam
+                        laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt laborum non
+                        voluptas velit, aut rem. Ullam, quidem ad.</p>
+                    <a href="#" class="first_anchor">En savoir plus</a>
+                </article>
+
+            </li>
+            <li class="first_li">
+                <img src="../images/suggestion.jpg  " alt="Image outil" class="first_img">
+                <article class="first_article">
+                    <h3 class="first_title  content">Des suggestions</h3>
+                    <p class="first_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Repellendus, ab consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem,
+                        nesciunt minus placeat ipsum officiis distinctio reprehenderit quos amet aliquam expedita
+                        tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nihil quibusdam
+                        laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt laborum non
+                        voluptas velit, aut rem. Ullam, quidem ad.</p>
+                    <a href="#" class="first_anchor">En savoir plus</a>
+                </article>
+
+            </li>
+        </ul>
+    </section>
+
+    <h2 class="story">
+        Qui sommes-<em class="story_em">nous?</em>
+    </h2>
+    <p class="story_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, ab
+        consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem, nesciunt minus placeat ipsum officiis
+        distinctio reprehenderit quos amet aliquam expedita tempore. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Animi nihil quibusdam laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt
+        laborum non voluptas velit, aut rem. Ullam, quidem ad.</p>
+
+
+    <h2 class="nounou">
+        Des Questions ? <em>pas de soucis</em>
+    </h2>
+
+    <div class="category">
+        <p class="question">Comment puis-je m'inscrire? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Combien coûte votre service? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Combien de compte puis-je avoir? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Qui contacter en cas de soucis? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Quels sont mes droits en tant que nounou? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Que faites-vous des nos informations? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Pourquoi utilisé Easy Nanny? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Ai-je besoin d'aide pour créer mon compte ? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p> &copy; Easy Nanny - 2023</p>
+        <p> Mentions légales</p>
+        <p> Condition général</p>
+    </footer>
+
+    <script src="./index.js"></script>
+    <script src="../integration/modale.js"></script>
+</body>
+
+</html>
