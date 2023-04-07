@@ -24,7 +24,7 @@ router.post('/login',parentController.login.bind(parentController))
 
 router.get('/profile', parentController.getProfile.bind(parentController));
 router.patch('/profile', parentController.modifyProfile.bind(parentController));
-// router.delete('/profile', parentController.deleteProfile.bind(parentController));
+router.delete('/profile', parentController.deleteProfile.bind(parentController));
 /**
  * route for disconnect to the session 
  */

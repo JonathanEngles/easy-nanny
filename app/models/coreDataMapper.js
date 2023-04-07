@@ -85,6 +85,12 @@ class CoreDataMapper {
             return result;
 
     }
+
+    
+    async deleteProfile(id) {
+        const tableName = this.constructor.tableName;
+        await client.query(`DELETE FROM ${tableName} WHERE id =$1`, [id]);
+    } 
     
     
     

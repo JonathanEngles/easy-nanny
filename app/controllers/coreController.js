@@ -97,6 +97,12 @@ async getProfile(req, res) {
   }
 }
 
+/**
+ * Modify the Profile of the user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 async modifyProfile(req, res) {
     if (req.session && req.session.user) {
         const user = req.session.user;
@@ -142,7 +148,7 @@ async modifyProfile(req, res) {
             delete req.body.oldPassword;
             req.session.user = user;
 
-            return res.redirect('/profile');
+            return res.render('profile');
 
             
         } catch (error) {
@@ -155,6 +161,21 @@ async modifyProfile(req, res) {
 }else {res.render('/homepage')
 }
 }
+
+/**
+ * delete an user if nanny delete juste nanny, if parent delete his children
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+ async deleteProfile(req, res) {
+    if (req.session && req.session.user) {
+        const user = req.session.user;
+        await this.constructor.dataMapper.deleteProfile(user.id);
+        return res.render('homePage');
+}}
+
+
 }
   
 module.exports = CoreController;

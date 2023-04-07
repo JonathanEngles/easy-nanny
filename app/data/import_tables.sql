@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS "parent" (
     "address" VARCHAR(255) NOT NULL,
     "zip_code" INTEGER NOT NULL,
     "city" VARCHAR(255) NOT NULL,
-    "nanny_id" INTEGER REFERENCES "nanny" ("id"),
+    "nanny_id" INTEGER REFERENCES "nanny" ("id") ON DELETE SET NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ
 );
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS "children" (
     "first_name" VARCHAR(255) NOT NULL,
     "sexe" VARCHAR(10) NOT NULL,
     "birthday" DATE NOT NULL,
-    "parent_id" INTEGER NOT NULL REFERENCES "parent" ("id"),
-    "nanny_id" INTEGER REFERENCES "nanny" ("id"),
+    "parent_id" INTEGER NOT NULL REFERENCES "parent" ("id") ON DELETE CASCADE,
+    "nanny_id" INTEGER REFERENCES "nanny" ("id") ON DELETE SET NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ
 );
