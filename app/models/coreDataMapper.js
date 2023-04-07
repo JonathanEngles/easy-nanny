@@ -28,11 +28,13 @@ class CoreDataMapper {
 
     async updateProfile(userId, profileData) {
         const tableName = this.constructor.tableName;
-        let query = `UPDATE ${tableName} SET`;
+        
     let values = [];
     let index = 1;
+    let query = `UPDATE ${tableName} SET`;
+    
     if (profileData.name) {
-        query += ` name = $${index},`;
+        query += ` "name" = $${index},`;
         values.push(profileData.name);
         index++;
     }
@@ -47,7 +49,7 @@ class CoreDataMapper {
         values.push(profileData.email);
         index++;
     }
-    if (profileData.password) {
+    if (profileData._password) {
         
         query += ` password = $${index},`;
         values.push(profileData._password);
@@ -68,13 +70,18 @@ class CoreDataMapper {
         values.push(profileData.city);
         index++;
     }
+
+   query += ` updated_at =$${index},`;
+   values.push(`NOW()`);
+   index++;
+
     query = query.slice(0, -1); 
     query += ` WHERE id = $${index}`;
     values.push(userId);
 
     
         const result = await client.query(query, values);
-            console.log(result);
+        
             return result;
 
     }

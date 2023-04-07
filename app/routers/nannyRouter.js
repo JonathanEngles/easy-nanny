@@ -8,13 +8,13 @@ const router = express.Router();
 /**
  * routes for the signup form in GET and create user in POST
  */
-// router.get('/signup', nannyController.signup.bind(nannyController));
+router.get('/signup', nannyController.signup.bind(nannyController));
 router.post('/signup', nannyController.register.bind(nannyController));
 
 /**
  * routes for the login form in GET and open session in POST
  */
-//router.get('/login', parentController.loginForm.bind(nannyController));
+router.get('/login', nannyController.loginForm.bind(nannyController));
 router.post('/login',nannyController.login.bind(nannyController));
 
 /**
@@ -22,7 +22,7 @@ router.post('/login',nannyController.login.bind(nannyController));
  */
 
 router.get('/profile', nannyController.getProfile.bind(nannyController));
-// router.patch('/profile', nannyController.modifyProfile.bind(nannyController));
+router.patch('/profile', nannyController.modifyProfile.bind(nannyController));
 // router.delete('/profile', nannyController.deleteProfile.bind(nannyController));
 
 
