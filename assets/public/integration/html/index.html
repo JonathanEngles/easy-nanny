@@ -3,92 +3,97 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Mon site pour nounous</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/public/css/reset.css">
     <link rel="stylesheet" href="/assets/public/css/modale.css">
     <link rel="stylesheet" href="/assets/public/css/style.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-NZtJ+aZ/AFlo8tRb2t+YyNgbhcytG+LXHKPd3rN7o5zJZu/I8VouW5Dv/VmVmkH2Q2m8gIc5oLwxO8GNT/ZMw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Easy Nanny</title>
 </head>
 
 <body>
+
     <header>
-        <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display:none;">
-            <div class="modal-wrapper js-modal-stop">
-                <button class="js-modal-close">Fermer la modale</button>
-                <form class="signup-form" action="/signup" method="POST">
-                    <label for="name">Nom :</label>
-                    <input type="text" id="name" name="name" required>
-                    <label for="firstname">Prénom :</label>
-                    <input type="text" id="firstname" name="firstname" required>
-
-                    <label for="email">Adresse e-mail :</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="password">Mot de passe :</label>
-                    <input type="password" id="password" name="password" required>
-
-                    <label for="confirm-password">Confirmez votre mot de passe :</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required>
-
-                    <label for="address">Adresse :</label>
-                    <input type="text" id="address" name="address" required>
-
-                    <label for="postal-code">Code postal :</label>
-                    <input type="text" id="postal-code" name="postal-code" required>
-
-                    <label for="city">Ville :</label>
-                    <input type="text" id="city" name="city" required>
-
-                    <input type="submit" value="S'inscrire">
-                </form>
-            </div>
-        </aside>
-        <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none;">
-            <div class="modal-wrapper js-modal-stop">
-                <button class="js-modal-close">Fermer la modale</button>
-                <form class="signup-form" action="/signup" method="POST">
-                    <!-- <label for="name">Nom :</label>
-              <input type="text" id="name" name="name" required>
-            <label for="firstname">Prénom :</label>
-            <input type="text" id="firstname" name="firstname" required> -->
-
-                    <label for="email">Adresse e-mail :</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="password">Mot de passe :</label>
-                    <input type="password" id="password" name="password" required>
-
-
-                    <input type="submit" value="Se connecter">
-                </form>
-            </div>
-        </aside>
-
         <div class="logo">
-            <img src="/assets/public/images/Logo.png" alt="Logo Easy Nanny">
+            <img class="img_logo" src="/assets/public/images/Logo-removebg-preview.png" alt="Logo Easy Nanny">
 
         </div>
-        <!-- <div class="site-name">
-        </div> -->
-        <div class="user-actions">
-            <a href="#modal1" class="js-modal signup-button">signup </a>
-            <a href="#modal2" class="js-modal login-button">login </a>
+        <div class="burger-menu">
+            <div class="burger-menu-icon">&#9776;</div>
+            <ul class="burger-menu-list">
+                <li><a href="#">Mon profil</a></li>
+                <li><a href="#">Chat</a></li>
+                <li><a href="#">Suggestions</a></li>
+                <li><a href="#">Deconnexion</a></li>
+            </ul>
         </div>
     </header>
 
-    <div class="principal_img">
-        <img src="/assets/public/images/children.jpg" alt="Picture" class="img_principale">
-    </div>
+    <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+        <div class="modal-wrapper js-modal-stop">
+            <button class="js-modal-close">Fermer la modale</button>
+            <form class="signup-form" action="/signup" method="POST">
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
+                <label for="firstname">Prénom :</label>
+                <input type="text" id="firstname" name="firstname" required>
 
-    <h2 class="services_nanny">
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirmez votre mot de passe :</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <label for="address">Adresse :</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="postal-code">Code postal :</label>
+                <input type="text" id="postal-code" name="postal-code" required>
+
+                <label for="city">Ville :</label>
+                <input type="text" id="city" name="city" required>
+
+                <input type="submit" value="S'inscrire">
+            </form>
+        </div>
+    </aside>
+    <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+        <div class="modal-wrapper js-modal-stop">
+            <button class="js-modal-close">Fermer la modale</button>
+            <form class="signup-form" action="/signup" method="POST">
+                <!-- <label for="name">Nom :</label>
+          <input type="text" id="name" name="name" required>
+        <label for="firstname">Prénom :</label>
+        <input type="text" id="firstname" name="firstname" required> -->
+
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+
+
+                <input type="submit" value="Se connecter">
+            </form>
+        </div>
+    </aside>
+    <section class="contener_welcome">
+        <div class="principal_img">
+            <img src="/assets/public/images/children.jpg" alt="Picture" class="img_principale">
+        </div>
+        <div class="welcome_text">
+            <h2 class="welcome_title">welcome</h2>
+            <p class="Welcome_paraph">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti dolorem mollitia eveniet nihil, dolor
+                iusto dignissimos incidunt dolores velit magnam vero perferendis tempora ipsum pariatur doloremque
+                deserunt eum eius. Corporis.</p>
+        </div>
+    </section>
+
+    <h2 class="banner_info">
         Nos services à <em>votre service</em>
     </h2>
     <section class="services">
@@ -139,7 +144,7 @@
     </section>
 
     <h2 class="story">
-        Qui sommes-<em class="story_em">nous?</em>
+        Qui sommes-nous?
     </h2>
     <p class="story_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, ab
         consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem, nesciunt minus placeat ipsum officiis
@@ -148,8 +153,8 @@
         laborum non voluptas velit, aut rem. Ullam, quidem ad.</p>
 
 
-    <h2 class="nounou">
-        Des Questions ? <em>pas de soucis</em>
+    <h2 class="question_title">
+        Des Questions ? pas de soucis
     </h2>
 
     <div class="category">
@@ -212,9 +217,9 @@
     </div>
 
     <footer>
-        <p> &copy; Easy Nanny - 2023</p>
-        <p> Mentions légales</p>
-        <p> Condition général</p>
+        <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
+        <p class="footer_mention"> Mentions légales</p>
+        <p class="footer_mention"> Condition général</p>
     </footer>
 
     <script src="/assets/public/integration/javascript/index.js"></script>

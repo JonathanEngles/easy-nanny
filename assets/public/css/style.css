@@ -1,230 +1,217 @@
-:root {
-    --primary_text_color: #fff;
-    --secondary_text_color: #000000;
-    --backgroung_color: #379DDD;
-    --lilac_color: #CAABCC;
-    --yellow_color: #F7E07A;
-    --cyan_color: #49DBE2;
-}
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
 
+:root {
+    --primary_text_color: #ffffff;
+    --secondary_text_color: #000000;
+    --backgroung_color: #2a84bc;
+    --lilac_color: #f9aaff;
+    --purple: #432C9E;
+    --purple_pink: #AD5DD9;
+    --yellow_color: #F7E07A;
+    --green_color: #3FA254;
+    --coral_pink: #EF8275;
+    --powder-gray: #AFC2D5;
+    --red: #E01D5B;
+    --contener: #ae5dd96c;
+}
 
 body {
     font-family: 'Istok Web', sans-serif;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Comfortaa', cursive;
+    background-color: var(--primary_text_color);
+
     margin: 0;
-    background-color: #f7f7f7;
     max-width: 100vw;
 }
 
 header {
+    position: sticky;
+    top: 0em;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: var(--backgroung_color);
-    position: fixed;
-    top: 0;
-    width: 100%;
+    background: linear-gradient(to right, var(--purple_pink), var(--purple));
+    max-width: 100vw;
+    height: 5em;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+    z-index: 1;
 }
 
 
 
-.logo {
-    display: flex;
-    justify-content: space-between;
+.img_logo {
+    position: relative;
+    bottom: 2em;
+
+    width: 150px;
+    height: auto;
+
+    margin-left: 1em;
 }
 
-img {
-    width: 30%;
+/* menu burger */
 
-}
+.burger-menu-icon {
+    font-size: 2em;
+    margin-top: 0.6em;
+    margin-right: 0.9em;
 
-
-.img_principale {
-
-    width: 100vw;
-
-}
-
-
-.site-name h1 {
-    font-size: 32px;
-    margin: 0;
-}
-
-.user-actions a {
-    display: inline-block;
-
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-left: 10px;
-    margin-right: 40px;
-}
-
-.login-button {
-    background-color: var(--lilac_color);
-}
-
-.signup-button {
-    background-color: var(--yellow_color);
-}
-
-
-h1 {
-    margin: 10px 0;
-    font-size: 48px;
-    font-weight: bold;
-    color: var(--primary_text_color);
-}
-
-.services_nanny {
-    width: 100vw;
-
-    text-transform: uppercase;
-    margin: 0;
-    text-align: center;
-    font-size: 40px;
-    background-color: var(--backgroung_color);
-    padding: 80px;
-    color: var(--primary_text_color);
-}
-
-em {
-    color: var(--lilac_color);
-}
-
-
-
-li {
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
-
-}
-
-.first_paragraph {
-    margin-bottom: 50px;
-    font-size: 20px;
-}
-
-a {
+    color: #e9e9e9;
     cursor: pointer;
 }
 
-.first_title {
-    font-size: 30px;
-    font-weight: 900;
-    text-decoration: underline;
+.burger-menu-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color:var(--backgroung_color);
+    display: none;
+}
+
+.burger-menu-list li {
+    padding: 1em;
+}
+
+.burger-menu-list li:hover {
+    background-color: var(--purple_pink);
+}
+
+.burger-menu-list a {
+    text-decoration: none;
+    color: #e3e3e3;
+}
+
+.show-menu {
+    display: block;
+}
+
+
+/* Homepage */
+
+
+.img_principale {
+    width: 100vw;
+}
+
+.welcome_title{
+    margin-top: 1em;
+    font-size: 2em;
+    text-align: center;
+
+    color: var(--purple);
+}
+
+.Welcome_paraph{
+    text-align: justify;
+    padding: 1em;
+
     color: var(--backgroung_color);
-    margin-bottom: 50px;
 }
-
-.first_anchor {
-    font-size: 14px;
-    text-align: center;
-    background-color: var(--lilac_color);
-    color: var(--primary_text_color);
-    border-radius: 20px;
-
-    padding: 10px;
-}
-
-.second_li {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-
-
-}
-
-.first_img {
-    width: 40%;
-    border: solid 1px var(--backgroung_color);
-    border-radius: 5px;
-    box-shadow: 0px 10px 5px 5px #f3f2f2;
-
-    margin: 20px;
-}
-
-.first_article {
-    padding: 100px;
-    text-align: justify;
-
-    margin: 5em;
-}
-
-.story {
-    text-transform: uppercase;
-    width: 100vw;
-    margin: 50px 0 0 0;
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 10px;
-    padding: 80px;
-    background-color: var(--lilac_color);
-    color: var(--primary_text_color);
-}
-
-.story_em {
-    color: var(--yellow_color);
-}
-
-.nounou {
-    text-transform: uppercase;
-    width: 100vw;
-    margin: 50px 0 0 0;
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 10px;
-    padding: 80px;
+/* Layout Services */
+.services{
+   padding: 2em 0 2em 0;
     background-color: var(--yellow_color);
-    color: var(--primary_text_color);
 }
-
-footer {
-    width: 100vw;
+.banner_info{
     text-align: center;
-    background-color: var(--backgroung_color);
+    padding: 1em;
+    font-size: 1em;
+    
     color: var(--primary_text_color);
-    padding: 80px;
-    margin-top: 20px;
+    background-color: var(--backgroung_color);
 }
 
-.story_paragraph {
+.first_img{
+    width: 20em;
 
-    font-size: 24px;
+    margin-left: 1.5em;
+    margin-top: 1.5em;
+    border-radius: 0.8em;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+
+.first_title{
+    font-size: 1.5em;
+    text-decoration: underline;
+    margin-top: 0.5em;
+    margin-left: 1rem;
+
+    color: var(--purple);
+}
+
+.first_paragraph{
     text-align: justify;
-    padding: 0 30em 0 30em;
-    margin-top: 40px;
+    padding: 1em;
+    margin-bottom: 1em;
 
+    color: var(--primary_text_color);
 }
+
+.first_anchor{
+    margin: 1em;
+    padding: 0.6em;
+
+    color: var(--primary_text_color);
+    background-color: var(--purple_pink);
+
+    border-radius: 1.5em;
+}
+
+/* what about nanny layout */
+.story{
+    text-align: center;
+    padding: 1em;
+
+    background-color: var(--green_color);
+    color: var(--primary_text_color);
+}
+
+.story_paragraph{
+    text-align:justify ;
+    padding: 1em;
+
+    color: var(--backgroung_color);
+}
+
+.question_title{
+    text-align: center;
+    padding: 1em;
+
+    background-color: var(--red);
+    color: var(--primary_text_color);
+}
+
+/* questions layout */
+
 
 .contenu {
 
     text-align: center;
-    max-height: 0;
+    height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 
     color: var(--backgroung_color);
-
 }
 
+p{
+    display: flex;
+    justify-content: space-between;
+}
 p i {
     cursor: pointer;
 }
 
 p i:before {
     content: "\25BC";
+    
     display: inline-block;
-    font-size: 34px;
-    margin-right: 5px;
+    text-align: right;
+    font-size: 1.5em;
+    /* margin-right: 5px; */
     transform: rotate(0deg);
     transition: transform 0.2s ease-out;
 }
@@ -235,35 +222,56 @@ p i.active:before {
 
 p i:hover:before,
 p:hover i:before {
-    color: var(--lilac_color)
+    color: var(--backgroung_color)
 }
 
 .contenu.show {
-    max-height: 1000px;
-    font-size: 24px;
-    margin-bottom: 3em;
+    height: auto;
+    font-size: 1.1em;
+    text-align: justify;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border: 2px solid var(--red);
 
 }
 
 .category {
     display: flex;
     flex-direction: column;
-    padding: 0em 25em 0em 25em;
-    margin: 15px;
+    
+    margin: 1em;
 }
 
 .question {
     display: flex;
-    justify-content: space-between;
-    font-size: 24px;
-    text-align: center;
-
-    color: var(--backgroung_color);
-    box-shadow: 0px 10px 5px 5px #f3f2f2;
-
-    padding: 50px;
+    padding: 2em;
     margin: 0.2em;
-    border: 1px solid var(--lilac_color);
-    border-radius: 10px;
+    
+    font-size:1em;
+    
+    color: var(--primary_text_color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+
+    background-color: var(--red);
+    border-radius: 0.5rem;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background: linear-gradient(to right, var(--purple_pink), var(--purple));
+}
+
+.footer_mention{
+    color: var(--primary_text_color);
+    font-size: 0.7em;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1439px){
+
+}
+
+@media only screen and (min-width: 1440px){
 
 }

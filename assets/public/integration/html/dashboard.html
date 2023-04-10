@@ -9,9 +9,7 @@
     <link rel="stylesheet" href="/assets/public/css/reset.css">
     <link rel="stylesheet" href="/assets/public/css/dashboard.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Istok+Web&family=Roboto&display=swap" rel="stylesheet">
+   
 
     <title>Easy Nanny | Dashboard</title>
 </head>
@@ -20,7 +18,7 @@
 
     <header>
         <div class="logo">
-            <img class="img_logo" src="/assets/public/images/Logo.png" alt="Logo Easy Nanny">
+            <img class="img_logo" src="/assets/public/images/Logo-removebg-preview.png" alt="Logo Easy Nanny">
 
         </div>
         <div class="burger-menu">
@@ -44,43 +42,51 @@
 
             <span class="kids_title">Enfants</span>
             <div class="kids_contener">
-                <div class="kids_info">
+                <div class="kids_info un">
                     <img src="/assets/public/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
                     <p class="kids_name">Nicolas Pelletier</p>
                 </div>
-                <div class="kids_info">
+                <div class="kids_info deux">
                     <img src="/assets/public/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
                     <p class="kids_name">Analis Cavani</p>
                 </div>
-                <div class="kids_info">
+                <div class="kids_info trois">
                     <img src="/assets/public/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
                     <p class="kids_name">Patrick Zappala</p>
                 </div>
 
             </div>
-
-            <span class="chat_title">Chat</span>
+            <div class="bouton_contener">
             <div class="chat_contener">
+                <span class="chat_title">Chat</span>
             </div>
 
-            <span class="suggestion_title">Suggestions</span>
             <div class="suggestion_contener">
+                <span class="suggestion_title">Suggestions</span>
             </div>
+        </div>
         </aside>
         <aside class="right_side">
+            <span class="planning_title">Calendrier des tâches</span>
             <div class="planning_contener">
-                <span class="planning_title">Calendrier des tâches</span>
-                <div class="planning">dfgqsfgqsfq</div>
+                <div class="header_day">
+                    <span class="day_name">lundi</span>
+                    <span class="plus_icon">+</span>
+                </div>
+                <div class="planning_day">
+                </div>
+         
             </div>
+            <span class="diary_title">Journal de suivi</span>
             <div class="diary_contener">
-                <span class="diary_title">Journal de suivi</span>
                 <div class="diary_content">
-                    <textarea>
-                        Ici écrivez votre compte-rendu de la journée.
+                    <textarea aria-valuetext="Tapez ici">
+                        
                     </textarea>
-
+                            
                     <div class="bouton">
-                        <input type="submit" value="Soumettre">
+                        
+                        <span class="soumettre_title">Soumettre</span>
 
                         <select>
                             <option value="nom1">Nicolas Pelletier</option>
@@ -93,7 +99,7 @@
         </aside>
     </section>
     <footer>
-        <p class="mentions">Mention légales</p>
+        <p class="mentions">Mentions légales</p>
     </footer>
     <script src="/assets/public/integration/javascript/burger.js"></script>
 </body>
