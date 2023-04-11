@@ -1,3 +1,18 @@
+:root {
+    --primary_text_color: #ffffff;
+    --secondary_text_color: #000000;
+    --backgroung_color: #2a84bc;
+    --lilac_color: #f9aaff;
+    --purple: #432C9E;
+    --purple_pink: #AD5DD9;
+    --yellow_color: #F7E07A;
+    --green_color: #3FA254;
+    --coral_pink: #EF8275;
+    --powder-gray: #AFC2D5;
+    --red: #E01D5B;
+    --contener: #ae5dd96c;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -23,7 +38,8 @@ body, html {
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     animation: fadeIn .3s both;
-    
+
+    z-index: 2;
 }
 
 .modal-wrapper {
@@ -32,16 +48,14 @@ body, html {
     max-width: calc(100vw - 20px);
     max-height: calc(100vh - 20px);
     padding: 20px;
-    background-color: #FFF;
+    background: linear-gradient(to right, var(--backgroung_color), var(--purple));
+    border-radius: 0.5em;
     animation: slideFromTop .5s both;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 
-/* .modal[aria-hidden="true"]{
-    animation-name: fadeOut;
-}
-.modal[aria-hidden="true"] .modal-wrapper {
-    animation-name: slideToBottom;
-}    */
+
 
 @keyframes fadeIn {
     from { opacity: 0;}
@@ -68,4 +82,26 @@ body, html {
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+    font-size: 1.5em; /* Changer la taille de la police */
+    padding: 10px; /* Ajouter du padding */
+    margin-bottom: 10px; 
+    border: 1px solid var(--lilac_color); 
+    border-radius: 5px;
     }
+
+input{
+    margin: 1em;
+    padding: 0.5em;
+}
+
+.submit{
+    border-radius: 2em;
+    background: linear-gradient(to right, var(--purple_pink), var(--coral_pink));
+    color: var(--primary_text_color);
+    padding: 0.5em;
+    border: 1px solid var(--primary_text_color);
+    font-size: 1em;
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
