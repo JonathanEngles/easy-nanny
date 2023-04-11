@@ -382,10 +382,6 @@ footer {
         text-align: left;
     }
 
-
-
-
-
     .chat_title {
         padding: 1em 4em;
     }
@@ -414,7 +410,7 @@ footer {
 
     .left_side {
         background: linear-gradient(to top, var(--purple), var(--purple_pink));
-        width: auto%;
+        width: auto;
     }
 
     @keyframes gradient {
