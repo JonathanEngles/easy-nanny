@@ -26,6 +26,11 @@ class NannyController extends CoreController {
 
     }
 
+    /**
+     * Modidy the activity by the nanny
+     * @param {*} req 
+     * @param {*} res 
+     */
     async modifyActivity(req, res) {
         if (req.session && req.session.user) {
             const userId = req.session.user.id
@@ -34,7 +39,18 @@ class NannyController extends CoreController {
             res.redirect('/dashboard')
         } else {res.redirect('/')
     }
-}
+};
+
+    async deleteActivity(req, res) {
+        if (req.session && req.session.user) {
+            const userId = req.session.user.id;
+            const activityId = req.body.id;
+            await nannyDataMapper.deleteActivity(userId, activityId);
+            res.redirect('/dashboard');
+        } else {
+            res.redirect('/')
+    }
+    };
 };
 
 

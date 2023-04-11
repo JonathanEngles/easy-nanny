@@ -80,6 +80,11 @@ class NannyDataMapper extends CoreDataMapper {
         return result
 
     };
+
+    async deleteActivity(userId, activityId) {
+        await client.query(`DELETE FROM "activity" WHERE "id" = $1 AND "nanny_id" = $2`, [activityId, userId]);
+        return;
+    }
 };
 
 

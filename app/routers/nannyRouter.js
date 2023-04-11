@@ -37,7 +37,7 @@ router.get('/logout', nannyController.logout.bind(nannyController));
  */
 router.post('/activity', nannyController.createActivity);
 router.patch('/activity', nannyController.modifyActivity);
-// router.delete('/activity', nannyController.deleteActivity);
+router.post('/activity/delete', nannyController.deleteActivity);
 
 
 module.exports = router;
