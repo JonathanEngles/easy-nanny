@@ -31,4 +31,13 @@ router.delete('/profile', nannyController.deleteProfile.bind(nannyController));
  */
 router.get('/logout', nannyController.logout.bind(nannyController));
 
+
+/**
+ * route for activity in POST/PATCHE/DELETE
+ */
+router.post('/activity', nannyController.createActivity);
+router.patch('/activity', nannyController.modifyActivity);
+// router.delete('/activity', nannyController.deleteActivity);
+
+
 module.exports = router;

@@ -23,6 +23,7 @@ class CoreDataMapper {
         const tableName = this.constructor.tableName;
         const result = await client.query(`SELECT * FROM "children" WHERE ${tableName}_id = $1`
 ,[userID] );
+        return result.rows
 }
 
 
@@ -90,6 +91,7 @@ class CoreDataMapper {
     async deleteProfile(id) {
         const tableName = this.constructor.tableName;
         await client.query(`DELETE FROM ${tableName} WHERE id =$1`, [id]);
+        return;
     } 
     
     

@@ -30,4 +30,6 @@ router.delete('/profile', parentController.deleteProfile.bind(parentController))
  */
 router.get('/logout', parentController.logout.bind(parentController));
 
+
+
 module.exports = router;
