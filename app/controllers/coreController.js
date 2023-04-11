@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
@@ -76,8 +77,11 @@ async register(req, res) {
 
     let _password = hash;
 
+    //generate a randow uniqueID
+    const uniqueId = uuidv4();
+
     //add user to database
-    await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city);
+    await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, uniqueId);
     
     res.redirect('/signup');
 } catch (error) {

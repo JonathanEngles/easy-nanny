@@ -27,7 +27,7 @@ class NannyController extends CoreController {
     }
 
     /**
-     * Modidy the activity by the nanny
+     * Modify the activity by the nanny
      * @param {*} req 
      * @param {*} res 
      */
@@ -41,6 +41,11 @@ class NannyController extends CoreController {
     }
 };
 
+/**
+ * delete the activity
+ * @param {*} req 
+ * @param {*} res 
+ */
     async deleteActivity(req, res) {
         if (req.session && req.session.user) {
             const userId = req.session.user.id;
@@ -50,6 +55,32 @@ class NannyController extends CoreController {
         } else {
             res.redirect('/')
     }
+    };
+
+    /**
+     * add the parent and the children to nanny
+     * @param {*} req 
+     * @param {*} res 
+     */
+    async addAccount(req, res) {
+        if (req.session && req.session.user) {
+            const nannyId = req.session.user.id;
+            const  { uniqueId } = req.body;
+
+            const parent = await nannyDataMapper.getParentByUniqueId(uniqueId);
+
+            if (!parent) {
+                return res.send('pas de parent trouvé')
+            }
+            if (parent.nanny_id === null) {
+            const parentId = parent.id;
+            await nannyDataMapper.updateParent(parentId, nannyId);
+            await nannyDataMapper.updateChildren(parentId, nannyId);
+
+            return res.send('Nounou, Parents et enfants sont correctement liés') 
+        } else {
+            return res.send('le parent est déjà lié à une nounou')
+        }}
     };
 };
 

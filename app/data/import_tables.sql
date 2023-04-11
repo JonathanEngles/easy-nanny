@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS "nanny" (
     "address" VARCHAR(255) NOT NULL,
     "zip_code" INTEGER NOT NULL,
     "city" VARCHAR(255) NOT NULL,
+    "uniqueId" VARCHAR(36) NOT NULL,
+    "is_nanny" BOOLEAN NOT NULL DEFAULT true,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ
 );
@@ -27,6 +29,7 @@ CREATE TABLE IF NOT EXISTS "parent" (
     "address" VARCHAR(255) NOT NULL,
     "zip_code" INTEGER NOT NULL,
     "city" VARCHAR(255) NOT NULL,
+    "uniqueId" VARCHAR(36) NOT NULL,
     "nanny_id" INTEGER REFERENCES "nanny" ("id") ON DELETE SET NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ

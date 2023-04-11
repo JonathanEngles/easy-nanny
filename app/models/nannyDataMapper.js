@@ -84,7 +84,22 @@ class NannyDataMapper extends CoreDataMapper {
     async deleteActivity(userId, activityId) {
         await client.query(`DELETE FROM "activity" WHERE "id" = $1 AND "nanny_id" = $2`, [activityId, userId]);
         return;
-    }
+    };
+
+    async getParentByUniqueId(uniqueId) {
+
+        const result = await client.query('SELECT "id" FROM "parent" WHERE "uniqueId" = $1', [uniqueId])
+
+        return result.rows[0];
+    };
+
+    async updateParent(parentId, nannyId) {
+        await client.query('UPDATE "parent" SET "nanny_id" = $1 WHERE "id" = $2', [nannyId, parentId]);
+    };
+
+    async updateChildren(parentId, nannyId) {
+        await client.query('UPDATE "children" SET "nanny_id" = $1 WHERE "parent_id" = $2', [nannyId, parentId]);
+    };
 };
 
 
