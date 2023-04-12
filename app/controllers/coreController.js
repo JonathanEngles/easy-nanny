@@ -155,6 +155,7 @@ async modifyProfile(req, res) {
 }else {res.render('/homepage')
 }
 }
+
 }
   
 module.exports = CoreController;

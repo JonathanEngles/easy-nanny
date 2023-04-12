@@ -30,4 +30,5 @@ router.patch('/profile', parentController.modifyProfile.bind(parentController));
  */
 router.get('/logout', parentController.logout.bind(parentController));
 
+
 module.exports = router;
