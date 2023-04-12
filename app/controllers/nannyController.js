@@ -15,11 +15,13 @@ class NannyController extends CoreController {
  * @param {*} res 
  */
     async createActivity (req, res) {
+        //verify if a session exists and if an user is connected
         if (req.session && req.session.user) {
           const userId = req.session.user.id
+          //get the form with req.body
         const {title, description, date, begin, end, color, category} = req.body;
 
-
+            //add activity to the database
         await nannyDataMapper.createActivity(title, description, date, begin, end, color, category, userId);
         res.redirect('/dashboard')
         } else {res.redirect('/')
@@ -33,9 +35,12 @@ class NannyController extends CoreController {
      * @param {*} res 
      */
     async modifyActivity(req, res) {
+        //verify if a session exists and if an user is connected
         if (req.session && req.session.user) {
             const userId = req.session.user.id
+            //get the form with req.body
             const {id, title, description, date, begin, end, color, category} = req.body;
+            //modify the activity in the database
             await nannyDataMapper.modifyActivity(id, userId, {title, description, date, begin, end, color, category});
             res.redirect('/dashboard')
         } else {res.redirect('/')
@@ -48,9 +53,13 @@ class NannyController extends CoreController {
  * @param {*} res 
  */
     async deleteActivity(req, res) {
+        //verify if a session exists and if an user is connected
         if (req.session && req.session.user) {
             const userId = req.session.user.id;
+            //get the id of activity by his form
             const activityId = req.body.id;
+
+            //delete the activity in database
             await nannyDataMapper.deleteActivity(userId, activityId);
             res.redirect('/dashboard');
         } else {
@@ -63,16 +72,20 @@ class NannyController extends CoreController {
      * @param {*} req 
      * @param {*} res 
      */
-    async addAccount(req, res) {
+    async linkAccount(req, res) {
         if (req.session && req.session.user) {
+            //verify if a session exists and if an user is connected
             const nannyId = req.session.user.id;
             const  { uniqueId } = req.body;
 
+            //research if a parent exist with the unique Id
             const parent = await nannyDataMapper.getParentByUniqueId(uniqueId);
 
             if (!parent) {
                 return res.send('pas de parent trouvé')
             }
+
+            //verify if the parent hasn't already a nanny
             if (parent.nanny_id === null) {
             const parentId = parent.id;
             await nannyDataMapper.updateParent(parentId, nannyId);
@@ -84,45 +97,47 @@ class NannyController extends CoreController {
         }}
     };
 
+    /**
+     * create a Diary by Nanny to one Parent
+     * @param {*} req 
+     * @param {*} res 
+     */
     async createDiary(req, res) {
-        try {
+       //verify if a session exists and if an user is connected
             if (req.session && req.session.user) {
                 const userId = req.session.user.id;
                 //get the form with req.body
                 const { date, description, parentId } = req.body;
             
-                //add user to database
+                //add diary to database
                 await nannyDataMapper.createDiary(date, description, userId, parentId);
                 
-                res.redirect('/profile');
+                res.redirect('/dashboard');
             } else {
-                throw new Error('User not authenticated');
+                res.redirect('/');
             }
-        } catch (error) {
-            console.error('Error :', error);
-            res.status(500).send('An error occurred while creating the diary entry');
-        }
+        
     }
 
-
+/**
+ * add suggest by nanny to one Parent
+ * @param {*} req 
+ * @param {*} res 
+ */
     async createSuggest(req, res) {
-        try {
+        //verify if a session exists and if an user is connected
             if (req.session && req.session.user) {
                 const userId = req.session.user.id;
                 //get the form with req.body
                 const { title, parentId } = req.body;
             
-                //add user to database
+                //add suggest to database
                 await nannyDataMapper.createSuggest(title, parentId, userId);
                 
-                res.redirect('/profile');
+                res.redirect('/dashboard');
             } else {
-                throw new Error('User not authenticated');
+                res.redirect('/');
             }
-        } catch (error) {
-            console.error('Error :', error);
-            res.status(500).send('An error occurred while creating the diary entry');
-        }
     }
     
 };

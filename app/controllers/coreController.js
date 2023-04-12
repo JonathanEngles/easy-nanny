@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid'); // module to generate an UNIQUE RANDOM id
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
@@ -13,7 +13,7 @@ class CoreController {
 
 logout(_, res) {
     req.session.destroy();
-    res.render('homePage');
+    res.redirect('/');
 };
 
 loginForm(_, res) {
@@ -28,20 +28,23 @@ loginForm(_, res) {
    */
   async login(req, res) {
     
-    //we get the data of the form
+    //we get the form
     const {email, password } = req.body;
 
-    //we compare the email if exist in database
+    //we compare the email if exists in database
     const user = await this.constructor.dataMapper.getUserByEmail(email);
     
     if (!user){
         return res.status(400).render('login', {error: 'l\'email est incorrect'});
     }
+
+    //we compare the password of the user if it is the same
     const ok = await bcrypt.compare(password, user.password);
 
     if(!ok) {
         return res.status(400).render('login', {error: 'Le mot de passe est éronné'});
     }
+    //we delete the password of the req.body
     delete req.body.password;
     req.session.user = user;
     return res.redirect('/dashboard');
@@ -55,7 +58,6 @@ loginForm(_, res) {
  */
 async register(req, res) {
 
-    try {
         //get the form with req.body
     const {name, first_name, email, password, passwordConfirmation, address, zip_code, city} = req.body;
 
@@ -63,18 +65,19 @@ async register(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
-        return res.render('signup', {error: 'un compte avec cet email existe déjà'});
+        return res.render('homePage', {error: 'un compte avec cet email existe déjà'});
     }
 
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
-        return res.render('signup', {error: 'Les mots de passe ne sont pas identique'});
+        return res.render('homePage', {error: 'Les mots de passe ne sont pas identique'});
     }
     
     //crypt the password
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
 
+    //variable created to give argument to create user
     let _password = hash;
 
     //generate a randow uniqueID
@@ -83,14 +86,20 @@ async register(req, res) {
     //add user to database
     await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, uniqueId);
     
-    res.redirect('/signup');
-} catch (error) {
-    console.error('Error :', error);
-    throw error;
-}
+    res.redirect('/');
+
 }
 
+
+/**
+ * profile page in GET 
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 async getProfile(req, res) {
+
+    //verify if a session exists and if an user is connected
     if (req.session && req.session.user) {
     const user = req.session.user;
 
@@ -109,13 +118,15 @@ async getProfile(req, res) {
  * @returns 
  */
 async modifyProfile(req, res) {
+     //verify if a session exists and if an user is connected
     if (req.session && req.session.user) {
+
         const user = req.session.user;
         
-        try {
             
-            //get the form with req.body
+            //get the form of req.body
     const {name, first_name, email, oldPassword, password, passwordConfirmation, address, zip_code, city} = req.body;
+
     let _password = password
             if (email) {
     //Compare if email is unique
@@ -126,7 +137,7 @@ async modifyProfile(req, res) {
     }
 }
 
-// compare the old password to the password of the user
+// compare the old password to the actual password of the user
     if (password) {
         const ok = await bcrypt.compare(oldPassword, user.password);
 
@@ -145,9 +156,9 @@ async modifyProfile(req, res) {
 
     _password = hash;
 }
-
+    //we modify the user to database
             await this.constructor.dataMapper.updateProfile(user.id, {name, first_name, email, _password, address, zip_code, city});
-
+    // we delete sensible information
             delete req.body.password;
             delete req.body.passwordConfirmation;
             delete req.body.oldPassword;
@@ -155,28 +166,22 @@ async modifyProfile(req, res) {
 
             return res.render('profile');
 
-            
-        } catch (error) {
-            console.error('Error :', error);
-            throw error;
-        }
-
-
-
 }else {res.render('/homepage')
 }
 }
 
 
 /**
- * delete an user if nanny delete juste nanny, if parent delete his children
+ * delete an user : if nanny is deleted just nanny is deleted, if parent is deleted his children are deleted too
  * @param {*} req 
  * @param {*} res 
  * @returns 
  */
  async deleteProfile(req, res) {
+    //verify if a session exists and if an user is connected
     if (req.session && req.session.user) {
         const user = req.session.user;
+        //delete the user in database
         await this.constructor.dataMapper.deleteProfile(user.id);
         return res.render('homePage');
 }}

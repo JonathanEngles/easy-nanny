@@ -10,9 +10,13 @@ class ParentController extends CoreController {
         super();
     }
     
-
+/**
+ * add suggest by parent to his nanny
+ * @param {*} req 
+ * @param {*} res 
+ */
     async createSuggest(req, res) {
-        try {
+       //verify if a session exists and if an user is connected
             if (req.session && req.session.user) {
                 const user = req.session.user;
                 const userId = user.id;
@@ -20,17 +24,14 @@ class ParentController extends CoreController {
                 //get the form with req.body
                 const { title } = req.body;
             
-                //add user to database
+                //add suggest to database
                 await parentDataMapper.createSuggest(title, nannyId, userId);
                 
                 res.redirect('/profile');
             } else {
-                throw new Error('User not authenticated');
+                res.redirect('/');
             }
-        } catch (error) {
-            console.error('Error :', error);
-            res.status(500).send('An error occurred while creating the diary entry');
-        }
+        
     }
 
 };

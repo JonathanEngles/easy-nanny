@@ -103,24 +103,21 @@ class NannyDataMapper extends CoreDataMapper {
     async updateChildren(parentId, nannyId) {
         await client.query('UPDATE "children" SET "nanny_id" = $1 WHERE "parent_id" = $2', [nannyId, parentId]);
     };
+    
+
+
+async createDiary(date, description, nannyId, parentId) {
+    const result =  await client.query(`INSERT INTO "diary" ("date", "description", "nanny_id", "parent_id") VALUES ($1, $2, $3, $4)`, [date, description, nannyId, parentId]);
+    return result;
 };
 
-    }
 
-    async createDiary(date, description, nannyId, parentId) {
-        const result =  await client.query(`INSERT INTO "diary" ("date", "description", "nanny_id", "parent_id") VALUES ($1, $2, $3, $4)`, [date, description, nannyId, parentId]);
-        return result;
-    }
-    
-    }
 
-    async createSuggest(title, parentId, userId) {
-        const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id") VALUES ($1, $2, $3)`, [title, userId, parentId]);
-        return result;
-    }
-}
-
-}
+async createSuggest(title, parentId, userId) {
+    const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id") VALUES ($1, $2, $3)`, [title, userId, parentId]);
+    return result;
+};
+};
 
 
 

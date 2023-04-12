@@ -53,6 +53,6 @@ router.post('/activity/delete', nannyController.deleteActivity);
 /**
  * route to add a new parent account and his children to the nanny account
  */
-router.post('/add', nannyController.addAccount);
+router.post('/add', nannyController.linkAccount);
 
 module.exports = router;
