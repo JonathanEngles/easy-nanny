@@ -6,13 +6,14 @@ const childController = {
 
     try {
     if (req.session && req.session.user) {
-        const userId = req.session.user.id;
+        const user = req.session.user
+        const userId = user.id;
         
     //get the form with req.body
     const {name, first_name, sexe, birthday} = req.body;
-  
+   
     //add children user to database
-    await childDataMapper.createChildren(name, first_name, sexe, birthday, userId);
+        await childDataMapper.createChildren(name, first_name, sexe, birthday, userId, user.nanny_id);
     
     res.redirect('/profile'); 
     } 
@@ -35,11 +36,11 @@ const childController = {
     try {
     if (req.session && req.session.user) {
     const userId = req.session.user.id;
-    const childId = req.params.id;
-    const { name, first_name, sexe, birthday } = req.body;
+    
+    const { id, name, first_name, sexe, birthday } = req.body;
             
     // update the child information in the database
-    await childDataMapper.modifyChildren(name, first_name, sexe, birthday, childId, userId);
+    await childDataMapper.modifyChildren(id, name, first_name, sexe, birthday, userId);
             
     res.redirect('/profile');
     }
@@ -53,10 +54,10 @@ const childController = {
     try {
     if (req.session && req.session.user) {
     const userId = req.session.user.id;
-    const childId = req.params.id; // assuming that the child ID is passed as a parameter in the URL
+    const {id} = req.body
                 
     // delete the child from the database
-    await childDataMapper.removeChildren(childId, userId);
+    await childDataMapper.removeChildren(id, userId);
                 
     res.redirect('/profile');
     }

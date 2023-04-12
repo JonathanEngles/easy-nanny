@@ -36,8 +36,8 @@ router.get('/logout', parentController.logout.bind(parentController));
  * children routes: POST, PATCH, DELETE
  */
 router.post('/children', childController.createChildren);
-router.patch('/children/:id', childController.modifyChildren);
-router.delete('/children/:id', childController.removeChildren);
+router.post('/children/patch', childController.modifyChildren);
+router.post('/children/delete', childController.removeChildren);
 
 
 
