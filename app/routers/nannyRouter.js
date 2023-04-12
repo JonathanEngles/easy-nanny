@@ -25,6 +25,10 @@ router.get('/profile', nannyController.getProfile.bind(nannyController));
 router.patch('/profile', nannyController.modifyProfile.bind(nannyController));
 // router.delete('/profile', nannyController.deleteProfile.bind(nannyController));
 
+/**
+ * Route for suggest : POST
+ */
+router.post('/suggest', nannyController.createSuggest)
 
 /**
  * route for disconnect to the session 
