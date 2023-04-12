@@ -23,7 +23,7 @@ router.post('/login',nannyController.login.bind(nannyController));
 
 router.get('/profile', nannyController.getProfile.bind(nannyController));
 router.patch('/profile', nannyController.modifyProfile.bind(nannyController));
-// router.delete('/profile', nannyController.deleteProfile.bind(nannyController));
+router.post('/profile/delete', nannyController.deleteProfile.bind(nannyController));
 
 /**
  * Route for Diary : POST
@@ -34,5 +34,19 @@ router.post('/diary', nannyController.createDiary);
  * route for disconnect to the session 
  */
 router.get('/logout', nannyController.logout.bind(nannyController));
+
+
+/**
+ * route for activity in POST/PATCHE/DELETE
+ */
+router.post('/activity', nannyController.createActivity);
+router.patch('/activity', nannyController.modifyActivity);
+router.post('/activity/delete', nannyController.deleteActivity);
+
+
+/**
+ * route to add a new parent account and his children to the nanny account
+ */
+router.post('/add', nannyController.addAccount);
 
 module.exports = router;

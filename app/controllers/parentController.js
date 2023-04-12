@@ -9,7 +9,7 @@ class ParentController extends CoreController {
     constructor() {
         super();
     }
-
+    
 
 };
 
