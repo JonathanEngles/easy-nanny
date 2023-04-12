@@ -2,6 +2,7 @@ const express = require('express');
 
 const parentController = require('../controllers/parentController');
 const { catchErrors } = require('../middlewares/handlerError');
+const childController = require('../controllers/childController.js');
 
 const router = express.Router();
 
@@ -29,6 +30,15 @@ router.post('/profile/delete', parentController.deleteProfile.bind(parentControl
  * route for disconnect to the session 
  */
 router.get('/logout', parentController.logout.bind(parentController));
+
+
+
+/**
+ * children routes: POST, PATCH, DELETE
+ */
+router.post('/children', childController.createChildren);
+router.post('/children/patch', childController.modifyChildren);
+router.post('/children/delete', childController.removeChildren);
 
 
 
