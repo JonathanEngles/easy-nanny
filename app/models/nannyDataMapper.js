@@ -1,6 +1,8 @@
 const client = require('../database');
 const CoreDataMapper = require('./coreDataMapper');
+
 const client = require('../database')
+
 
 class NannyDataMapper extends CoreDataMapper {
 
@@ -8,7 +10,6 @@ class NannyDataMapper extends CoreDataMapper {
 
     constructor() {
         super();
-
     };
 
     async createActivity(title, description, date, begin, end, color, category, userId) {
@@ -110,7 +111,17 @@ class NannyDataMapper extends CoreDataMapper {
         const result =  await client.query(`INSERT INTO "diary" ("date", "description", "nanny_id", "parent_id") VALUES ($1, $2, $3, $4)`, [date, description, nannyId, parentId]);
         return result;
     }
+    
+    }
+
+    async createSuggest(title, parentId, userId) {
+        const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id") VALUES ($1, $2, $3)`, [title, userId, parentId]);
+        return result;
+    }
 }
+
+}
+
 
 
 

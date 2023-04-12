@@ -26,6 +26,15 @@ router.post('/login',parentController.login.bind(parentController))
 router.get('/profile', parentController.getProfile.bind(parentController));
 router.patch('/profile', parentController.modifyProfile.bind(parentController));
 router.post('/profile/delete', parentController.deleteProfile.bind(parentController));
+
+// router.delete('/profile', parentController.deleteProfile.bind(parentController));
+
+/**
+ * Route for suggest : POST
+ */
+router.post('/suggest', parentController.createSuggest)
+
+
 /**
  * route for disconnect to the session 
  */
