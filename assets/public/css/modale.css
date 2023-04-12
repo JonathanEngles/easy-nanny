@@ -55,7 +55,21 @@ body, html {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 
+.js-modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    border: 1px solid var(--lilac_color);
+    color: var(--purple_pink);
+}
 
+.js-modal-close:hover {
+    color: var(--red);
+}
 
 @keyframes fadeIn {
     from { opacity: 0;}
@@ -83,10 +97,10 @@ body, html {
     justify-content: center;
     flex-direction: column;
 
-    font-size: 1.5em; /* Changer la taille de la police */
-    padding: 10px; /* Ajouter du padding */
-    margin-bottom: 10px; 
-    border: 1px solid var(--lilac_color); 
+    font-size: 1.5em; 
+    padding: 15px; 
+    margin-bottom: 5px; 
+    
     border-radius: 5px;
     }
 

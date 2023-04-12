@@ -22,10 +22,8 @@
         <div class="burger-menu">
             <div class="burger-menu-icon">&#9776;</div>
             <ul class="burger-menu-list">
-                <li><a href="#">Mon profil</a></li>
-                <li><a href="#">Chat</a></li>
-                <li><a href="#">Suggestions</a></li>
-                <li><a href="#">Deconnexion</a></li>
+                <li><a id="signupBtn" class="modal-btn js-modal" href="#modal1">s'inscrire</a></li>
+                <li><a id="loginBtn" class="modal-btn js-modal" href="#modal2">Se connecter</a></li>
             </ul>
         </div>
 
@@ -41,7 +39,8 @@
 
     <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display:none;">
         <div class="modal-wrapper js-modal-stop">
-            <button class="js-modal-close">Fermer la modale</button>
+            <button class="js-modal-close">✖</button>
+
             <form class="signup-form" action="/signup" method="POST">
                 <label for="name">Nom :</label>
                 <input type="text" id="name" name="name" required>
@@ -230,6 +229,7 @@
 
     <script src="/assets/public/integration/javascript/index.js"></script>
     <script src="/assets/public/integration/javascript/modale.js"></script>
+    <script src="/assets/public/integration/javascript/burger.js"></script>
 </body>
 
 </html>
