@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { v4: uuidv4 } = require('uuid');
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
@@ -12,7 +13,7 @@ class CoreController {
 
 logout(_, res) {
     req.session.destroy();
-    res.redirect('/');
+    res.render('homePage');
 };
 
 loginForm(_, res) {
@@ -43,7 +44,7 @@ loginForm(_, res) {
     }
     delete req.body.password;
     req.session.user = user;
-    return res.redirect('/profile');
+    return res.redirect('/dashboard');
 }
 
 /**
@@ -76,8 +77,11 @@ async register(req, res) {
 
     let _password = hash;
 
+    //generate a randow uniqueID
+    const uniqueId = uuidv4();
+
     //add user to database
-    await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city);
+    await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, uniqueId);
     
     res.redirect('/signup');
 } catch (error) {
@@ -93,10 +97,17 @@ async getProfile(req, res) {
     const children = await this.constructor.dataMapper.getChildren(user.id);
     
     return res.render('profile', {user, children});
-} else {res.redirect('/homePage')
+    
+} else {res.redirect('/')
   }
 }
 
+/**
+ * Modify the Profile of the user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 async modifyProfile(req, res) {
     if (req.session && req.session.user) {
         const user = req.session.user;
@@ -111,7 +122,7 @@ async modifyProfile(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
-        return res.redirect('/profile', {error: 'un compte avec cet email existe déjà'});
+        return res.status(400).render('profile', {error: 'un compte avec cet email existe déjà'});
     }
 }
 
@@ -120,7 +131,7 @@ async modifyProfile(req, res) {
         const ok = await bcrypt.compare(oldPassword, user.password);
 
     if(!ok) {
-        return res.status(400).render('login', {error: 'Le mot de passe est éronné'});
+        return res.status(400).render('profile', {error: 'Le mot de passe est éronné'});
     }
     
     //compare password to passwordConfirmation from the form
@@ -142,7 +153,7 @@ async modifyProfile(req, res) {
             delete req.body.oldPassword;
             req.session.user = user;
 
-            return res.redirect('/profile');
+            return res.render('profile');
 
             
         } catch (error) {
@@ -155,6 +166,21 @@ async modifyProfile(req, res) {
 }else {res.render('/homepage')
 }
 }
+
+/**
+ * delete an user if nanny delete juste nanny, if parent delete his children
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
+ async deleteProfile(req, res) {
+    if (req.session && req.session.user) {
+        const user = req.session.user;
+        await this.constructor.dataMapper.deleteProfile(user.id);
+        return res.render('homePage');
+}}
+
+
 }
   
 module.exports = CoreController;

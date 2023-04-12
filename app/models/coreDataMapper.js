@@ -13,9 +13,9 @@ class CoreDataMapper {
     }
 
 
-    async createUser(name, first_name, email, password, address, zip_code, city) {
+    async createUser(name, first_name, email, password, address, zip_code, city, uniqueId) {
         const tableName = this.constructor.tableName;
-        const result =  await client.query(`INSERT INTO "${tableName}" ("name", "first_name", "email", "password", "address", "zip_code", "city") VALUES ($1, $2, $3, $4, $5, $6, $7)`, [name, first_name, email, password, address, zip_code, city]);
+        const result =  await client.query(`INSERT INTO "${tableName}" ("name", "first_name", "email", "password", "address", "zip_code", "city", "uniqueId") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`, [name, first_name, email, password, address, zip_code, city, uniqueId]);
         return result.rows[0];
     }
 
@@ -23,6 +23,7 @@ class CoreDataMapper {
         const tableName = this.constructor.tableName;
         const result = await client.query(`SELECT * FROM "children" WHERE ${tableName}_id = $1`
 ,[userID] );
+        return result.rows
 }
 
 
@@ -85,6 +86,13 @@ class CoreDataMapper {
             return result;
 
     }
+
+    
+    async deleteProfile(id) {
+        const tableName = this.constructor.tableName;
+        await client.query(`DELETE FROM ${tableName} WHERE id =$1`, [id]);
+        return;
+    } 
     
     
     
