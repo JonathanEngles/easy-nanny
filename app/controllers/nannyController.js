@@ -19,6 +19,7 @@ class NannyController extends CoreController {
           const userId = req.session.user.id
         const {title, description, date, begin, end, color, category} = req.body;
 
+
         await nannyDataMapper.createActivity(title, description, date, begin, end, color, category, userId);
         res.redirect('/dashboard')
         } else {res.redirect('/')
@@ -82,6 +83,27 @@ class NannyController extends CoreController {
             return res.send('le parent est déjà lié à une nounou')
         }}
     };
+
+    async createDiary(req, res) {
+        try {
+            if (req.session && req.session.user) {
+                const userId = req.session.user.id;
+                //get the form with req.body
+                const { date, description, parentId } = req.body;
+            
+                //add user to database
+                await nannyDataMapper.createDiary(date, description, userId, parentId);
+                
+                res.redirect('/profile');
+            } else {
+                throw new Error('User not authenticated');
+            }
+        } catch (error) {
+            console.error('Error :', error);
+            res.status(500).send('An error occurred while creating the diary entry');
+        }
+    }
+
 };
 
 
