@@ -1,5 +1,5 @@
 const CoreDataMapper = require('./coreDataMapper');
-
+const client = require ('../database')
 
 class ParentDataMapper extends CoreDataMapper {
 
@@ -8,6 +8,7 @@ class ParentDataMapper extends CoreDataMapper {
     constructor() {
         super();
     }
+
 }
 
 

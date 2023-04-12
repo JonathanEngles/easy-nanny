@@ -20,4 +20,11 @@ router.use('/parent', parentRouter);
 router.use('/nanny', nannyRouter);
 
 
+/**
+ * route 404
+ */
+router.use((_,res) => {
+    res.status(404).render('404');
+});
+
 module.exports = router;
