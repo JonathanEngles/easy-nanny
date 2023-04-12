@@ -10,6 +10,7 @@ class ParentController extends CoreController {
         super();
     }
     
+
     async createSuggest(req, res) {
         try {
             if (req.session && req.session.user) {
@@ -31,6 +32,7 @@ class ParentController extends CoreController {
             res.status(500).send('An error occurred while creating the diary entry');
         }
     }
+
 };
 
 
