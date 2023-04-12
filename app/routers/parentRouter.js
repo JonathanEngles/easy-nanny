@@ -41,14 +41,11 @@ router.post('/suggest', parentController.createSuggest)
 router.get('/logout', parentController.logout.bind(parentController));
 
 
-
 /**
  * children routes: POST, PATCH, DELETE
  */
 router.post('/children', childController.createChildren);
 router.post('/children/patch', childController.modifyChildren);
 router.post('/children/delete', childController.removeChildren);
-
-
 
 module.exports = router;

@@ -31,6 +31,12 @@ router.post('/profile/delete', nannyController.deleteProfile.bind(nannyControlle
 router.post('/suggest', nannyController.createSuggest)
 
 /**
+ * Route for Diary : POST
+ */
+router.post('/diary', nannyController.createDiary);
+
+
+/**
  * route for disconnect to the session 
  */
 router.get('/logout', nannyController.logout.bind(nannyController));
