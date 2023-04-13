@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS "diary" (
     "parent_id" INTEGER  REFERENCES "parent" ("id") ON DELETE SET NULL,
     "nanny_id" INTEGER  REFERENCES "nanny" ("id") ON DELETE SET NULL,
     "created_by" TEXT NOT NULL,
+    "created_for" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ
 );
@@ -64,6 +65,7 @@ CREATE TABLE IF NOT EXISTS "suggest" (
     "parent_id" INTEGER  REFERENCES "parent" ("id") ON DELETE SET NULL,
     "nanny_id" INTEGER  REFERENCES "nanny" ("id") ON DELETE SET NULL,
     "created_by" TEXT NOT NULL,
+    "created_for" TEXT NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ
 );

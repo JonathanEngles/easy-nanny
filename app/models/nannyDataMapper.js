@@ -10,8 +10,9 @@ class NannyDataMapper extends CoreDataMapper {
         super();
     };
 
-    async createActivity(title, description, date, begin, end, color, category, user) {
-        const result =  await client.query(`INSERT INTO "activity" ("title", "description", "date", "begin", "end", "color", "category", "nanny_id", "created_by") VALUES ($1, $2, $3, $4, $5, CASE WHEN $6 = '' OR $6 IS NULL THEN 'FFFFFF' ELSE $6 END, $7, $8, $9)`, [title, description, date, begin, end, color, category, user.id, user]);
+    async createActivity(title, description, date, begin, end, color, category, nanny) {
+        const createdBy = `Nom et prénom : ${nanny.name} ${nanny.first_name}, Email : ${nanny.email}, Adresse : ${nanny.address} ${nanny.zip_code} ${nanny.city}`;
+        const result =  await client.query(`INSERT INTO "activity" ("title", "description", "date", "begin", "end", "color", "category", "nanny_id", "created_by") VALUES ($1, $2, $3, $4, $5, CASE WHEN $6 = '' OR $6 IS NULL THEN 'FFFFFF' ELSE $6 END, $7, $8, $9)`, [title, description, date, begin, end, color, category, nanny.id, createdBy]);
         return result.rows[0];
     };
 
@@ -104,16 +105,26 @@ class NannyDataMapper extends CoreDataMapper {
     
 
 
-async createDiary(date, description, user, parentId) {
-    const result =  await client.query(`INSERT INTO "diary" ("date", "description", "nanny_id", "parent_id", "created_by") VALUES ($1, $2, $3, $4, $5)`, [date, description, user.id, parentId, user]);
-    return result;
+async createDiary(date, description, nanny, parentId) {
+    const parentResult = await client.query('SELECT * FROM "parent" WHERE "id" = $1', [parentId]);
+    const parent = parentResult.rows[0];
+    const createdFor = `Nom et prénom : ${parent.name} ${parent.first_name}, Email : ${parent.email}, Adresse : ${parent.adress} ${parent.zip_code} ${parent.city}`;
+    const createdBy = `Nom et prénom : ${nanny.name} ${nanny.first_name}, Email : ${nanny.email}, Adresse : ${nanny.address} ${nanny.zip_code} ${nanny.city}`;
+        const result =  await client.query(`INSERT INTO "diary" ("date", "description", "nanny_id", "parent_id", "created_by", "created_for") VALUES ($1, $2, $3, $4, $5, $6)`, [date, description, nanny.id, parentId, createdBy, createdFor]);
+        return result;
 };
 
 
 
-async createSuggest(title, parentId, user) {
-    const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id", "created_by") VALUES ($1, $2, $3)`, [title, user.id, parentId, user]);
-    return result;
+async createSuggest(title, parentId, nanny) {
+
+        const parentResult = await client.query('SELECT * FROM "parent" WHERE "id" = $1', [parentId]);
+        const parent = parentResult.rows[0];
+        const createdFor = `Nom et prénom : ${parent.name} ${parent.first_name}, Email : ${parent.email}, Adresse : ${parent.address} ${parent.zip_code} ${parent.city}`;
+        const createdBy = `Nom et prénom : ${nanny.name} ${nanny.first_name}, Email : ${nanny.email}, Adresse : ${nanny.address} ${nanny.zip_code} ${nanny.city}`;
+        const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id", "created_by", "created_for") VALUES ($1, $2, $3, $4, $5)`, [title, nanny.id, parentId, createdBy, createdFor]);
+        return result;
+
 };
 };
 
