@@ -18,12 +18,12 @@ class NannyController extends CoreController {
     async createActivity (req, res) {
         //verify if a session exists and if an user is connected
         if (req.session && req.session.user && req.session.user.is_nanny) {
-          const userId = req.session.user.id
+          const user = req.session.user
           //get the form with req.body
         const {title, description, date, begin, end, color, category} = req.body;
 
             //add activity to the database
-        await nannyDataMapper.createActivity(title, description, date, begin, end, color, category, userId);
+        await nannyDataMapper.createActivity(title, description, date, begin, end, color, category, user);
         res.redirect('/dashboard')
         } else {res.redirect('/')
     }
@@ -108,12 +108,12 @@ class NannyController extends CoreController {
     async createDiary(req, res) {
        //verify if a session exists and if an user is connected
             if (req.session && req.session.user && req.session.user.is_nanny) {
-                const userId = req.session.user.id;
+                const user = req.session.user;
                 //get the form with req.body
                 const { date, description, parentId } = req.body;
             
                 //add diary to database
-                await nannyDataMapper.createDiary(date, description, userId, parentId);
+                await nannyDataMapper.createDiary(date, description, user, parentId);
                 
                 res.redirect('/dashboard');
             } else {
@@ -130,12 +130,12 @@ class NannyController extends CoreController {
     async createSuggest(req, res) {
         //verify if a session exists and if an user is connected
             if (req.session && req.session.user && req.session.user.is_nanny) {
-                const userId = req.session.user.id;
+                const user = req.session.user;
                 //get the form with req.body
                 const { title, parentId } = req.body;
             
                 //add suggest to database
-                await nannyDataMapper.createSuggest(title, parentId, userId);
+                await nannyDataMapper.createSuggest(title, parentId, user);
                 
                 res.redirect('/dashboard');
             } else {

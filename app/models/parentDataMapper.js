@@ -11,8 +11,8 @@ class ParentDataMapper extends CoreDataMapper {
         super();
     }
 
-    async createSuggest(title, nannyId, userId) {
-        const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id") VALUES ($1, $2, $3)`, [title, nannyId, userId]);
+    async createSuggest(title, nannyId, user) {
+        const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id", "created_by") VALUES ($1, $2, $3, $4)`, [title, nannyId, user.id, user]);
         return result;
     }
 

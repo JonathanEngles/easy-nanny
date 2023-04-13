@@ -10,8 +10,8 @@ class NannyDataMapper extends CoreDataMapper {
         super();
     };
 
-    async createActivity(title, description, date, begin, end, color, category, userId) {
-        const result =  await client.query(`INSERT INTO "activity" ("title", "description", "date", "begin", "end", "color", "category", "nanny_id") VALUES ($1, $2, $3, $4, $5, CASE WHEN $6 = '' OR $6 IS NULL THEN 'FFFFFF' ELSE $6 END, $7, $8)`, [title, description, date, begin, end, color, category, userId]);
+    async createActivity(title, description, date, begin, end, color, category, user) {
+        const result =  await client.query(`INSERT INTO "activity" ("title", "description", "date", "begin", "end", "color", "category", "nanny_id", "created_by") VALUES ($1, $2, $3, $4, $5, CASE WHEN $6 = '' OR $6 IS NULL THEN 'FFFFFF' ELSE $6 END, $7, $8, $9)`, [title, description, date, begin, end, color, category, user.id, user]);
         return result.rows[0];
     };
 
@@ -104,15 +104,15 @@ class NannyDataMapper extends CoreDataMapper {
     
 
 
-async createDiary(date, description, nannyId, parentId) {
-    const result =  await client.query(`INSERT INTO "diary" ("date", "description", "nanny_id", "parent_id") VALUES ($1, $2, $3, $4)`, [date, description, nannyId, parentId]);
+async createDiary(date, description, user, parentId) {
+    const result =  await client.query(`INSERT INTO "diary" ("date", "description", "nanny_id", "parent_id", "created_by") VALUES ($1, $2, $3, $4, $5)`, [date, description, user.id, parentId, user]);
     return result;
 };
 
 
 
-async createSuggest(title, parentId, userId) {
-    const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id") VALUES ($1, $2, $3)`, [title, userId, parentId]);
+async createSuggest(title, parentId, user) {
+    const result =  await client.query(`INSERT INTO "suggest" ("title", "nanny_id", "parent_id", "created_by") VALUES ($1, $2, $3)`, [title, user.id, parentId, user]);
     return result;
 };
 };
