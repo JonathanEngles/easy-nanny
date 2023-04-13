@@ -1,8 +1,6 @@
 const client = require('../database');
 const CoreDataMapper = require('./coreDataMapper');
 
-const client = require('../database')
-
 
 class NannyDataMapper extends CoreDataMapper {
 
@@ -23,45 +21,45 @@ class NannyDataMapper extends CoreDataMapper {
         let index = 1;
         let query = `UPDATE "activity" SET`;
 
-        if (activityData.title) {
+        if (activityData.title && activityData.title.trim() !== '') {
             query += ` "title" = $${index},`;
             values.push(activityData.title);
             index++;
         }
 
-        if (activityData.description) {
+        if (activityData.description && activityData.description.trim() !== '') {
             query += ` "description" = $${index},`;
             values.push(activityData.description);
             index++;
         }
 
         
-        if (activityData.date) {
+        if (activityData.date && activityData.date.trim() !== '') {
             query += ` "date" = $${index},`;
             values.push(activityData.date);
             index++;
         }
         
-        if (activityData.begin) {
+        if (activityData.begin && activityData.begin.trim() !== '') {
             query += ` "begin" = $${index},`;
             values.push(activityData.begin);
             index++;
         }
 
-        if (activityData.end) {
+        if (activityData.end && activityData.end.trim() !== '') {
             query += ` "end" = $${index},`;
             values.push(activityData.end);
             index++;
         }
 
 
-        if (activityData.color) {
+        if (activityData.color && activityData.color.trim() !== '') {
             query += ` "color" = $${index},`;
             values.push(activityData.color);
             index++;
         }
 
-        if (activityData.category) {
+        if (activityData.category && activityData.category.trim() !== '') {
             query += ` "category" = $${index},`;
             values.push(activityData.category);
             index++;
@@ -91,7 +89,7 @@ class NannyDataMapper extends CoreDataMapper {
 
     async getParentByUniqueId(uniqueId) {
 
-        const result = await client.query('SELECT "id" FROM "parent" WHERE "uniqueId" = $1', [uniqueId])
+        const result = await client.query('SELECT "id", "nanny_id" FROM "parent" WHERE "uniqueId" = $1', [uniqueId])
 
         return result.rows[0];
     };

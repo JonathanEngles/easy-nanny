@@ -47,6 +47,7 @@ loginForm(_, res) {
     //we delete the password of the req.body
     delete req.body.password;
     req.session.user = user;
+   
     return res.redirect('/dashboard');
 }
 
@@ -65,12 +66,12 @@ async register(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
-        return res.render('homePage', {error: 'un compte avec cet email existe déjà'});
+        return res.render('login', {error: 'un compte avec cet email existe déjà'});
     }
 
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
-        return res.render('homePage', {error: 'Les mots de passe ne sont pas identique'});
+        return res.render('login', {error: 'Les mots de passe ne sont pas identique'});
     }
     
     //crypt the password

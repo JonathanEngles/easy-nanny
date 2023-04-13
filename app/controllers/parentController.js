@@ -17,7 +17,7 @@ class ParentController extends CoreController {
  */
     async createSuggest(req, res) {
        //verify if a session exists and if an user is connected
-            if (req.session && req.session.user) {
+            if (req.session && req.session.user && !req.session.user.is_nanny && req.session.user.nanny_id) {
                 const user = req.session.user;
                 const userId = user.id;
                 const nannyId = user.nanny_id;

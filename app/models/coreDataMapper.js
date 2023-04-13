@@ -1,5 +1,4 @@
 const client = require('../database');
-const bcrypt = require('bcrypt');
 
 class CoreDataMapper {
 
@@ -34,39 +33,39 @@ class CoreDataMapper {
     let index = 1;
     let query = `UPDATE ${tableName} SET`;
     
-    if (profileData.name) {
+    if (profileData.name && profileData.name.trim() !== '') {
         query += ` "name" = $${index},`;
         values.push(profileData.name);
         index++;
     }
-    if (profileData.first_name) {
+    if (profileData.first_name && profileData.first_name.trim() !== '') {
         query += ` first_name = $${index},`;
         values.push(profileData.first_name);
         index++;
     }
-    if (profileData.email) {
+    if (profileData.email && profileData.email.trim() !== '') {
        
         query += ` email = $${index},`;
         values.push(profileData.email);
         index++;
     }
-    if (profileData._password) {
+    if (profileData._password && profileData._password.trim() !== '') {
         
         query += ` password = $${index},`;
         values.push(profileData._password);
         index++;
     }
-    if (profileData.address) {
+    if (profileData.address && profileData.address.trim() !== '') {
         query += ` address = $${index},`;
         values.push(profileData.address);
         index++;
     }
-    if (profileData.zip_code) {
+    if (profileData.zip_code && profileData.zip_code.trim() !== '') {
         query += ` zip_code = $${index},`;
         values.push(profileData.zip_code);
         index++;
     }
-    if (profileData.city) {
+    if (profileData.city && profileData.city.trim() !== '') {
         query += ` city = $${index},`;
         values.push(profileData.city);
         index++;

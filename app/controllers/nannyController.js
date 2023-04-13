@@ -1,5 +1,6 @@
 const CoreController = require('./coreController');
 const nannyDataMapper = require('../models/nannyDataMapper');
+const { request } = require("express");
 
 
 class NannyController extends CoreController {
@@ -16,7 +17,7 @@ class NannyController extends CoreController {
  */
     async createActivity (req, res) {
         //verify if a session exists and if an user is connected
-        if (req.session && req.session.user) {
+        if (req.session && req.session.user && req.session.user.is_nanny) {
           const userId = req.session.user.id
           //get the form with req.body
         const {title, description, date, begin, end, color, category} = req.body;
@@ -36,7 +37,7 @@ class NannyController extends CoreController {
      */
     async modifyActivity(req, res) {
         //verify if a session exists and if an user is connected
-        if (req.session && req.session.user) {
+        if (req.session && req.session.user && req.session.user.is_nanny) {
             const userId = req.session.user.id
             //get the form with req.body
             const {id, title, description, date, begin, end, color, category} = req.body;
@@ -54,7 +55,7 @@ class NannyController extends CoreController {
  */
     async deleteActivity(req, res) {
         //verify if a session exists and if an user is connected
-        if (req.session && req.session.user) {
+        if (req.session && req.session.user && req.session.user.is_nanny) {
             const userId = req.session.user.id;
             //get the id of activity by his form
             const activityId = req.body.id;
@@ -73,7 +74,7 @@ class NannyController extends CoreController {
      * @param {*} res 
      */
     async linkAccount(req, res) {
-        if (req.session && req.session.user) {
+        if (req.session && req.session.user && req.session.user.is_nanny) {
             //verify if a session exists and if an user is connected
             const nannyId = req.session.user.id;
             const  { uniqueId } = req.body;
@@ -94,7 +95,9 @@ class NannyController extends CoreController {
             return res.send('Nounou, Parents et enfants sont correctement liés') 
         } else {
             return res.send('le parent est déjà lié à une nounou')
-        }}
+        }} else {
+            res.send ('vous devez être conencté en tant que nanny')
+        }
     };
 
     /**
@@ -104,7 +107,7 @@ class NannyController extends CoreController {
      */
     async createDiary(req, res) {
        //verify if a session exists and if an user is connected
-            if (req.session && req.session.user) {
+            if (req.session && req.session.user && req.session.user.is_nanny) {
                 const userId = req.session.user.id;
                 //get the form with req.body
                 const { date, description, parentId } = req.body;
@@ -126,7 +129,7 @@ class NannyController extends CoreController {
  */
     async createSuggest(req, res) {
         //verify if a session exists and if an user is connected
-            if (req.session && req.session.user) {
+            if (req.session && req.session.user && req.session.user.is_nanny) {
                 const userId = req.session.user.id;
                 //get the form with req.body
                 const { title, parentId } = req.body;

@@ -46,13 +46,13 @@ router.get('/logout', nannyController.logout.bind(nannyController));
  * route for activity in POST/PATCHE/DELETE
  */
 router.post('/activity', nannyController.createActivity);
-router.patch('/activity', nannyController.modifyActivity);
+router.post('/activity/patch', nannyController.modifyActivity);
 router.post('/activity/delete', nannyController.deleteActivity);
 
 
 /**
  * route to add a new parent account and his children to the nanny account
  */
-router.post('/add', nannyController.linkAccount);
+router.post('/link', nannyController.linkAccount);
 
 module.exports = router;

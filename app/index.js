@@ -14,6 +14,11 @@ app.set("views", "app/views");
 // to get the req.body
 app.use(express.urlencoded({ extended: true }));
 
+
+const bodySanitizer = require('./middlewares/body-sanitizer');
+app.use(bodySanitizer);
+
+
 app.use(session({
     resave: true,
     saveUninitialized: true,

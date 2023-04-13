@@ -7,10 +7,52 @@ const childDataMapper = {
     return result;
 },
 
-async modifyChildren(id, name, first_name, sexe, birthday, userId) {
-    const result = await client.query(`UPDATE "children" SET "name" = $1, "first_name" = $2, "sexe" = $3, "birthday" = $4 WHERE "id" = $5 AND "parent_id" = $6`, [ name, first_name, sexe, birthday, id, userId]);
+async modifyChildren(id, userId, childrenData) {
 
-    return result;
+  let values = [];
+  let index = 1;
+  let query = `UPDATE "children" SET`;
+  
+  if (childrenData.name && childrenData.name.trim() !== '') {
+      query += ` "name" = $${index},`;
+      values.push(childrenData.name);
+      index++;
+  }
+  if (childrenData.first_name && childrenData.first_name.trim() !== '') {
+      query += ` first_name = $${index},`;
+      values.push(childrenData.first_name);
+      index++;
+  }
+  if (childrenData.sexe && childrenData.sexe.trim() !== '') {
+     
+      query += ` sexe = $${index},`;
+      values.push(childrenData.sexe);
+      index++;
+  }
+  if (childrenData.birthday && childrenData.birthday.trim() !== '') {
+      
+      query += ` birthday = $${index},`;
+      values.push(childrenData.birthday);
+      index++;
+  }
+
+ query += ` updated_at =$${index},`;
+ values.push(`NOW()`);
+ index++;
+
+  query = query.slice(0, -1); 
+  query += ` WHERE id = $${index}`;
+  values.push(id);
+  index++;
+
+  query += ` AND "parent_id" = $${index}`;
+  values.push(userId);
+
+  
+      const result = await client.query(query, values);
+      
+          return result;
+
   },
 
   async removeChildren(id, userId) {

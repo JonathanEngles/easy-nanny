@@ -9,8 +9,8 @@ const childController = {
      */
     async createChildren(req, res) {
 
-        //verify if a session exists and if an user is connected
-    if (req.session && req.session.user) {
+        //verify if a session exists and if an user is connected and if the user is a parent
+    if (req.session && req.session.user && !req.session.user.is_nanny) {
         const user = req.session.user
         const userId = user.id;
         
@@ -20,8 +20,10 @@ const childController = {
     //add children  to database
         await childDataMapper.createChildren(name, first_name, sexe, birthday, userId, user.nanny_id);
     
-    res.redirect('/profile'); 
-    } 
+    res.redirect('/'); 
+    } else {
+        res.send('vous devez être connecté en tant que parent');
+    }
     },
 
     /**
@@ -31,8 +33,8 @@ const childController = {
      */
     async modifyChildren(req, res) {
    
-    //verify if a session exists and if an user is connected
-    if (req.session && req.session.user) {
+    //verify if a session exists and if an user is connected and if the user is a parent
+    if (req.session && req.session.user && !req.session.user.is_nanny) {
     //get the id of the user
     const userId = req.session.user.id;
     
@@ -40,7 +42,7 @@ const childController = {
     const { id, name, first_name, sexe, birthday } = req.body;
             
     // update the child information in the database
-    await childDataMapper.modifyChildren(id, name, first_name, sexe, birthday, userId);
+    await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday});
             
     res.redirect('/profile');
     }
@@ -52,15 +54,15 @@ const childController = {
      * @param {*} res 
      */
     async removeChildren(req, res) {
-    //verify if a session exists and if an user is connected
-    if (req.session && req.session.user) {
+    //verify if a session exists and if an user is connected and if the user is a parent
+    if (req.session && req.session.user && !req.session.user.is_nanny) {
     const userId = req.session.user.id;
     const { id } = req.body
                 
     // delete the child from the database
     await childDataMapper.removeChildren(id, userId);
                 
-    res.redirect('/parent/profile');
+    res.redirect('/');
     }
     }
 }
