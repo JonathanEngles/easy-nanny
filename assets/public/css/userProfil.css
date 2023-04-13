@@ -1,0 +1,11 @@
+/* NECESSAIRE AU BON FONCTIONNEMENT  */
+.d-none {
+  display: none !important;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+  padding-right: calc(1.5em + .75rem);
+  }
+
+/* STYLE */
