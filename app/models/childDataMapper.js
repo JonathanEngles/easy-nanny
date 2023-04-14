@@ -35,6 +35,11 @@ async modifyChildren(id, userId, childrenData) {
       values.push(childrenData.birthday);
       index++;
   }
+  if (childrenData.picture && childrenData.picture.trim() !== '') {
+    query += ` CASE WHEN $${index} = '' OR ${index} IS NULL THEN 'children_picture' ELSE $${index} END = $${index},`;
+    values.push(childrenData.picture);
+    index++;
+}
 
  query += ` updated_at =$${index},`;
  values.push(`NOW()`);

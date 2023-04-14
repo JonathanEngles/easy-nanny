@@ -12,9 +12,9 @@ class CoreDataMapper {
     }
 
 
-    async createUser(name, first_name, email, password, address, zip_code, city, uniqueId) {
+    async createUser(name, first_name, email, password, address, zip_code, city, picture, uniqueId) {
         const tableName = this.constructor.tableName;
-        const result =  await client.query(`INSERT INTO "${tableName}" ("name", "first_name", "email", "password", "address", "zip_code", "city", "uniqueId") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`, [name, first_name, email, password, address, zip_code, city, uniqueId]);
+        const result =  await client.query(`INSERT INTO "${tableName}" ("name", "first_name", "email", "password", "address", "zip_code", "city", "picture", "uniqueId") VALUES ($1, $2, $3, $4, $5, $6, $7, CASE WHEN $8 = '' OR $8 IS NULL THEN '${tableName}_picture' ELSE $8 END, $9)`, [name, first_name, email, password, address, zip_code, city, picture, uniqueId]);
         return result.rows[0];
     }
 
@@ -68,6 +68,11 @@ class CoreDataMapper {
     if (profileData.city && profileData.city.trim() !== '') {
         query += ` city = $${index},`;
         values.push(profileData.city);
+        index++;
+    }
+    if (profileData.picture && profileData.picture.trim() !== '') {
+        query += ` picture = $${index},`;
+        values.push(profileData.picture);
         index++;
     }
 

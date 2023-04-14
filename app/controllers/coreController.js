@@ -60,7 +60,7 @@ loginForm(_, res) {
 async register(req, res) {
 
         //get the form with req.body
-    const {name, first_name, email, password, passwordConfirmation, address, zip_code, city} = req.body;
+    const {name, first_name, email, password, passwordConfirmation, address, zip_code, city, picture} = req.body;
 
     //Compare if email is unique
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
@@ -85,7 +85,7 @@ async register(req, res) {
     const uniqueId = uuidv4();
 
     //add user to database
-    await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, uniqueId);
+    await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, picture, uniqueId);
     
     res.redirect('/');
 
@@ -126,16 +126,17 @@ async modifyProfile(req, res) {
         
             
             //get the form of req.body
-    const {name, first_name, email, oldPassword, password, passwordConfirmation, address, zip_code, city} = req.body;
+    const {name, first_name, email, oldPassword, password, passwordConfirmation, address, zip_code, city, picture} = req.body;
 
     let _password = password
             if (email) {
+            if(!email === user.email)  {
     //Compare if email is unique
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
         return res.status(400).render('profile', {error: 'un compte avec cet email existe déjà'});
-    }
+    }}
 }
 
 // compare the old password to the actual password of the user
@@ -158,7 +159,7 @@ async modifyProfile(req, res) {
     _password = hash;
 }
     //we modify the user to database
-            await this.constructor.dataMapper.updateProfile(user.id, {name, first_name, email, _password, address, zip_code, city});
+            await this.constructor.dataMapper.updateProfile(user.id, {name, first_name, email, _password, address, zip_code, city, picture});
     // we delete sensible information
             delete req.body.password;
             delete req.body.passwordConfirmation;

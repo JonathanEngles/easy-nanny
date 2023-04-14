@@ -39,10 +39,10 @@ const childController = {
     const userId = req.session.user.id;
     
     //get the form with req.body
-    const { id, name, first_name, sexe, birthday } = req.body;
+    const { id, name, first_name, sexe, birthday, picture } = req.body;
             
     // update the child information in the database
-    await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday});
+    await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday, picture});
             
     res.redirect('/profile');
     }
