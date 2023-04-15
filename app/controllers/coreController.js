@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid'); // module to generate an UNIQUE RANDOM id
+const { tableName } = require("../models/coreDataMapper");
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
@@ -60,8 +61,13 @@ loginForm(_, res) {
 async register(req, res) {
 
         //get the form with req.body
-    const {name, first_name, email, password, passwordConfirmation, address, zip_code, city, picture} = req.body;
+    const {name, first_name, email, password, passwordConfirmation, address, zip_code, city} = req.body;
 
+    //check if a picture was upload and require the name of the file
+    let picture = null;
+        if (req.file && req.file.filename) {
+             picture = req.file.filename;
+        }
     //Compare if email is unique
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
@@ -126,7 +132,12 @@ async modifyProfile(req, res) {
         
             
             //get the form of req.body
-    const {name, first_name, email, oldPassword, password, passwordConfirmation, address, zip_code, city, picture} = req.body;
+    const {name, first_name, email, oldPassword, password, passwordConfirmation, address, zip_code, city} = req.body;
+    //check if a picture was upload and require the name of the file
+    let picture = null;
+        if (req.file && req.file.filename) {
+             picture = req.file.filename;
+        };
 
     let _password = password
             if (email) {
@@ -183,6 +194,12 @@ async modifyProfile(req, res) {
     //verify if a session exists and if an user is connected
     if (req.session && req.session.user) {
         const user = req.session.user;
+        // Check if the user has a photo and if it is not the default photo
+     if (user.picture && user.picture !== `${tableName}_picture`) {
+        // Delete the user's photo from the server
+        const pathToDelete = `public/integration/uploads/${user.picture}`;
+        fs.unlinkSync(pathToDelete);
+    }
         //delete the user in database
         await this.constructor.dataMapper.deleteProfile(user.id);
         return res.render('homePage');
