@@ -8,8 +8,8 @@ const childDataMapper = {
       },
       
 
-    async createChildren(name, first_name, sexe, birthday, parentId, nannyId) {
-    const result =  await client.query(`INSERT INTO "children" ("name", "first_name", "sexe", "birthday", "parent_id", "nanny_id") VALUES ($1, $2, $3, $4, $5, $6)`, [name, first_name, sexe, birthday, parentId, nannyId]);
+    async createChildren(name, first_name, sexe, birthday, parentId, nannyId, picture) {
+    const result =  await client.query(`INSERT INTO "children" ("name", "first_name", "sexe", "birthday", "parent_id", "nanny_id", "picture") VALUES ($1, $2, $3, $4, $5, $6, COALESCE($7, 'children_picture.jpg'))`, [name, first_name, sexe, birthday, parentId, nannyId, picture]);
     return result;
 },
 
@@ -42,9 +42,9 @@ async modifyChildren(id, userId, childrenData) {
       index++;
   }
   if (childrenData.picture && childrenData.picture.trim() !== '') {
-    query += ` CASE WHEN $${index} = '' OR ${index} IS NULL THEN 'children_picture' ELSE $${index} END = $${index},`;
-    values.push(childrenData.picture);
-    index++;
+    query += ` picture = $${index},`;
+        values.push(childrenData.picture);
+        index++;
 }
 
  query += ` updated_at =$${index},`;

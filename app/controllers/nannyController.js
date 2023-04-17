@@ -1,12 +1,11 @@
 const CoreController = require('./coreController');
 const nannyDataMapper = require('../models/nannyDataMapper');
-const { request } = require("express");
+
 
 
 class NannyController extends CoreController {
 
     static dataMapper = nannyDataMapper;
-
     constructor() {
         super();
     }

@@ -12,7 +12,7 @@ class NannyDataMapper extends CoreDataMapper {
 
     async createActivity(title, description, date, begin, end, color, category, nanny) {
         const createdBy = `Nom et prénom : ${nanny.name} ${nanny.first_name}, Email : ${nanny.email}, Adresse : ${nanny.address} ${nanny.zip_code} ${nanny.city}`;
-        const result =  await client.query(`INSERT INTO "activity" ("title", "description", "date", "begin", "end", "color", "category", "nanny_id", "created_by") VALUES ($1, $2, $3, $4, $5, CASE WHEN $6 = '' OR $6 IS NULL THEN 'FFFFFF' ELSE $6 END, $7, $8, $9)`, [title, description, date, begin, end, color, category, nanny.id, createdBy]);
+        const result =  await client.query(`INSERT INTO "activity" ("title", "description", "date", "begin", "end", "color", "category", "nanny_id", "created_by") VALUES ($1, $2, $3, $4, $5, COALESCE($6, 'FFFFFF'), $7, $8, $9)`, [title, description, date, begin, end, color, category, nanny.id, createdBy]);
         return result.rows[0];
     };
 
