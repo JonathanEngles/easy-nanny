@@ -16,7 +16,7 @@ class NannyController extends CoreController {
  * @param {*} res 
  */
     async createActivity (req, res) {
-        //verify if a session exists and if an user is connected
+        //verify if a session exists and if an user is connected and if the user is a nanny
         if (req.session && req.session.user && req.session.user.is_nanny) {
           const user = req.session.user
           //get the form with req.body
@@ -36,7 +36,7 @@ class NannyController extends CoreController {
      * @param {*} res 
      */
     async modifyActivity(req, res) {
-        //verify if a session exists and if an user is connected
+        //verify if a session exists and if an user is connected and if the user is a nanny
         if (req.session && req.session.user && req.session.user.is_nanny) {
             const userId = req.session.user.id
             //get the form with req.body
@@ -54,7 +54,7 @@ class NannyController extends CoreController {
  * @param {*} res 
  */
     async deleteActivity(req, res) {
-        //verify if a session exists and if an user is connected
+        //verify if a session exists and if an user is connected and if the user is a nanny
         if (req.session && req.session.user && req.session.user.is_nanny) {
             const userId = req.session.user.id;
             //get the id of activity by his form
@@ -74,6 +74,7 @@ class NannyController extends CoreController {
      * @param {*} res 
      */
     async linkAccount(req, res) {
+        //verify if a session exists and if an user is connected and if the user is a nanny
         if (req.session && req.session.user && req.session.user.is_nanny) {
             //verify if a session exists and if an user is connected
             const nannyId = req.session.user.id;
@@ -89,14 +90,15 @@ class NannyController extends CoreController {
             //verify if the parent hasn't already a nanny
             if (parent.nanny_id === null) {
             const parentId = parent.id;
-            await nannyDataMapper.updateParent(parentId, nannyId);
-            await nannyDataMapper.updateChildren(parentId, nannyId);
 
-            return res.send('Nounou, Parents et enfants sont correctement liés') 
+            await nannyDataMapper.updateFamily(parentId, nannyId);
+            
+
+            return res.send(`la famille ${parent.name} est correctement liée`) 
         } else {
             return res.send('le parent est déjà lié à une nounou')
         }} else {
-            res.send ('vous devez être conencté en tant que nanny')
+            res.send ('vous devez être connecté en tant que nanny')
         }
     };
 

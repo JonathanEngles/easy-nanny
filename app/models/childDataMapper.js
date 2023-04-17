@@ -2,6 +2,12 @@ const client = require('../database')
 
 const childDataMapper = {
 
+    async getChildById(childId) {
+        const result = await client.query('SELECT "picture" FROM children WHERE id = $1', [childId]);
+        return result.rows[0];
+      },
+      
+
     async createChildren(name, first_name, sexe, birthday, parentId, nannyId) {
     const result =  await client.query(`INSERT INTO "children" ("name", "first_name", "sexe", "birthday", "parent_id", "nanny_id") VALUES ($1, $2, $3, $4, $5, $6)`, [name, first_name, sexe, birthday, parentId, nannyId]);
     return result;
@@ -35,6 +41,11 @@ async modifyChildren(id, userId, childrenData) {
       values.push(childrenData.birthday);
       index++;
   }
+  if (childrenData.picture && childrenData.picture.trim() !== '') {
+    query += ` CASE WHEN $${index} = '' OR ${index} IS NULL THEN 'children_picture' ELSE $${index} END = $${index},`;
+    values.push(childrenData.picture);
+    index++;
+}
 
  query += ` updated_at =$${index},`;
  values.push(`NOW()`);

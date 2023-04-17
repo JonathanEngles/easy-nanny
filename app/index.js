@@ -3,10 +3,12 @@ dotenv.config();
 
 const session = require ('express-session');
 const express = require("express");
-
 const router = require("./routers/mainRouter");
+const multer = require('multer');
 
 const app = express();
+
+
 
 app.set("view engine", "ejs");
 app.set("views", "app/views");
@@ -14,6 +16,18 @@ app.set("views", "app/views");
 // to get the req.body
 app.use(express.urlencoded({ extended: true }));
 
+// configuration of the storage of multer stockage and rename file
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, 'public/integration/uploads/');
+    },
+    filename: function(req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+app.use(upload.single('picture'));
 
 const bodySanitizer = require('./middlewares/body-sanitizer');
 app.use(bodySanitizer);
@@ -31,8 +45,8 @@ app.use(session({
     }
 }));
 
-app.use((req, res, next) => {
-    // transmet les infos de session aux vues
+app.use((req,_ , next) => {
+    // transmit session's information to views
   app.locals.session = req.session;
  
   next();

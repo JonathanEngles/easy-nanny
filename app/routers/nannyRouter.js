@@ -1,58 +1,56 @@
 const express = require('express');
 
 const nannyController = require('../controllers/nannyController');
-const { catchErrors } = require('../middlewares/handlerError');
-
+const handlerController = require('../controllers/helpers/controllerHandler')
 const router = express.Router();
 
 /**
- * routes for the signup form in GET and create user in POST
+ * route to create user in POST
  */
-router.get('/signup', nannyController.signup.bind(nannyController));
-router.post('/signup', nannyController.register.bind(nannyController));
+router.post('/signup', handlerController(nannyController.register.bind(nannyController)));
 
 /**
  * routes for the login form in GET and open session in POST
  */
-router.get('/login', nannyController.loginForm.bind(nannyController));
-router.post('/login',nannyController.login.bind(nannyController));
+router.get('/login', handlerController(nannyController.loginForm.bind(nannyController)));
+router.post('/login',handlerController(nannyController.login.bind(nannyController)));
 
 /**
  * routes for the profil in GET/PATCH/DELETE
  */
 
-router.get('/profile', nannyController.getProfile.bind(nannyController));
-router.patch('/profile', nannyController.modifyProfile.bind(nannyController));
-router.post('/profile/delete', nannyController.deleteProfile.bind(nannyController));
+// router.get('/profile', handlerController(nannyController.getProfile.bind(nannyController)));
+router.post('/profile', handlerController(nannyController.modifyProfile.bind(nannyController)));
+router.post('/profile/delete', handlerController(nannyController.deleteProfile.bind(nannyController)));
 
 /**
  * Route for suggest : POST
  */
-router.post('/suggest', nannyController.createSuggest)
+router.post('/suggest', handlerController(nannyController.createSuggest))
 
 /**
  * Route for Diary : POST
  */
-router.post('/diary', nannyController.createDiary);
+router.post('/diary', handlerController(nannyController.createDiary));
 
 
 /**
  * route for disconnect to the session 
  */
-router.get('/logout', nannyController.logout.bind(nannyController));
+// router.get('/logout', handlerController(nannyController.logout.bind(nannyController)));
 
 
 /**
  * route for activity in POST/PATCHE/DELETE
  */
-router.post('/activity', nannyController.createActivity);
-router.post('/activity/patch', nannyController.modifyActivity);
-router.post('/activity/delete', nannyController.deleteActivity);
+router.post('/activity', handlerController(nannyController.createActivity));
+router.post('/activity/patch', handlerController(nannyController.modifyActivity));
+router.post('/activity/delete', handlerController(nannyController.deleteActivity));
 
 
 /**
  * route to add a new parent account and his children to the nanny account
  */
-router.post('/link', nannyController.linkAccount);
+router.post('/link', handlerController(nannyController.linkAccount));
 
 module.exports = router;

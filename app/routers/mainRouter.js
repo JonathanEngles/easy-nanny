@@ -1,16 +1,18 @@
 const express = require('express');
 
 const mainController = require('../controllers/mainController');
-
+const nannyController = require('../controllers/nannyController');
+const handlerController = require('../controllers/helpers/controllerHandler')
 const parentRouter = require('./parentRouter');
 const nannyRouter = require('./nannyRouter');
 
 
 const router = express.Router();
 
-const { catchErrors } = require('../middlewares/handlerError');
 
 router.get('/', mainController.getHomePage);
+router.get('/logout', handlerController(nannyController.logout));
+
 
 
 /**
