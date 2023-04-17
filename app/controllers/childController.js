@@ -23,10 +23,10 @@ const childController = {
         const userId = user.id;
         
     //get the form with req.body
-    const {name, first_name, sexe, birthday} = req.body;
+    const {name, first_name, sexe, birthday, description} = req.body;
    
     //add children  to database
-        await childDataMapper.createChildren(name, first_name, sexe, birthday, userId, user.nanny_id, picture);
+        await childDataMapper.createChildren(name, first_name, sexe, birthday, description, userId, user.nanny_id, picture);
     
     res.redirect('/'); 
     } else {
@@ -43,7 +43,7 @@ const childController = {
    
         const { id } = req.params;
         //get the form with req.body
-    const { name, first_name, sexe, birthday } = req.body;
+    const { name, first_name, sexe, birthday, description} = req.body;
     //verify if a session exists and if an user is connected and if the user is a parent
     if (req.session && req.session.user && !req.session.user.is_nanny) {
     //get the id of the user
@@ -62,7 +62,7 @@ const childController = {
     
             
     // update the child information in the database
-    await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday, picture});
+    await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday, description, picture});
    
     res.redirect('/profile');
     }

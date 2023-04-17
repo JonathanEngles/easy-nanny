@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS "children" (
     "first_name" VARCHAR(255) NOT NULL,
     "sexe" VARCHAR(10) NOT NULL,
     "birthday" DATE NOT NULL,
+    "description" TEXT,
     "picture" VARCHAR(255) NOT NULL DEFAULT 'children_picture.jpg',
     "parent_id" INTEGER NOT NULL REFERENCES "parent" ("id") ON DELETE CASCADE,
     "nanny_id" INTEGER REFERENCES "nanny" ("id") ON DELETE SET NULL,
