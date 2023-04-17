@@ -1,6 +1,6 @@
 /* NECESSAIRE AU BON FONCTIONNEMENT  */
 .d-none {
-  display: none !important;
+  display: none ;
 }
 
 .is-invalid {
