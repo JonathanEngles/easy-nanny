@@ -5,17 +5,19 @@ body {
 
 #planning {
   display: flex;
+ 
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+
 }
 
 .jour {
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 10px;
-  width: 200px;
+  padding: 20px;
+  width: 15em;
 }
 
 .en-tete {
@@ -41,6 +43,10 @@ body {
 .rangee {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0; 
+  padding-bottom: 5px; 
+  margin-bottom: 5px; 
+
 }
 
 .heure {
@@ -53,6 +59,7 @@ body {
 .tache-conteneur {
   flex-grow: 1;
   min-height: 30px;
+  
 }
 
 .tache {
@@ -68,4 +75,10 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+#modale form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

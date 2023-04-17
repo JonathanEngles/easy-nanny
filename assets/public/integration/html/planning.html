@@ -9,28 +9,25 @@
 </head>
 <body>
   <div id="planning"></div>
-<div id="modale" title="Ajouter une tâche">
+  <div id="modale" title="Ajouter une tâche">
     <form id="form-tache">
-        <label for="date">Date :</label>
-        <input type="text" id="date" name="date" required>
-        <label for="heure">Heure :</label>
-        <input type="time" id="heure" name="heure" required>
-        <label for="description">Description :</label>
-        <textarea id="description" name="description" required></textarea>
-        <label for="couleur">Couleur :</label>
-        <input type="color" id="couleur" name="couleur" value="#0000ff">
-        
-        <button id="sauvegarder" type="button" style="display: none;">Sauvegarder</button>
-        <button id="supprimer" type="button" style="display: none;">Supprimer</button>
-        
-        
-
+      <label for="date">Date :</label>
+      <input type="text" id="date" name="date" required>
+      <label for="heure">Heure :</label>
+      <input type="time" id="heure" name="heure" required>
+      <label for="description">Description :</label>
+      <textarea id="description" name="description" required></textarea>
+      <label for="couleur">Couleur :</label>
+      <input type="color" id="couleur" name="couleur" value="#0000ff">
+      <button id="btnAjouter">Ajouter la tâche</button>
+      <button id="btnSauvegarder" style="display:none;">Sauvegarder la tâche</button>
+      <button id="btnSupprimer" style="display:none;">Supprimer</button>
+      <input type="hidden" id="taskId" value="">
     </form>
-   
-</div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="/assets/public/integration/javascript/planning.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="/assets/public/integration/javascript/planning.js"></script>
 </body>
 </html>

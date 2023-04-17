@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/assets/public/css/reset.css">
     <link rel="stylesheet" href="/assets/public/css/dashboard.css">
-
-
+    <link rel="stylesheet" href="/assets/public/css/planning.css">
 
     <title>Easy Nanny | Dashboard</title>
 </head>
@@ -68,11 +68,25 @@
             <span class="planning_title">Calendrier des tâches</span>
             <div class="planning_contener">
                 <div class="header_day">
-                    <span class="day_name">lundi</span>
-                    <span class="plus_icon">&#x2795;</span>
+                    <div id="planning"></div>
+                    <div id="modale" title="Ajouter une tâche">
+                      <form id="form-tache">
+                        <label for="date">Date :</label>
+                        <input type="text" id="date" name="date" required>
+                        <label for="heure">Heure :</label>
+                        <input type="time" id="heure" name="heure" required>
+                        <label for="description">Description :</label>
+                        <textarea id="description" name="description" required></textarea>
+                        <label for="couleur">Couleur :</label>
+                        <input type="color" id="couleur" name="couleur" value="#0000ff">
+                        <button id="btnAjouter">Ajouter la tâche</button>
+                        <button id="btnSauvegarder" style="display:none;">Sauvegarder la tâche</button>
+                        <button id="btnSupprimer" style="display:none;">Supprimer</button>
+                        <input type="hidden" id="taskId" value="">
+                      </form>
+                    </div>
                 </div>
-                <div class="planning_day">
-                </div>
+               
 
             </div>
             <section class="bottom-right-side">
@@ -112,6 +126,9 @@
         <p class="footer_mention"> Condition général</p>
     </footer>
     <script src="/assets/public/integration/javascript/burger.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/assets/public/integration/javascript/planning.js"></script>
 </body>
 
 </html>

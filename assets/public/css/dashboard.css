@@ -248,6 +248,14 @@ header {
     height: 40em;
     border: 2px solid var(--contener);
     border-radius: 0.2em;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+#planning {
+    display: inline-block;
+    width: 100%;
+    min-width: 1200px; /* La largeur minimale que vous souhaitez pour le planning */
 }
 
 .header_day{
