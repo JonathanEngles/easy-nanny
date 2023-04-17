@@ -142,7 +142,7 @@ yesBtn.addEventListener("click", () => {
 const editBtnChild = document.getElementById('edit-btnChild');
 const saveBtnChild = document.getElementById('save-btnChild');
 const formChild = document.getElementById('formChild');
-const inputsChild = form.querySelectorAll('input');
+const inputsChild = formChild.querySelectorAll('input');
 
 
 editBtnChild.addEventListener('click', () => {
