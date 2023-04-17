@@ -1,18 +1,9 @@
-# Révisions Git
+# Easy Nanny
 
-## Suppression des commits en local
+## Qu'est-ce qu'Easy Nanny
 
-- Pour supprimer le dernier commit : 
-  `git reset --hard HEAD~1`
+Easy Nanny est une application web qui répond aux besoin des nounous pour gérer les enfants qu'elle garde, les activités qu'elle propose, les menus, des suggestions qu'elle pourra envoyer aux parents, un journal de suivi journalier.Elle permet également aux parents de suivre les activités de son (ses) enfant(s).
 
-- Pour supprimer un commit spécifique : `git reset + N° ref commit + --hard`
-- - Récupération du N° ref commit : `git log`
+## installation de l'application
 
-## Suppression des commits dans Git & Github
 
-- Récupération du N° ref commit : `git log`
-- Suppression du commit ciblé : `git revert + N° ref commit`
-- Vérification des modifs : `git status`
-- On commit si c'est bon --> ex: `git commit -m "revert"`
-- Forcer le pull : `git pull -f`
-- Pousser sur main : `git push --force-with-lease origin main`
