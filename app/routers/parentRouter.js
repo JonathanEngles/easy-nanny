@@ -20,7 +20,7 @@ router.post('/login',handlerController(parentController.login.bind(parentControl
 /**
  * routes for the profil in GET/PATCH/DELETE
  */
-
+// router.get('/profile', handlerController(parentController.getProfile.bind(parentController)));
 router.post('/profile', handlerController(parentController.modifyProfile.bind(parentController)));
 router.post('/profile/delete', handlerController(parentController.deleteProfile.bind(parentController)));
 
