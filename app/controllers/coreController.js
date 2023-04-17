@@ -23,9 +23,6 @@ loginForm(_, res) {
 
   /**
    * login to parent or nanny account
-   * @param {*} req 
-   * @param {*} res 
-   * @returns 
    */
   async login(req, res) {
     
