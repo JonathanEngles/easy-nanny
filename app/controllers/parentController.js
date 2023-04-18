@@ -2,6 +2,7 @@ const CoreController = require('./coreController');
 const parentDataMapper = require('../models/parentDataMapper');
 
 
+
 class ParentController extends CoreController {
 
     static dataMapper = parentDataMapper;
@@ -32,6 +33,62 @@ class ParentController extends CoreController {
             }
         
     }
+
+
+    async getParentDashboard(req, res) {
+        //verify if a session exists and if an user is connected
+        if (req.session && req.session.user && !req.session.user.is_nanny) {
+            const parent = req.session.user;
+            const nannyId = parent.nanny_id;
+
+            const activity = await parentDataMapper.getAllActivity(nannyId);
+            const children = await parentDataMapper.getAllChildren(parent.id);
+            const nanny = await parentDataMapper.getNannyById(nannyId);
+            const suggest = await parentDataMapper.getSuggests(parent.id)
+
+            res.render('parentDashboard', { parent, activity, children, nanny, suggest });
+
+     } else {
+        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+}
+
+    }
+
+    async getParentProfile (req, res) {
+        //verify if a session exists and if an user is connected
+        if (req.session && req.session.user && !req.session.user.is_nanny) {
+            const parent = req.session.user;
+            const nannyId = parent.nanny_id;
+
+            const children = await parentDataMapper.getAllChildren(parent.id);
+            const nanny = await parentDataMapper.getNannyById(nannyId);
+
+            res.render('parentProfile', { parent, children, nanny });
+    } else {
+        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+}
+    }
+
+    async getParentSuggests(req, res) {
+        if (req.session && req.session.user && !req.session.user.is_nanny) {
+            const parent = req.session.user;
+
+            const suggests = await parentDataMapper.getAllSuggests(parent.id);
+
+            res.render('parentSuggests', { parent, suggests });
+    } else {
+        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+}
+}
+async getParentDiaries(req, res) {
+    if (req.session && req.session.user && !req.session.user.is_nanny) {
+        const parent = req.session.user;
+        const diaries = await parentDataMapper.getAllDiaries(parent.id);
+        res.render('parentDiaries', { parent, diaries });
+    } else {
+        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+}
+}
 
 };
 

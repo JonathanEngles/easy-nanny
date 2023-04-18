@@ -98,26 +98,6 @@ async register(req, res) {
 
 
 /**
- * profile page in GET 
- * @param {*} req 
- * @param {*} res 
- * @returns 
- */
-async getProfile(req, res) {
-
-    //verify if a session exists and if an user is connected
-    if (req.session && req.session.user) {
-    const user = req.session.user;
-
-    const children = await this.constructor.dataMapper.getChildren(user.id);
-    
-    return res.render('profile', {user, children});
-    
-} else {res.redirect('/')
-  }
-}
-
-/**
  * Modify the Profile of the user
  * @param {*} req 
  * @param {*} res 

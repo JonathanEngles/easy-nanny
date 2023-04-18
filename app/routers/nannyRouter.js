@@ -12,14 +12,14 @@ router.post('/signup', handlerController(nannyController.register.bind(nannyCont
 /**
  * routes for the login form in GET and open session in POST
  */
-router.get('/login', handlerController(nannyController.loginForm.bind(nannyController)));
+// router.get('/login', handlerController(nannyController.loginForm.bind(nannyController)));
 router.post('/login',handlerController(nannyController.login.bind(nannyController)));
 
 /**
  * routes for the profil in GET/PATCH/DELETE
  */
 
-// router.get('/profile', handlerController(nannyController.getProfile.bind(nannyController)));
+router.get('/profile', handlerController(nannyController.getNannyProfile));
 router.post('/profile/delete', handlerController(nannyController.deleteProfile.bind(nannyController)));
 router.post('/profile', handlerController(nannyController.modifyProfile.bind(nannyController)));
 
@@ -34,23 +34,39 @@ router.post('/suggest', handlerController(nannyController.createSuggest))
 router.post('/diary', handlerController(nannyController.createDiary));
 
 
-/**
- * route for disconnect to the session 
- */
-// router.get('/logout', handlerController(nannyController.logout.bind(nannyController)));
-
 
 /**
  * route for activity in POST/PATCHE/DELETE
  */
 router.post('/activity', handlerController(nannyController.createActivity));
 router.post('/activity/patch', handlerController(nannyController.modifyActivity));
-router.post('/activity/delete', handlerController(nannyController.deleteActivity));
+router.get('/activity/delete/:id', handlerController(nannyController.deleteActivity));
 
 
 /**
  * route to add a new parent account and his children to the nanny account
  */
 router.post('/link', handlerController(nannyController.linkAccount));
+
+/**
+ * Nanny route for Dashboard en GET
+ */
+
+router.get('/dashboard', handlerController(nannyController.getNannyDashboard));
+
+/**
+ * Nanny route for Suggests en GET
+ */
+
+
+router.get('/suggests', handlerController(nannyController.getNannySuggests));
+
+
+/**
+ * Parent route for Diary en GET
+ */
+
+
+router.get('/diary', handlerController(nannyController.getNannyDiaries));
 
 module.exports = router;

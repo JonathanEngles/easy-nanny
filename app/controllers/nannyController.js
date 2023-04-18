@@ -138,12 +138,79 @@ class NannyController extends CoreController {
                 //add suggest to database
                 await nannyDataMapper.createSuggest(title, parentId, user);
                 
-                res.redirect('/dashboard');
+                res.redirect('nannyDashboard');
             } else {
                 res.redirect('/');
             }
     }
+
+
+    async getNannyDashboard(req, res) {
+        //verify if a session exists and if a Nanny is connected
+        if (req.session && req.session.user && req.session.user.is_nanny) {
+            const nanny = req.session.user;
+        
+
+            const activity = await nannyDataMapper.getAllActivity(nanny.id);
+            const children = await nannyDataMapper.getAllChildren(nanny.id);
+            const parent = await nannyDataMapper.getAllParents(nanny.id);
+            const suggest = await nannyDataMapper.getSuggests(nanny.id)
+
+            res.render('nannyDashboard', { activity, children, parent, nanny, suggest });
+
+     } else {
+        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+}
+
+    }
+
+    async getNannyProfile(req, res) {
+        //verify if a session exists and if a Nanny is connected
+        if (req.session && req.session.user && req.session.user.is_nanny) {
+            const nanny = req.session.user;
+
+            const children = await nannyDataMapper.getAllChildren(nanny.id);
+            const parent = await nannyDataMapper.getAllParents(nanny.id);
+
+    res.render('nannyProfile', { children, parent, nanny });
+
+} else {
+
+   return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+}
     
+    }
+
+async getNannySuggests(req, res) {
+    //verify if a session exists and if a Nanny is connected
+    if (req.session && req.session.user && req.session.user.is_nanny) {
+        const nanny = req.session.user;
+
+
+        const suggests = await nannyDataMapper.getAllSuggests(nanny.id)
+
+        res.render('nannySuggests', { suggests, nanny });
+    } else {
+
+        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+     }
+}
+
+
+async getNannyDiaries(req,res) {
+    //verify if a session exists and if a Nanny is connected
+    if (req.session && req.session.user && req.session.user.is_nanny) {
+        const nanny = req.session.user;
+
+        const diaries = await nannyDataMapper.getAllDiaries(nanny.id);
+        res.render('nannyDiaries', { nanny, diaries });
+    } else {
+        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+}
+}
+
+
+
 };
 
 
