@@ -585,3 +585,9 @@ footer {
     }
   
 }
+
+  /* MOT DE PASSE */
+  .is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + .75rem);
+    }
