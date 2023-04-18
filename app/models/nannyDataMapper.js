@@ -124,6 +124,36 @@ async createSuggest(title, parentId, nanny) {
         return result;
 
 };
+
+async getAllActivity(id) {
+    const result = await client.query('SELECT * FROM "activity" WHERE "id" = $1', [id]);
+    return result.rows;
+};
+
+async getAllChildren(id) {
+    const result = await client.query('SELECT * FROM "child" WHERE "id" = $1 ORDER BY "parent_id"', [id]);
+    return result.rows;
+};
+
+async getAllParents(id) {
+    const result = await client.query('SELECT * FROM "parent" WHERE "id" = $1', [id]);
+    return result.rows;
+};
+
+async getSuggests(id) {
+    const result = await client.query('SELECT * FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC LIMIT 5', [id]);
+    return result.rows;
+};
+
+async getAllSuggests(id) {
+    const result = await client.query('SELECT * FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC', [id]);
+    return result.rows;
+};
+
+async getAllDiaries(id) {
+    const result = await client.query('SELECT * FROM "diary" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC', [id]);
+    return result.rows;
+};
 };
 
 
