@@ -28,21 +28,22 @@
         </div>
 
         <div class="boutons-log">
-
+           
             <!-- apparait au-dela de 760px-->
             <div id="signupBtn" class="modal-btn js-modal" href="#modal1">S'inscrire</div>
             <div id="loginBtn" class="modal-btn js-modal" href="#modal2">Se connecter</div>
 
-
+ 
         </div>
     </header>
 
     <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display:none;">
         <div class="modal-wrapper js-modal-stop">
             <button class="js-modal-close">✖</button>
-
-            <form class="signup-form" action="/signup" method="POST" enctype="multipart/form-data">
-                <input type="file" name="avatar" />
+            <div class="container-selector"><div class="nanny">Nounou</div>
+            <div class="parent">Parent</div></div>
+            <form class="signup-form signUpForm" action="" method="POST" enctype="multipart/form-data">
+               
                 <label for="name">Nom :</label>
                 <input type="text" id="name" name="name" required>
                 <label for="firstname">Prénom :</label>
@@ -73,7 +74,7 @@
     <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none;">
         <div class="modal-wrapper js-modal-stop">
             <button class="js-modal-close">✖</button>
-            <form class="signup-form" action="/signup" method="POST">
+            <form class="signup-form loginForm" action="" method="POST">
 
                 <label for="email">Adresse e-mail :</label>
                 <input type="email" class="email" name="email" required>
