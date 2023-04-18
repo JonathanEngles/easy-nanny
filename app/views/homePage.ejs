@@ -7,6 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <form action="/parent/children/patch/2" method="post" enctype="multipart/form-data">
+        <label for="fileUpload">Sélectionnez un fichier</label>
+        <input type="file" name="picture" id="fileUpload">
+        <input type="submit" value="Téléverser">
+      </form>
+
+      <form method="POST" action="/parent/login">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+      </form>
 </body>
 </html>

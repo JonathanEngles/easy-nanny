@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid'); // module to generate an UNIQUE RANDOM id
+const fs = require('fs');
 const { tableName } = require("../models/coreDataMapper");
+const path = require('path')
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
-
+    static user;
 
   signup(_, res) {
     res.render('signup');
@@ -121,21 +123,29 @@ async getProfile(req, res) {
  * @param {*} res 
  * @returns 
  */
+
 async modifyProfile(req, res) {
      //verify if a session exists and if an user is connected
     if (req.session && req.session.user) {
-
+        
         const user = req.session.user;
         
             
             //get the form of req.body
     const {name, first_name, email, oldPassword, password, passwordConfirmation, address, zip_code, city} = req.body;
     //check if a picture was upload and require the name of the file
-    let picture = null;
+        let picture
         if (req.file && req.file.filename) {
-             picture = req.file.filename;
-        };
-
+            // Check if user has a picture other than the default ones
+            if (user.picture && user.picture !== "parent_picture.jpg" && user.picture !== "nanny_picture.jpg") {
+                // Delete the user's photo from the server
+                const pathToDelete = path.join(__dirname, '..', '..', 'assets', 'public', 'uploads', user.picture);
+                fs.unlinkSync(pathToDelete);
+            }
+            picture = req.file.filename;
+        } else {
+            picture = user.picture;
+        }
     let _password = password
             if (email) {
             if(!email === user.email)  {
@@ -168,15 +178,20 @@ async modifyProfile(req, res) {
 }
     //we modify the user to database
             await this.constructor.dataMapper.updateProfile(user.id, {name, first_name, email, _password, address, zip_code, city, picture});
+            //we update the user
+            const updatedUser = await this.constructor.dataMapper.getUserById(user.id);
+
+
     // we delete sensible information
             delete req.body.password;
             delete req.body.passwordConfirmation;
             delete req.body.oldPassword;
-            req.session.user = user;
+            req.session.user = updatedUser;
+            return res.render('profile', {title : 'page du profil'});
 
-            return res.render('profile');
-
-}else {res.render('/homepage')
+}else {
+    
+    res.render('homePage')
 }
 }
 
@@ -192,17 +207,18 @@ async modifyProfile(req, res) {
     if (req.session && req.session.user) {
         const user = req.session.user;
         // Check if the user has a photo and if it is not the default photo
-     if (user.picture && user.picture !== `${tableName}_picture`) {
-        // Delete the user's photo from the server
-        const pathToDelete = `public/integration/uploads/${user.picture}`;
-        fs.unlinkSync(pathToDelete);
-    }
+        if (req.file && req.file.filename) {
+            if (user.picture && user.picture !== `${tableName}_picture.jpg`) {
+                // Delete the user's photo from the server
+                const pathToDelete = path.join(__dirname, '..', '..', 'assets', 'public', 'uploads', user.picture);
+                fs.unlinkSync(pathToDelete);
+            }
         //delete the user in database
         await this.constructor.dataMapper.deleteProfile(user.id);
         return res.render('homePage');
 }}
 
 
-}
+}}
   
 module.exports = CoreController;

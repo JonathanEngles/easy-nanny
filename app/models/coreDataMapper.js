@@ -4,7 +4,11 @@ class CoreDataMapper {
 
     static tableName;
 
-
+    async getUserById(id) {
+        const tableName = this.constructor.tableName
+        const result = await client.query (`SELECT * FROM "${tableName}" WHERE "id" = $1`, [id]);
+        return result.rows[0];
+    }
     async getUserByEmail(email) {
         const tableName = this.constructor.tableName;
         const result = await client.query (`SELECT * FROM "${tableName}" WHERE "email" = $1`, [email]);
@@ -14,7 +18,7 @@ class CoreDataMapper {
 
     async createUser(name, first_name, email, password, address, zip_code, city, picture, uniqueId) {
         const tableName = this.constructor.tableName;
-        const result =  await client.query(`INSERT INTO "${tableName}" ("name", "first_name", "email", "password", "address", "zip_code", "city", "picture", "uniqueId") VALUES ($1, $2, $3, $4, $5, $6, $7, CASE WHEN $8 = '' OR $8 IS NULL THEN '${tableName}_picture' ELSE $8 END, $9)`, [name, first_name, email, password, address, zip_code, city, picture, uniqueId]);
+        const result =  await client.query(`INSERT INTO "${tableName}" ("name", "first_name", "email", "password", "address", "zip_code", "city", "picture", "uniqueId") VALUES ($1, $2, $3, $4, $5, $6, $7, CASE WHEN $8 = '' OR $8 IS NULL THEN '${tableName}_picture.jpg' ELSE $8 END, $9)`, [name, first_name, email, password, address, zip_code, city, picture, uniqueId]);
         return result.rows[0];
     }
 

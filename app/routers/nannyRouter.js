@@ -20,8 +20,8 @@ router.post('/login',handlerController(nannyController.login.bind(nannyControlle
  */
 
 // router.get('/profile', handlerController(nannyController.getProfile.bind(nannyController)));
-router.post('/profile', handlerController(nannyController.modifyProfile.bind(nannyController)));
 router.post('/profile/delete', handlerController(nannyController.deleteProfile.bind(nannyController)));
+router.post('/profile', handlerController(nannyController.modifyProfile.bind(nannyController)));
 
 /**
  * Route for suggest : POST
