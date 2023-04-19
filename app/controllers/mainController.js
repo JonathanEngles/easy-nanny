@@ -1,6 +1,7 @@
 const mainController = {
      getHomePage(req, res) {
-        res.render ('homePage');
+        const error = req.query.error;
+        res.render ('homePage', { error });
     }
 }
 
