@@ -321,7 +321,7 @@ footer {
 
         background-color: var(--backgroung_color);
         color: var(--primary_text_color);
-
+        text-decoration: none;
         border-radius: 1.5em;
         box-shadow: rgba(0, 0, 0, 0.277) 0px 20px 30px;
 
@@ -331,11 +331,16 @@ footer {
     #loginBtn {
         background-color: var(--purple_pink);
         color: var(--primary_text_color);
+        text-decoration: none;
         border-radius: 2em;
         padding: 1em;
         box-shadow: rgba(0, 0, 0, 0.277) 0px 20px 30px;
 
         cursor: pointer;
+    }
+
+    #signupBtn:active, #loginBtn:active {
+        box-shadow: inset 2px 2px 5px black;
     }
 
     .welcome_text {
@@ -455,7 +460,7 @@ footer {
 
         background-color: var(--backgroung_color);
         color: var(--primary_text_color);
-
+        text-decoration: none;
         border-radius: 1.5em;
         box-shadow: rgba(0, 0, 0, 0.277) 0px 20px 30px;
 
@@ -466,9 +471,18 @@ footer {
         background-color: var(--purple_pink);
         color: var(--primary_text_color);
         border-radius: 1.5em;
+        text-decoration: none;
         padding: 1em;
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 20px 30px;
+        box-shadow:  rgba(0, 0, 0, 0.12) 0px 20px 30px;
         cursor: pointer;
+    }
+
+    #signupBtn:active, #loginBtn:active {
+        box-shadow: inset 2px 2px 5px black;
+    }
+
+    #signupBtn:active, #loginBtn:active {
+        box-shadow: inset 2px 2px 5px black;
     }
 
     .welcome_text {
