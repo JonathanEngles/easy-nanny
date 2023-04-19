@@ -1,26 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/parent/children/patch/2" method="post" enctype="multipart/form-data">
-        <label for="fileUpload">Sélectionnez un fichier</label>
-        <input type="file" name="picture" id="fileUpload">
-        <input type="submit" value="Téléverser">
-      </form>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/modale.css">
+    <link rel="stylesheet" href="/css/style.css">
 
-      <form method="POST" action="/parent/login">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-      </form>
+    <title>Easy Nanny</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <img class="img_logo" src="/images/Logo-removebg-preview.png" alt="Logo Easy Nanny">
+
+        </div>
+        <div class="burger-menu">
+            <div class="burger-menu-icon">&#9776;</div>
+            <ul class="burger-menu-list">
+              <% if (!locals.session.user) { %>
+                <li><a id="signupBtn" class="modal-btn js-modal" href="#modal1">s'inscrire</a></li>
+                <li><a id="loginBtn" class="modal-btn js-modal" href="#modal2">Se connecter</a></li>
+                <% } else { %>
+                  <% if (locals.session.user.is_nanny) { %>
+                    <li> <a id="signupBtn"  href="/nanny/dashboard">Bonjour Super Nounou <%= user.first_name %></a></li>
+                        <li> <a id="loginBtn"   href="/logout">Se déconnecter</a></li>
+                <% } else { %>
+                    <li>  <a id="signupBtn"  href="/parent/dashboard">Bonjour Super Parent <%= user.first_name %></a></li>
+                        <li> <a id="loginBtn"  href="/logout">Se déconnecter</a></li>
+                <% } %>
+                <% } %>
+            </ul>
+           
+        </div>
+        
+        <div class="boutons-log">
+           
+            <!-- apparait au-dela de 760px-->
+            <% if (!locals.session.user) { %>
+            <div id="signupBtn" class="modal-btn js-modal" href="#modal1">S'inscrire</div>
+            <div id="loginBtn" class="modal-btn js-modal" href="#modal2">Se connecter</div>
+            <% } else { %>
+                <% if (locals.session.user.is_nanny) { %>
+                    <a id="signupBtn"  href="/nanny/dashboard">Bonjour Super Nounou <%= user.first_name %></a>
+                    <a id="loginBtn"  href="/logout">Se déconnecter</a>
+                    <% } else { %>
+                        <a id="signupBtn"  href="/parent/dashboard">Bonjour Super Parent <%= user.first_name %></a>
+            <a id="loginBtn"  href="/logout">Se déconnecter</a>
+            <% } %>
+            <% } %>
+        </div>
+    </header>
+
+    <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+        <div class="modal-wrapper js-modal-stop">
+            <button class="js-modal-close">✖</button>
+            <div class="container-selector"><div class="nanny">Nounou</div>
+            <div class="parent">Parent</div></div>
+            <form class="signup-form signUpForm" action="" method="POST" enctype="multipart/form-data">
+               
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
+                <label for="firstname">Prénom :</label>
+                <input type="text" id="firstname" name="first_name" required>
+
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" class="email" name="email" required>
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirmez votre mot de passe :</label>
+                <input type="password" id="confirm-password" name="passwordConfirmation" required>
+
+                <label for="address">Adresse :</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="postal-code">Code postal :</label>
+                <input type="text" id="postal-code" name="zip_code" required>
+
+                <label for="city">Ville :</label>
+                <input type="text" id="city" name="city" required>
+
+                <input type="submit" value="S'inscrire" class="submit">
+            </form>
+        </div>
+    </aside>
+    <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none;">
+        <div class="modal-wrapper js-modal-stop">
+            <button class="js-modal-close">✖</button>
+            <div class="container-selector"><div class="nanny2">Nounou</div>
+            <div class="parent2">Parent</div></div>
+            <form class="signup-form loginForm" action="" method="POST">
+
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" class="email" name="email" required>
+
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+
+
+                <input type="submit" value="Se connecter" class="submit">
+            </form>
+        </div>
+    </aside>
+    <section class="contener_welcome">
+        <div class="principal_img">
+            <img src="/images/children.jpg" alt="Picture" class="img_principale">
+        </div>
+        <div class="welcome_text">
+            <%- include('partials/error-message') %>
+            <h2 class="welcome_title">welcome</h2>
+            <p class="Welcome_paraph">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti dolorem
+                mollitia eveniet nihil, dolor
+                iusto dignissimos incidunt dolores velit magnam vero perferendis tempora ipsum pariatur doloremque
+                deserunt eum eius. Corporis.</p>
+        </div>
+    </section>
+
+    <h2 class="banner_info">
+        Nos services à <em>votre service</em>
+    </h2>
+    <section class="services">
+        <ul>
+            <li class="first_li">
+                <img src="/images/calendar.jpg" alt="Image outil" class="first_img">
+                <article class="first_article">
+                    <h3 class="first_title  content">Le tableau de bord</h3>
+                    <p class="first_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Repellendus, ab consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem,
+                        nesciunt minus placeat ipsum officiis distinctio reprehenderit quos amet aliquam expedita
+                        tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nihil quibusdam
+                        laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt laborum non
+                        voluptas velit, aut rem. Ullam, quidem ad.</p>
+                    <a href="#" class="first_anchor">En savoir plus</a>
+                </article>
+
+            </li>
+            <li class="second_li">
+                <img src="/images/Chat.jpg" alt="Image outil" class="first_img">
+                <article class="first_article">
+                    <h3 class="first_title  content">Un chat sécurisé</h3>
+                    <p class="first_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Repellendus, ab consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem,
+                        nesciunt minus placeat ipsum officiis distinctio reprehenderit quos amet aliquam expedita
+                        tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nihil quibusdam
+                        laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt laborum non
+                        voluptas velit, aut rem. Ullam, quidem ad.</p>
+                    <a href="#" class="first_anchor">En savoir plus</a>
+                </article>
+
+            </li>
+            <li class="first_li">
+                <img src="/images/suggestion.jpg  " alt="Image outil" class="first_img">
+                <article class="first_article">
+                    <h3 class="first_title  content">Des suggestions</h3>
+                    <p class="first_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        Repellendus, ab consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem,
+                        nesciunt minus placeat ipsum officiis distinctio reprehenderit quos amet aliquam expedita
+                        tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nihil quibusdam
+                        laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt laborum non
+                        voluptas velit, aut rem. Ullam, quidem ad.</p>
+                    <a href="#" class="first_anchor">En savoir plus</a>
+                </article>
+
+            </li>
+        </ul>
+    </section>
+
+    <h2 class="story">
+        Qui sommes-nous?
+    </h2>
+    <p class="story_paragraph content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, ab
+        consequuntur ipsa pariatur voluptatibus deserunt incidunt enim voluptatem, nesciunt minus placeat ipsum officiis
+        distinctio reprehenderit quos amet aliquam expedita tempore. Lorem ipsum dolor sit amet consectetur adipisicing
+        elit. Animi nihil quibusdam laudantium velit delectus neque quidem nemo consequatur! Modi quibusdam deserunt
+        laborum non voluptas velit, aut rem. Ullam, quidem ad.</p>
+
+
+    <h2 class="question_title">
+        Des Questions ? pas de soucis
+    </h2>
+
+    <div class="category">
+        <p class="question">Comment puis-je m'inscrire? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Combien coûte votre service? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Combien de compte puis-je avoir? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Qui contacter en cas de soucis? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Quels sont mes droits en tant que nounou? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Que faites-vous des nos informations? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Pourquoi utilisé Easy Nanny? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+        <p class="question">Ai-je besoin d'aide pour créer mon compte ? <i class="fas fa-chevron-down"></i></p>
+        <div class="contenu">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eos, culpa maiores recusandae
+                accusantium cumque laboriosam itaque accusamus atque nihil minima rem iure dolores temporibus, numquam
+                fugit adipisci pariatur ea?</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
+        <p class="footer_mention"> Mentions légales</p>
+        <p class="footer_mention"> Condition général</p>
+    </footer>
+  
+    <script src="/integration/javascript/index.js"></script>
+    <script src="/integration/javascript/modale.js"></script>
+    <script src="/integration/javascript/burger.js"></script>
 </body>
+
 </html>
