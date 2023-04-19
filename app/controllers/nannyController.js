@@ -148,15 +148,15 @@ class NannyController extends CoreController {
     async getNannyDashboard(req, res) {
         //verify if a session exists and if a Nanny is connected
         if (req.session && req.session.user && req.session.user.is_nanny) {
-            const nanny = req.session.user;
+            const user = req.session.user;
         
 
-            const activity = await nannyDataMapper.getAllActivity(nanny.id);
-            const children = await nannyDataMapper.getAllChildren(nanny.id);
-            const parent = await nannyDataMapper.getAllParents(nanny.id);
-            const suggest = await nannyDataMapper.getSuggests(nanny.id)
+            const activity = await nannyDataMapper.getAllActivity(user.id);
+            const children = await nannyDataMapper.getAllChildren(user.id);
+            const parent = await nannyDataMapper.getAllParents(user.id);
+            const suggest = await nannyDataMapper.getSuggests(user.id)
 
-            res.render('nannyDashboard', { activity, children, parent, nanny, suggest });
+            res.render('nannyDashboard', { activity, children, parent, user, suggest });
 
      } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
@@ -167,12 +167,12 @@ class NannyController extends CoreController {
     async getNannyProfile(req, res) {
         //verify if a session exists and if a Nanny is connected
         if (req.session && req.session.user && req.session.user.is_nanny) {
-            const nanny = req.session.user;
+            const user = req.session.user;
 
-            const children = await nannyDataMapper.getAllChildren(nanny.id);
-            const parent = await nannyDataMapper.getAllParents(nanny.id);
+            const children = await nannyDataMapper.getAllChildren(user.id);
+            const parent = await nannyDataMapper.getAllParents(user.id);
 
-    res.render('nannyProfile', { children, parent, nanny });
+    res.render('nannyProfile', { children, parent, user });
 
 } else {
 
@@ -184,12 +184,12 @@ class NannyController extends CoreController {
 async getNannySuggests(req, res) {
     //verify if a session exists and if a Nanny is connected
     if (req.session && req.session.user && req.session.user.is_nanny) {
-        const nanny = req.session.user;
+        const user = req.session.user;
 
 
-        const suggests = await nannyDataMapper.getAllSuggests(nanny.id)
+        const suggests = await nannyDataMapper.getAllSuggests(user.id)
 
-        res.render('nannySuggests', { suggests, nanny });
+        res.render('nannySuggests', { suggests, user });
     } else {
 
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
@@ -200,10 +200,10 @@ async getNannySuggests(req, res) {
 async getNannyDiaries(req,res) {
     //verify if a session exists and if a Nanny is connected
     if (req.session && req.session.user && req.session.user.is_nanny) {
-        const nanny = req.session.user;
+        const user = req.session.user;
 
-        const diaries = await nannyDataMapper.getAllDiaries(nanny.id);
-        res.render('nannyDiaries', { nanny, diaries });
+        const diaries = await nannyDataMapper.getAllDiaries(user.id);
+        res.render('nannyDiaries', { user, diaries });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
 }

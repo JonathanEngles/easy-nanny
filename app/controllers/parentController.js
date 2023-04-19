@@ -38,15 +38,15 @@ class ParentController extends CoreController {
     async getParentDashboard(req, res) {
         //verify if a session exists and if an user is connected
         if (req.session && req.session.user && !req.session.user.is_nanny) {
-            const parent = req.session.user;
+            const user = req.session.user;
             const nannyId = parent.nanny_id;
 
             const activity = await parentDataMapper.getAllActivity(nannyId);
-            const children = await parentDataMapper.getAllChildren(parent.id);
+            const children = await parentDataMapper.getAllChildren(user.id);
             const nanny = await parentDataMapper.getNannyById(nannyId);
-            const suggest = await parentDataMapper.getSuggests(parent.id)
+            const suggest = await parentDataMapper.getSuggests(user.id)
 
-            res.render('parentDashboard', { parent, activity, children, nanny, suggest });
+            res.render('parentDashboard', { user, activity, children, nanny, suggest });
 
      } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
@@ -57,13 +57,13 @@ class ParentController extends CoreController {
     async getParentProfile (req, res) {
         //verify if a session exists and if an user is connected
         if (req.session && req.session.user && !req.session.user.is_nanny) {
-            const parent = req.session.user;
+            const user = req.session.user;
             const nannyId = parent.nanny_id;
 
-            const children = await parentDataMapper.getAllChildren(parent.id);
+            const children = await parentDataMapper.getAllChildren(user.id);
             const nanny = await parentDataMapper.getNannyById(nannyId);
 
-            res.render('parentProfile', { parent, children, nanny });
+            res.render('parentProfile', { user, children, nanny });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
 }
@@ -71,20 +71,20 @@ class ParentController extends CoreController {
 
     async getParentSuggests(req, res) {
         if (req.session && req.session.user && !req.session.user.is_nanny) {
-            const parent = req.session.user;
+            const user = req.session.user;
 
-            const suggests = await parentDataMapper.getAllSuggests(parent.id);
+            const suggests = await parentDataMapper.getAllSuggests(user.id);
 
-            res.render('parentSuggests', { parent, suggests });
+            res.render('parentSuggests', { user, suggests });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
 }
 }
 async getParentDiaries(req, res) {
     if (req.session && req.session.user && !req.session.user.is_nanny) {
-        const parent = req.session.user;
-        const diaries = await parentDataMapper.getAllDiaries(parent.id);
-        res.render('parentDiaries', { parent, diaries });
+        const user = req.session.user;
+        const diaries = await parentDataMapper.getAllDiaries(user.id);
+        res.render('parentDiaries', { user, diaries });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
 }
