@@ -168,11 +168,11 @@ class NannyController extends CoreController {
         //verify if a session exists and if a Nanny is connected
         if (req.session && req.session.user && req.session.user.is_nanny) {
             const user = req.session.user;
-
+            const error = req.query.error
             const children = await nannyDataMapper.getAllChildren(user.id);
             const parent = await nannyDataMapper.getAllParents(user.id);
 
-    res.render('nannyProfile', { children, parent, user });
+    res.render('nannyProfile', { children, parent, user, error });
 
 } else {
 

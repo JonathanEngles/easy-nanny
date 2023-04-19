@@ -48,7 +48,12 @@ loginForm(_, res) {
     delete req.body.password;
     req.session.user = user;
    
-    return res.redirect('/dashboard');
+    // check if user is a nanny or a parent
+    if (user.is_nanny) {
+        return res.redirect('/nanny/nannyDashboard');
+    } else {
+        return res.redirect('/parent/parentDashboard');
+    }
 }
 
 /**
@@ -133,7 +138,13 @@ async modifyProfile(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
-        return res.status(400).render('profile', {error: 'un compte avec cet email existe déjà'});
+        const error = encodeURIComponent('cet email existe déjà');
+        // check if user is a nanny or a parent
+    if (user.is_nanny) {
+        return res.redirect(`/nanny/nannyProfile?error=${error}`);
+    } else {
+        return res.redirect(`/parent/parentProfile?error=${error}`);
+    }
     }}
 }
 
@@ -142,12 +153,24 @@ async modifyProfile(req, res) {
         const ok = await bcrypt.compare(oldPassword, user.password);
 
     if(!ok) {
-        return res.status(400).render('profile', {error: 'Le mot de passe est éronné'});
+        const error = encodeURIComponent('le mot de passe est erronné');
+        // check if user is a nanny or a parent
+    if (user.is_nanny) {
+        return res.redirect(`/nanny/nannyProfile?error=${error}`);
+    } else {
+        return res.redirect(`/parent/parentProfile?error=${error}`);
+    }
     }
     
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
-        return res.render('profile', {error: 'Les mots de passe ne sont pas identique'});
+        const error = encodeURIComponent('Les mots de passe ne sont pas identique');
+        // check if user is a nanny or a parent
+    if (user.is_nanny) {
+        return res.redirect(`/nanny/nannyProfile?error=${error}`);
+    } else {
+        return res.redirect(`/parent/parentProfile?error=${error}`);
+    }
     }
     
     //crypt the password
@@ -167,11 +190,16 @@ async modifyProfile(req, res) {
             delete req.body.passwordConfirmation;
             delete req.body.oldPassword;
             req.session.user = updatedUser;
-            return res.render('profile', {title : 'page du profil'});
+            // check if user is a nanny or a parent
+    if (updatedUser.is_nanny) {
+        return res.redirect('/nanny/nannyProfile');
+    } else {
+        return res.redirect('/parent/parentProfile');
+    }
 
 }else {
-    
-    res.render('homePage')
+    const error = encodeURIComponent(`Session expirée, veuillez vous reconnecter`);
+    res.redirect(`/?error=${error}`);
 }
 }
 
@@ -195,7 +223,7 @@ async modifyProfile(req, res) {
             }
         //delete the user in database
         await this.constructor.dataMapper.deleteProfile(user.id);
-        return res.render('homePage');
+        return res.redirect('/');
 }}
 
 
