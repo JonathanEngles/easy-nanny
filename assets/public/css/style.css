@@ -93,6 +93,25 @@ header {
     display: block;
 }
 
+.container-selector{
+    display: flex;
+    
+}
+
+.parent{
+    cursor: pointer;
+    background-color: var(--powder-gray);
+    margin-left: 1em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.nanny{
+    cursor: pointer;
+    background-color: var(--coral_pink);
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
 
 /* Homepage */
 

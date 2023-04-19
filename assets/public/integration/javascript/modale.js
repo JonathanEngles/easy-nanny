@@ -4,6 +4,8 @@ const focusableSelector = "button, a, input, textarea"
 let focusables = []
 let previouslyFocusedElement = null
 
+
+// OUVERTURE de la modale d'inscription / login
 const openModal = function (e) {
   e.preventDefault()
   modal = document.querySelector(e.target.getAttribute('href'))
@@ -18,6 +20,8 @@ const openModal = function (e) {
   modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
 }
 
+
+//FERMETURE de la modale d'inscription / login
 const closeModal = function (e) {
   if (modal === null) return
   if (previouslyFocusedElement !== null) previouslyFocusedElement.focus()
@@ -34,7 +38,8 @@ const closeModal = function (e) {
 const stopPropagation = function (e) {
   e.stopPropagation()
 }
-
+// NAVIGATION AU CLAVIER
+// RECULER DANS LE FORMULAIRE
 const focusInModal = function (e) {
   e.preventDefault()
   let index = focusables.findIndex(f => f === modal.querySelector(':focus'))
@@ -55,12 +60,35 @@ const focusInModal = function (e) {
 document.querySelectorAll('.js-modal').forEach(a => {
   a.addEventListener('click', openModal)
 })
-
+//SORTIR DU FORMULAIRE AVEC ECHAP
 window.addEventListener('keydown', function (e) {
   if (e.key === "Escape" || e.key === "Esc") {
     closeModal(e)
-  }
+  } // AVANCER LE FOCUS AVEC TAB
   if (e.key === 'Tab' && modal !== null) {
     focusInModal(e)
   }
 })
+
+const UserSelectors = function () {
+  const parentElement = document.querySelector('.parent');
+  const nannyElement = document.querySelector('.nanny');
+  const formSignUp = document.querySelector('.signUpForm');
+  const formLogin = document.querySelector('.loginForm');
+  parentElement.addEventListener('click', () =>{ console.log('clicked')
+    formSignUp.setAttribute('action', '/parent/signup');
+    formLogin.setAttribute('action', '/parent/login');
+    parentElement.classList.add('is-clicked');
+    nannyElement.classList.remove('is-cliked');
+   
+})
+nannyElement.addEventListener('click', () =>{
+  formSignUp.setAttribute('action', '/nanny/signup');
+  formLogin.setAttribute('action','/nanny/login');
+  nannyElement.classList.add('is-clicked');
+  nannyElement.classList.remove('is-cliked');
+})
+
+;
+} 
+UserSelectors()
