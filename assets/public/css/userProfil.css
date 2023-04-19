@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+:root {
+  --primary_text_color: #ffffff;
+  --secondary_text_color: #000000;
+  --backgroung_color: #2a84bc;
+  --lilac_color: #f9aaff;
+  --purple: #432C9E;
+  --purple_pink: #AD5DD9;
+  --yellow_color: #F7E07A;
+  --green_color: #3FA254;
+  --coral_pink: #EF8275;
+  --powder-gray: #AFC2D5;
+  --red: #E01D5B;
+  --contener: #ae5dd96c;
+}
+
 /* NECESSAIRE AU BON FONCTIONNEMENT  */
 .d-none {
   display: none ;
@@ -9,3 +26,98 @@
   }
 
 /* STYLE */
+
+
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: inline-block;
+  max-width: 150px; /* Ajustez cette valeur selon vos besoins */
+  text-align: right;
+  margin-right: 10px;
+  word-break: break-word; /* Permet de couper les mots pour respecter la largeur maximale */
+  vertical-align: top;
+}
+
+label {
+  display: inline-block;
+  min-width: 150px;
+  text-align: right;
+  margin-right: 15px;
+  vertical-align: middle;
+  color: var(--purple_pink);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+input[type="textarea"] {
+  width: 100%;
+  max-width: 300px;
+}
+
+input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 5px;
+}
+
+button {
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: var(--purple_pink);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--lilac_color);
+}
+
+.delete-btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+#delete-btn{
+  padding: 10px 20px;
+  width: 14em;
+  margin-bottom: 2em;
+}
+
+.update-btn{
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-child, .edit-parent{
+   display: flex;
+}
+
+h1{
+  margin: 1em;
+  color: var(--purple_pink);
+}
+
+.material-icons{
+  margin-top: 0.5em ;
+  border: 1px solid;
+  border-radius: 1em;
+  padding: 0.3em;
+}
+
+.container-clef{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
