@@ -67,7 +67,7 @@ header {
 .burger-menu-list {
     position: absolute;
     text-align: center;
-    width: auto;
+    width:auto;
     top: 100%;
     right: 0;
     list-style: none;

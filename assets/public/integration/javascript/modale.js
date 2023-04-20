@@ -97,8 +97,8 @@ nannyElementLogin.addEventListener('click', () =>{
 })
 parentElementLogin.addEventListener('click', () =>{
   formLogin.setAttribute('action', '/parent/login');
-  parentElement.classList.remove('is-not-clicked');
-    nannyElement.classList.add('is-not-clicked');
+  parentElementLogin.classList.remove('is-not-clicked');
+    nannyElementLogin.classList.add('is-not-clicked');
 })
 
 ;
