@@ -131,7 +131,7 @@ async getAllActivity(id) {
 };
 
 async getAllChildren(id) {
-    const result = await client.query('SELECT * FROM "child" WHERE "id" = $1 ORDER BY "parent_id"', [id]);
+    const result = await client.query('SELECT * FROM "children" WHERE "id" = $1 ORDER BY "parent_id"', [id]);
     return result.rows;
 };
 

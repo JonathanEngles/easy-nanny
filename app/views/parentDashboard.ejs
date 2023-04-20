@@ -1,12 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/planning.css">
+
+    <title>Easy Nanny | Dashboard</title>
 </head>
+
 <body>
-    <%=Profil enfant%>
+
+    <header>
+        <div class="logo">
+            <img class="img_logo" src="/images/Logo-removebg-preview.png" alt="Logo Easy Nanny">
+
+        </div>
+        <div class="burger-menu">
+            <div class="burger-menu-icon">&#9776;</div>
+            <ul class="burger-menu-list">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Mon profil</a></li>
+                <li><a href="#">Suggestions</a></li>
+                <li><a href="#">Journal de suivi</a></li>
+                <li><a href="#">Deconnexion</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Mise en place de la barre latérale pour le profil de la nounou -->
+    <section class="contener">
+        <aside class="left_side">
+            <div class="profil_info">
+                <img class="profil_img" src="/images/Luimar_Cavani.JPG" alt="Photo de profile">
+                <p class="profil_name"><%= user.first_name %></p>
+            </div>
+
+            <span class="kids_title">Enfants</span>
+            <div class="kids_contener">
+                <div class="kids_info un">
+                    <img src="/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
+                    <p class="kids_name"><%= user.children.first_name %></p>
+                </div>
+                <div class="kids_info deux">
+                    <img src="/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
+                    <p class="kids_name">Analis Cavani</p>
+                </div>
+                <div class="kids_info trois">
+                    <img src="/images/Luimar_Cavani.JPG" alt="" class="kids_photo">
+                    <p class="kids_name">Patrick Zappala</p>
+                </div>
+
+            </div>
+            <div class="bouton_contener">
+
+
+                <div class="suggestion_contener">
+                    <span class="suggestion_title">Suggestions</span>
+                </div>
+            </div>
+        </aside>
+        <aside class="right_side">
+            <span class="planning_title">Calendrier des tâches</span>
+            <div class="planning_contener">
+                <div class="header_day">
+                    <div id="planning"></div>
+                    <div id="modale" title="Ajouter une tâche">
+                      <form id="form-tache">
+                        <label for="date">Date :</label>
+                        <input type="text" id="date" name="date" required>
+                        <label for="heure">Heure :</label>
+                        <input type="time" id="heure" name="heure" required>
+                        <label for="description">Description :</label>
+                        <textarea id="description" name="description" required></textarea>
+                        <label for="couleur">Couleur :</label>
+                        <input type="color" id="couleur" name="couleur" value="#0000ff">
+                        <button id="btnAjouter">Ajouter la tâche</button>
+                        <button id="btnSauvegarder" style="display:none;">Sauvegarder la tâche</button>
+                        <button id="btnSupprimer" style="display:none;">Supprimer</button>
+                        <input type="hidden" id="taskId" value="">
+                      </form>
+                    </div>
+                </div>
+               
+
+            </div>
+            <section class="bottom-right-side">
+
+                <div class="diary_contener">
+                    <span class="diary_title">Journal de suivi</span>
+                    <div class="diary_content">
+                        <textarea aria-valuetext="Tapez ici">
+
+                        </textarea>
+
+                        <div class="bouton">
+
+                            <span class="soumettre_title">Soumettre</span>
+
+                            <select>
+                                <option value="nom1">Nicolas Pelletier</option>
+                                <option value="nom2" selected>Analis Cavani</option>
+                                <option value="nom3">Patrick Zappala</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="suggest-contener">
+                    <span class="suggest-title"> Mes suggestions</span>
+                    <div class="suggest-content">
+
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </section>
+    <footer>
+        <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
+        <p class="footer_mention"> Mentions légales</p>
+        <p class="footer_mention"> Condition général</p>
+    </footer>
+    <script src="/integration/javascript/burger.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/integration/javascript/planning.js"></script>
 </body>
+
 </html>
