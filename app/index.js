@@ -19,7 +19,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   cookie: {
       // false because not https
-      secure: false,
+      secure: true,
       // 24 hours duration
       maxAge: 1000 * 60 * 60 * 24
   }
