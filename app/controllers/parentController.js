@@ -27,7 +27,7 @@ class ParentController extends CoreController {
                 //add suggest to database
                 await parentDataMapper.createSuggest(title, nannyId, user);
                 
-                res.redirect('/profile');
+                res.redirect('/parent/dashboard');
             } else {
                 res.redirect('/');
             }
@@ -44,9 +44,10 @@ class ParentController extends CoreController {
             const activity = await parentDataMapper.getAllActivity(nannyId);
             const children = await parentDataMapper.getAllChildren(user.id);
             const nanny = await parentDataMapper.getNannyById(nannyId);
-            const suggest = await parentDataMapper.getSuggests(user.id)
+            const suggest = await parentDataMapper.getSuggests(user.id);
+            const diary = await parentDataMapper.getLastDiary(user.id);
 
-            res.render('parentDashboard', { user, activity, children, nanny, suggest });
+            res.render('parentDashboard', { user, activity, children, nanny, suggest, diary });
 
      } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
