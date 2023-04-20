@@ -8,21 +8,6 @@ class CoreController {
   static dataMapper;
     static user;
 
-  signup(_, res) {
-    res.render('signup');
-}
-
-
-
-logout(req, res) {
-    req.session.destroy();
-    res.redirect('/');
-};
-
-loginForm(_, res) {
-    res.render('login');
-}
-
   /**
    * login to parent or nanny account
    */
@@ -99,7 +84,7 @@ async register(req, res) {
     //add user to database
     await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, picture, uniqueId);
     
-    res.redirect('/');
+    res.render('homePage', {message:'Compte créé correctement'});
 
 }
 
