@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/planning.css">
+    <link rel="stylesheet" href="/css/suggest.css">
+    <link rel="stylesheet" href="/css/userProfil.css">
+    <link rel="stylesheet" href="/css/404.css">
     <link rel="stylesheet" href="/css/modale.css">
     <link rel="stylesheet" href="/css/style.css">
 
@@ -27,33 +32,25 @@
                 <li><a id="loginBtn" class="modal-btn js-modal" href="#modal2">Se connecter</a></li>
                 <% } else { %>
                   <% if (locals.session.user.is_nanny) { %>
-                    <li> <a id="signupBtn"  href="/nanny/dashboard">Bonjour Super Nounou <%= user.first_name %></a></li>
-                        <li> <a id="loginBtn"   href="/logout">Se déconnecter</a></li>
+                    <li><a href="/">Accueil</a></li>
+                <li><a href="/nanny/dashboard"><%= user.first_name %></a></li>
+                <li><a href="/nanny/profile">Mon profil</a></li>
+                <li><a href="/nanny/suggests">Suggestions</a></li>
+                <li><a href="/nanny/diary">Journal de suivi</a></li>
+                <li><a href="/logout">Déconnexion</a></li>
                 <% } else { %>
-                    <li>  <a id="signupBtn"  href="/parent/dashboard">Bonjour Super Parent <%= user.first_name %></a></li>
-                        <li> <a id="loginBtn"  href="/logout">Se déconnecter</a></li>
+                    <li><a href="/">Accueil</a></li>
+                <li><a href="/parent/dashboard"><%= user.first_name %></a></li>
+                <li><a href="/parent/profile">Mon profil</a></li>
+                <li><a href="/parent/suggests">Suggestions</a></li>
+                <li><a href="/parent/diary">Journal de suivi</a></li>
+                <li><a href="/logout">Déconnexion</a></li>
                 <% } %>
                 <% } %>
             </ul>
            
         </div>
         
-        <div class="boutons-log">
-           
-            <!-- apparait au-dela de 760px-->
-            <% if (!locals.session.user) { %>
-            <div id="signupBtn" class="modal-btn js-modal" href="#modal1">S'inscrire</div>
-            <div id="loginBtn" class="modal-btn js-modal" href="#modal2">Se connecter</div>
-            <% } else { %>
-                <% if (locals.session.user.is_nanny) { %>
-                    <a id="signupBtn"  href="/nanny/dashboard">Bonjour Super Nounou <%= user.first_name %></a>
-                    <a id="loginBtn"  href="/logout">Se déconnecter</a>
-                    <% } else { %>
-                        <a id="signupBtn"  href="/parent/dashboard">Bonjour Super Parent <%= user.first_name %></a>
-            <a id="loginBtn"  href="/logout">Se déconnecter</a>
-            <% } %>
-            <% } %>
-        </div>
     </header>
 
     <aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display:none;">
@@ -113,7 +110,7 @@
             <img src="/images/children.jpg" alt="Picture" class="img_principale">
         </div>
         <div class="welcome_text">
-            <%- include('partials/error-message') %>
+            
             <h2 class="welcome_title">welcome</h2>
             <p class="Welcome_paraph">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti dolorem
                 mollitia eveniet nihil, dolor
@@ -250,8 +247,10 @@
         <p class="footer_mention"> Mentions légales</p>
         <p class="footer_mention"> Condition général</p>
     </footer>
-  
+    
     <script src="/integration/javascript/index.js"></script>
+    <script src="/integration/javascript/planning.js"></script>
+    <script src="/integration/javascript/userProfil.js"></script>
     <script src="/integration/javascript/modale.js"></script>
     <script src="/integration/javascript/burger.js"></script>
 </body>

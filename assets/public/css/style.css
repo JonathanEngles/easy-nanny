@@ -66,11 +66,10 @@ header {
 
 .burger-menu-list {
     position: absolute;
+    text-align: center;
+    width: auto;
     top: 100%;
-    left: 0;
     right: 0;
-    margin: 0;
-    padding: 0;
     list-style: none;
     background-color: var(--backgroung_color);
     display: none;
@@ -95,22 +94,43 @@ header {
 
 .container-selector{
     display: flex;
+    justify-content: space-evenly;
     
 }
 
-.parent{
-    cursor: pointer;
-    background-color: var(--powder-gray);
-    margin-left: 1em;
-    padding: 0.5em;
-    border-radius: 0.5em;
+.parent, .parent2{
+    margin-right: 2em;
+        padding: 1em;
+
+        background-color: var(--backgroung_color);
+        color: var(--primary_text_color);
+        text-decoration: none;
+        border-radius: 1.5em;
+        box-shadow: rgba(0, 0, 0, 0.277) 0px 20px 30px;
+
+        cursor: pointer;
 }
 
-.nanny{
-    cursor: pointer;
-    background-color: var(--coral_pink);
-    padding: 0.5em;
-    border-radius: 0.5em;
+.nanny, .nanny2{
+    margin-right: 2em;
+        padding: 1em;
+
+        background-color: var(--purple_pink);
+        color: var(--primary_text_color);
+        text-decoration: none;
+        border-radius: 1.5em;
+        box-shadow: rgba(0, 0, 0, 0.277) 0px 20px 30px;
+
+        cursor: pointer;
+}
+
+.nanny:active, .parent:active, .nanny2:active, .parent2:active {
+    box-shadow: inset 2px 2px 5px black;
+}
+
+.is-not-clicked {
+    background:#AFC2D5;
+    opacity: 0.4;
 }
 
 /* Homepage */
@@ -308,14 +328,14 @@ footer {
 
 @media only screen and (min-width: 768px) and (max-width: 1439px) {
     .burger-menu {
-        display: none;
-    }
-
-    .boutons-log {
         display: flex;
     }
 
-    #signupBtn {
+    .boutons-log {
+        display: none;
+    }
+
+    /* #signupBtn {
         margin-right: 2em;
         padding: 1em;
 
@@ -341,7 +361,7 @@ footer {
 
     #signupBtn:active, #loginBtn:active {
         box-shadow: inset 2px 2px 5px black;
-    }
+    } */
 
     .welcome_text {
         
@@ -447,14 +467,14 @@ footer {
 @media only screen and (min-width: 1438px) {
 
     .burger-menu {
-        display: none;
-    }
-
-    .boutons-log {
         display: flex;
     }
 
-    #signupBtn {
+    .boutons-log {
+        display: none;
+    }
+
+    /* #signupBtn {
         margin-right: 2em;
         padding: 1em;
 
@@ -477,13 +497,11 @@ footer {
         cursor: pointer;
     }
 
-    #signupBtn:active, #loginBtn:active {
-        box-shadow: inset 2px 2px 5px black;
-    }
+    
 
     #signupBtn:active, #loginBtn:active {
         box-shadow: inset 2px 2px 5px black;
-    }
+    } */
 
     .welcome_text {
         position: absolute;

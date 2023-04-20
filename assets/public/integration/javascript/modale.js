@@ -78,29 +78,32 @@ const UserSelectors = function () {
   const formSignUp = document.querySelector('.signUpForm');
   const formLogin = document.querySelector('.loginForm');
 
-    parentElement.addEventListener('click', () =>{ console.log('clicked')
+    parentElement.addEventListener('click', () =>{
     formSignUp.setAttribute('action', '/parent/signup');
     
-    parentElement.classList.add('is-clicked');
-    nannyElement.classList.remove('is-cliked');
+    parentElement.classList.remove('is-not-clicked');
+    nannyElement.classList.add('is-not-clicked');
    
 })
 nannyElement.addEventListener('click', () =>{
   formSignUp.setAttribute('action', '/nanny/signup');
-  nannyElement.classList.add('is-clicked');
-  parentElement.classList.remove('is-cliked');
+  nannyElement.classList.remove('is-not-clicked');
+  parentElement.classList.add('is-not-clicked');
 })
 nannyElementLogin.addEventListener('click', () =>{
   formLogin.setAttribute('action','/nanny/login');
-  nannyElementLogin.classList.add('is-clicked');
-  parentElementLogin.classList.remove('is-cliked');
+  nannyElementLogin.classList.remove('is-not-clicked');
+  parentElementLogin.classList.add('is-not-clicked');
 })
 parentElementLogin.addEventListener('click', () =>{
   formLogin.setAttribute('action', '/parent/login');
-  parentElement.classList.add('is-clicked');
-    nannyElement.classList.remove('is-cliked');
+  parentElement.classList.remove('is-not-clicked');
+    nannyElement.classList.add('is-not-clicked');
 })
 
 ;
 } 
 UserSelectors()
+
+
+

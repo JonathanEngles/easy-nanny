@@ -45,6 +45,11 @@ class ParentDataMapper extends CoreDataMapper {
         const result = await client.query('SELECT * FROM "suggest" WHERE "parent_id" = $1 ORDER BY "created_at" DESC', [id]);
         return result.rows;
     };
+
+  async  getLastDiary(id) {
+        const result = await client.query('SELECT "date", "description" FROM "diary" WHERE "parent_id" = $1 ORDER BY "created_at" DESC LIMIT 1', [id]);
+        return result.rows[0];
+    }
     
     async getAllDiaries(id) {
         const result = await client.query('SELECT * FROM "diary" WHERE "parent_id" = $1 ORDER BY "created_at" DESC', [id]);
