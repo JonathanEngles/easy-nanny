@@ -215,7 +215,7 @@ async getNannySuggests(req, res) {
     //verify if a session exists and if a Nanny is connected
     if (req.session && req.session.user && req.session.user.is_nanny) {
         const user = req.session.user;
-
+        
 
         const suggests = await nannyDataMapper.getAllSuggests(user.id)
 
