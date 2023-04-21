@@ -2,26 +2,12 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid'); // module to generate an UNIQUE RANDOM id
 const fs = require('fs');
 const { tableName } = require("../models/coreDataMapper");
-const path = require('path')
+const path = require('path');
+const { log } = require('console');
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
     static user;
-
-  signup(_, res) {
-    res.render('signup');
-}
-
-
-
-logout(req, res) {
-    req.session.destroy();
-    res.redirect('/');
-};
-
-loginForm(_, res) {
-    res.render('login');
-}
 
   /**
    * login to parent or nanny account
@@ -76,14 +62,18 @@ async register(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
+
        
         return res.render('homePage', {error: `cet email est déjà utilisé`});
+
     }
 
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
+
        
         return res.render('homePage', {error: `les mots de passe ne correspondent pas`});
+
     }
     
     //crypt the password
@@ -99,7 +89,7 @@ async register(req, res) {
     //add user to database
     await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, picture, uniqueId);
     
-    res.redirect('/');
+    res.render('homePage', {message:'Compte créé correctement'});
 
 }
 
@@ -143,9 +133,10 @@ async modifyProfile(req, res) {
        
         // check if user is a nanny or a parent
     if (user.is_nanny) {
-        return res.redirect(`/nanny/nannyProfile`);
+        return res.redirect(`/nanny/profile`);
     } else {
-        return res.redirect(`/parent/parentProfile`);
+        return res.redirect(`/parent/profile`);
+
     }
     }}
 }
@@ -159,9 +150,10 @@ async modifyProfile(req, res) {
         // check if user is a nanny or a parent
     if (user.is_nanny) {
         
-        return res.redirect(`/nanny/nannyProfile`);
+        return res.redirect(`/nanny/profile`);
     } else {
-        return res.redirect(`/parent/parentProfile`);
+        return res.redirect(`/parent/profile`);
+
     }
     }
     
@@ -170,9 +162,11 @@ async modifyProfile(req, res) {
        
         // check if user is a nanny or a parent
     if (user.is_nanny) {
-        return res.redirect(`/nanny/nannyProfile`);
+
+        return res.redirect(`/nanny/profile`);
     } else {
-        return res.redirect(`/parent/parentProfile`);
+        return res.redirect(`/parent/profile`);
+
     }
     }
     
@@ -195,9 +189,9 @@ async modifyProfile(req, res) {
             req.session.user = updatedUser;
             // check if user is a nanny or a parent
     if (updatedUser.is_nanny) {
-        return res.redirect('/nanny/nannyProfile');
+        return res.redirect('/nanny/profile');
     } else {
-        return res.redirect('/parent/parentProfile');
+        return res.redirect('/parent/profile');
     }
 
 }else {

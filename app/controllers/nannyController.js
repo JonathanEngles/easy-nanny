@@ -9,6 +9,12 @@ class NannyController extends CoreController {
     constructor() {
         super();
     }
+
+
+    logout(req, res) {
+        req.session.destroy();
+        res.redirect('/');
+    }
 /**
  * create activity by the nanny
  * @param {*} req 
@@ -23,7 +29,7 @@ class NannyController extends CoreController {
 
             //add activity to the database
         await nannyDataMapper.createActivity(title, description, date, begin, end, color, category, user);
-        res.redirect('/dashboard')
+        res.redirect('/nanny/dashboard')
         } else {res.redirect('/')
     }
 
@@ -42,7 +48,7 @@ class NannyController extends CoreController {
             const {id, title, description, date, begin, end, color, category} = req.body;
             //modify the activity in the database
             await nannyDataMapper.modifyActivity(id, userId, {title, description, date, begin, end, color, category});
-            res.redirect('/dashboard')
+            res.redirect('/nanny/dashboard')
         } else {res.redirect('/')
     }
 };
@@ -61,7 +67,7 @@ class NannyController extends CoreController {
 
             //delete the activity in database
             await nannyDataMapper.deleteActivity(userId, activityId);
-            res.redirect('/dashboard');
+            res.redirect('/nanny/dashboard');
         } else {
             res.redirect('/')
     }
