@@ -1,0 +1,33 @@
+<section class="suggest_container">
+
+    <div class="title_page">
+        <h1 id="title">Mes suggestions</h1>
+    </div>
+
+    <!-- nouvelle suggestion -->
+
+    <section class="new_suggest">
+        <h2 class="send_suggest">Nouvelle suggestion</h2>
+        <textarea name="text" id="comment" class="suggest_comment"></textarea>
+
+        <div class="send_button">Envoyer la suggestion</div>
+    </section>
+
+    <!-- historique des suggestion -->
+    <% if (suggests.length) { %>
+    <section class="suggest_story">
+        <h2 class="suggest_story_title">Historique des suggestions</h2>
+        <div class="articles_container">
+            <% suggests.forEach(function(suggestion) { %>
+            <div class="article">
+                <p><%= suggestion.title %></p>
+                <p><%= suggestion.created_by %></p>
+                <p><%= suggestion.created_for %></p>
+                <p><%= suggestion.created_at %></p>
+
+            </div>
+            <% }); %>
+        </div>
+    </section>
+    <% } %>
+</section>
