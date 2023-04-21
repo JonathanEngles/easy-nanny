@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
 var icones = document.querySelectorAll("p i");
 for (var i = 0; i < icones.length; i++) {
   icones[i].addEventListener("click", function() {
@@ -63,5 +64,5 @@ function validateConfirmPassword() {
     return true;
   }
 }
-
+})
 
