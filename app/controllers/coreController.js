@@ -9,21 +9,6 @@ class CoreController {
   static dataMapper;
     static user;
 
-  signup(_, res) {
-    res.render('signup');
-}
-
-
-
-logout(_, res) {
-    req.session.destroy();
-    res.redirect('/');
-};
-
-loginForm(_, res) {
-    res.render('login');
-}
-
   /**
    * login to parent or nanny account
    */
@@ -36,14 +21,14 @@ loginForm(_, res) {
     const user = await this.constructor.dataMapper.getUserByEmail(email);
     
     if (!user){
-        return res.status(400).render('login', {error: 'l\'email est incorrect'});
+        return res.render('homePage', {error: `l'email est incorrect`});
     }
 
     //we compare the password of the user if it is the same
     const ok = await bcrypt.compare(password, user.password);
 
     if(!ok) {
-        return res.status(400).render('login', {error: 'Le mot de passe est éronné'});
+        return res.render('homePage', {error: `le mot de passe est erronné`});
     }
     //we delete the password of the req.body
     delete req.body.password;
@@ -51,9 +36,9 @@ loginForm(_, res) {
    
     // check if user is a nanny or a parent
     if (user.is_nanny) {
-        return res.redirect('/nanny/nannyDashboard');
+        return res.redirect('/nanny/dashboard');
     } else {
-        return res.redirect('/parent/parentDashboard');
+        return res.redirect('/parent/dashboard');
     }
 }
 
@@ -78,13 +63,17 @@ async register(req, res) {
 
     if (comparedEmail){
 
-        return res.render('login', {error: 'un compte avec cet email existe déjà'});
+       
+        return res.render('homePage', {error: `cet email est déjà utilisé`});
+
     }
 
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
 
-        return res.render('login', {error: 'Les mots de passe ne sont pas identique'});
+       
+        return res.render('homePage', {error: `les mots de passe ne correspondent pas`});
+
     }
     
     //crypt the password
@@ -100,7 +89,7 @@ async register(req, res) {
     //add user to database
     await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, picture, uniqueId);
     
-    res.redirect('/');
+    res.render('homePage', {message:'Compte créé correctement'});
 
 }
 
@@ -141,12 +130,13 @@ async modifyProfile(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
-        const error = encodeURIComponent('cet email existe déjà');
+       
         // check if user is a nanny or a parent
     if (user.is_nanny) {
-        return res.redirect(`/nanny/profile?error=${error}`);
+        return res.redirect(`/nanny/profile`);
     } else {
-        return res.redirect(`/parent/profile?error=${error}`);
+        return res.redirect(`/parent/profile`);
+
     }
     }}
 }
@@ -156,23 +146,27 @@ async modifyProfile(req, res) {
         const ok = await bcrypt.compare(oldPassword, user.password);
 
     if(!ok) {
-        const error = encodeURIComponent('le mot de passe est erronné');
+        
         // check if user is a nanny or a parent
     if (user.is_nanny) {
-        return res.redirect(`/nanny/profile?error=${error}`);
+        
+        return res.redirect(`/nanny/profile`);
     } else {
-        return res.redirect(`/parent/profile?error=${error}`);
+        return res.redirect(`/parent/profile`);
+
     }
     }
     
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
-        const error = encodeURIComponent('Les mots de passe ne sont pas identique');
+       
         // check if user is a nanny or a parent
     if (user.is_nanny) {
-        return res.redirect(`/nanny/profile?error=${error}`);
+
+        return res.redirect(`/nanny/profile`);
     } else {
-        return res.redirect(`/parent/profile?error=${error}`);
+        return res.redirect(`/parent/profile`);
+
     }
     }
     
@@ -201,8 +195,8 @@ async modifyProfile(req, res) {
     }
 
 }else {
-    const error = encodeURIComponent(`Session expirée, veuillez vous reconnecter`);
-    res.redirect(`/?error=${error}`);
+  
+    res.redirect(`/`);
 }
 }
 

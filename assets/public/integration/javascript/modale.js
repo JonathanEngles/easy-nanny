@@ -71,24 +71,39 @@ window.addEventListener('keydown', function (e) {
 })
 
 const UserSelectors = function () {
+  const parentElementLogin = document.querySelector('.parent2');
+  const nannyElementLogin = document.querySelector('.nanny2');
   const parentElement = document.querySelector('.parent');
   const nannyElement = document.querySelector('.nanny');
   const formSignUp = document.querySelector('.signUpForm');
   const formLogin = document.querySelector('.loginForm');
-  parentElement.addEventListener('click', () =>{ console.log('clicked')
+
+    parentElement.addEventListener('click', () =>{
     formSignUp.setAttribute('action', '/parent/signup');
-    formLogin.setAttribute('action', '/parent/login');
-    parentElement.classList.add('is-clicked');
-    nannyElement.classList.remove('is-cliked');
+    
+    parentElement.classList.remove('is-not-clicked');
+    nannyElement.classList.add('is-not-clicked');
    
 })
 nannyElement.addEventListener('click', () =>{
   formSignUp.setAttribute('action', '/nanny/signup');
+  nannyElement.classList.remove('is-not-clicked');
+  parentElement.classList.add('is-not-clicked');
+})
+nannyElementLogin.addEventListener('click', () =>{
   formLogin.setAttribute('action','/nanny/login');
-  nannyElement.classList.add('is-clicked');
-  nannyElement.classList.remove('is-cliked');
+  nannyElementLogin.classList.remove('is-not-clicked');
+  parentElementLogin.classList.add('is-not-clicked');
+})
+parentElementLogin.addEventListener('click', () =>{
+  formLogin.setAttribute('action', '/parent/login');
+  parentElementLogin.classList.remove('is-not-clicked');
+    nannyElementLogin.classList.add('is-not-clicked');
 })
 
 ;
 } 
 UserSelectors()
+
+
+

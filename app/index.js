@@ -26,6 +26,7 @@ app.use(session({
 }));
 
 app.use((req,_ , next) => {
+  
   // transmit session's information to views
 app.locals.session = req.session;
 
@@ -38,7 +39,9 @@ app.use(bodySanitizer);
 // to get the req.body
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '../assets/public')));
+
+// app.use(express.static("./assets/public"));
+
 
 // configuration of the storage of multer stockage and rename file
 const storage = multer.diskStorage({
