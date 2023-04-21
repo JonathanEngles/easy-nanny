@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+:root {
+  --primary_text_color: #ffffff;
+  --secondary_text_color: #000000;
+  --backgroung_color: #2a84bc;
+  --lilac_color: #f9aaff;
+  --purple: #432C9E;
+  --purple_pink: #AD5DD9;
+  --yellow_color: #F7E07A;
+  --green_color: #3FA254;
+  --coral_pink: #EF8275;
+  --powder-gray: #AFC2D5;
+  --red: #E01D5B;
+  --contener: #ae5dd96c;
+}
+
 /* NECESSAIRE AU BON FONCTIONNEMENT  */
 .d-none {
   display: none ;
@@ -9,3 +26,169 @@
   }
 
 /* STYLE */
+
+
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: inline-block;
+  max-width: 150px; /* Ajustez cette valeur selon vos besoins */
+  text-align: right;
+  margin-right: 10px;
+  word-break: break-word; /* Permet de couper les mots pour respecter la largeur maximale */
+  vertical-align: top;
+}
+
+label {
+  display: inline-block;
+  min-width: 150px;
+  text-align: right;
+  margin-right: 15px;
+  vertical-align: middle;
+  color: var(--purple_pink);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+input[type="textarea"] {
+  width: 100%;
+  max-width: 300px;
+}
+
+input[type="radio"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 5px;
+}
+
+button {
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: var(--purple_pink);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--lilac_color);
+}
+
+.delete-btn-container{
+  display: flex;
+  justify-content: center;
+}
+
+
+
+#delete-btn{
+  padding: 10px 20px;
+  width: 14em;
+  margin-bottom: 2em;
+}
+
+.update-btn{
+  display: flex;
+  justify-content: space-around;
+}
+
+.edit-child, .edit-parent{
+   display: flex;
+}
+
+.add-child-header{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  
+}
+
+h1{
+  margin: 1em;
+  color: var(--purple_pink);
+}
+
+.material-icons{
+  margin-top: 0.5em ;
+  border: 1px solid;
+  border-radius: 1em;
+  padding: 0.3em;
+
+}
+
+.edit-icon, .add-icon {
+  color: var(--purple_pink);
+}
+
+.container-clef{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.container-add-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.edit-child {
+  display: flex;
+  width: 100%;
+  
+  
+}
+
+#add-child-form {
+  width: 100%;
+  max-width: 500px; /* Ajustez cette valeur en fonction de la largeur souhaitée */
+  padding: 1em;
+  border-radius: 10px;
+  margin-top: 1em;
+  margin-right: 2em;
+  
+}
+
+#add-child-form label {
+  display: block;
+  
+}
+
+#add-child-form input,
+#add-child-form textarea,
+#add-child-form select {
+  width: 100%;
+  padding: 0.5em;
+  margin-right: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+#add-child-form button {
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin-top: 1em;
+  
+  background-color:var(--purple_pink);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+#add-child-form button:hover {
+  background-color: #0056b3;
+}

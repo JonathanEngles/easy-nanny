@@ -125,6 +125,7 @@ main{
 
 .page{
     font-size: 3em;
+    justify-content: center;
 }
 
 .footer_mention{

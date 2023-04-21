@@ -1,112 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/public/reset.css">
-    <link rel="stylesheet" href="/assets/public/css/userProfil.css">
-    <title>userProfil</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/assets/public/reset.css">
+  <link rel="stylesheet" href="/assets/public/css/dashboard.css">
+  <link rel="stylesheet" href="/assets/public/css/userProfil.css">
+
+
+  <title>Easy Nanny | Mon Profil</title>
 </head>
+
 <body>
-<!------------CLEF DE LIAISON -------------->
-  <div>
-    <label for="clef-de-liaison">Clef de liaison:</label>
-    <input type="text" id="clef-de-liaison" class="clef-de-liaison" placeholder="Clef de liaison" />
-    <span id="afficher-clef" class="afficher-clef" style="display:none;">clef vide</span>
-  </div>
-  
-<!--------------  MODIF PROFIL PARENTS  --------------->
-<!------------  INFORMATION NON SENSIBLE  -------------->
-  <div class="container">
-    <h1>Modification de profil</h1>
-    <form id="form">
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" class="form-control" id="nom" name="nom" value="Doe" readonly>
-      </div>
-      <div class="form-group">
-        <label for="prenom">Prénom</label>
-        <input type="text" class="form-control" id="prenom" name="prenom" value="John" readonly>
-      </div>
-      <div class="form-group">
-        <label for="adresse">Adresse</label>
-        <input type="text" class="form-control" id="adresse" name="adresse" value="5th Avenue" readonly>
-      </div>
-      <div class="form-group">
-        <label for="code_postal">Code postal</label>
-        <input type="text" class="form-control" id="code_postal" name="code_postal" value="12345" readonly>
-      </div>
-      <div class="form-group">
-        <label for="ville">Ville</label>
-        <input type="text" class="form-control" id="ville" name="ville" value="New York" readonly>
-      </div>
-      <button type="button" id="edit-btn">Modifier profil</button>
-      <button type="submit" id="save-btn" style="display:none;">Enregistrer</button>
-    </form>
-    <!----------  MODIF PROFIL PARENTS ----------->
-    <!------------INFORMATION SENSIBLE -------------->
-    <form>
-    <div class="form-group d-none" id="change-password-form">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" name="email" value="utilisateur@exemple.com">
+  <header>
+    <div class="logo">
+      <img class="img_logo" src="/assets/public/images/Logo-removebg-preview.png" alt="Logo Easy Nanny">
 
-      <label for="new-password">Nouveau mot de passe:</label>
-      <input type="password" class="form-control" id="new-password" name="new-password">
-    
-      <label for="confirm-password">Confirmation de mot de passe:</label>
-      <input type="password" class="form-control" id="confirm-password" name="confirm-password">
-    
-      <label for="old-password">Ancien mot de passe:</label>
-      <input type="password" class="form-control" id="old-password" name="old-password">
     </div>
-    </form>
-    <button type="button" class="btn btn-primary" id="toggle-password-form">Modifier email/mdp</button>
-    
-  </div>
-  <!------------- BOUTON SUPPRESSION COMPTE PARENTS --------------->
-  <button id="delete-btn">Supprimer mon compte</button>
+    <div class="burger-menu">
+      <div class="burger-menu-icon">&#9776;</div>
+      <ul class="burger-menu-list">
+        <li><a href="/assets/public/integration/html/index.html">Accueil</a></li>
+        <li><a href="/assets/public/integration/html/userProfil.html">Mon profil</a></li>
+        <li><a href="/assets/public/integration/html/dashboard.html">Mon tableau de bord</a></li>
+        <li><a href="/assets/public/integration/html/suggest.html">Suggestions</a></li>
+        <li><a href="/assets/public/integration/html/diary.html">Journal de suivi</a></li>
+        <li><a href="#">Deconnexion</a></li>
+      </ul>
+    </div>
+  </header>
 
-  <div class="d-none" id="modalYesNo">
-    <p id="modalText">Etes-vous sûr de vouloir supprimer votre compte?</p>  
-      <button id="yes-btn">Oui</button>
-      <button id="no-btn">Non</button> 
-  </div>
+  <div class="contener">
+    <aside class="left_side">
+      <div class="profil_info">
+        <img class="profil_img" src="/assets/public/images/Luimar_Cavani.JPG" alt="Photo de profile">
+        <p class="profil_name">Luimar Cavani</p>
+      </div>
+      <!-- Ajout d'un conteneur autour du bouton  pour les écrans de moniteur -->
+      <div class=" delete-btn-container">
+        <button id="delete-btn" class="d-none">Supprimer mon compte</button>
+      </div>
+      <div class="d-none" id="modalYesNo">
+        <p id="modalText">Etes-vous sûr de vouloir supprimer votre compte?</p>
+        <button id="yes-btn">Oui</button>
+        <button id="no-btn">Non</button>
+      </div>
+    </aside>
+
+    <!------------CLEF DE LIAISON -------------->
+    <aside class="right_side">
+      <div class="container-clef">
+        <label for="clef-de-liaison">Clef de liaison:</label>
+        <input type="text" id="clef-de-liaison" class="clef-de-liaison" placeholder="Clef de liaison" />
+        <span id="afficher-clef" class="afficher-clef" style="display:none;">clef vide</span>
+      </div>
+
+      <!--------------  MODIF PROFIL PARENTS  --------------->
+      <!------------  INFORMATION NON SENSIBLE  -------------->
+      <div class="container">
+        <div class="edit-parent">
+          <h1>Modification de profil</h1>
+          <span id="edit-btn" class="edit-icon" style="cursor:pointer;">
+            <span class="material-icons">
+              edit
+            </span>
+        </div>
+        <form id="form">
+
+          </span>
+          <button type="submit" id="save-btn" style="display:none;">Enregistrer</button>
+
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" id="nom" name="nom" value="Doe" readonly>
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" id="prenom" name="prenom" value="John" readonly>
+          </div>
+          <div class="form-group">
+            <label for="adresse">Adresse</label>
+            <input type="text" class="form-control" id="adresse" name="adresse" value="5th Avenue" readonly>
+          </div>
+          <div class="form-group">
+            <label for="code_postal">Code postal</label>
+            <input type="text" class="form-control" id="code_postal" name="code_postal" value="12345" readonly>
+          </div>
+          <div class="form-group">
+            <label for="ville">Ville</label>
+            <input type="text" class="form-control" id="ville" name="ville" value="New York" readonly>
+          </div>
+        </form>
+
+        <!----------  MODIF PROFIL PARENTS ----------->
+        <!------------INFORMATION SENSIBLE -------------->
+        <form>
+          <div class="form-group d-none" id="change-password-form">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" value="utilisateur@exemple.com">
+          </div>
+          <div class="form-group">
+            <label for="new-password">Nouveau mot de passe:</label>
+            <input type="password" class="form-control" id="new-password" name="new-password">
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirmation de mot de passe:</label>
+            <input type="password" class="form-control" id="confirm-password" name="confirm-password">
+          </div>
+          <div class="form-group">
+            <label for="old-password">Ancien mot de passe:</label>
+            <input type="password" class="form-control" id="old-password" name="old-password">
+          </div>
+        </form>
+      </div>
+      <div class="update-btn">
+        <button type="button" class="btn btn-primary" id="toggle-password-form">Modifier mot de passe</button>
+      </div>
 
 
-  <!-------------- FORMULAIRE ENFANT ------------->
-  <div class="container">
-    <h1>Modification de profil enfant</h1>
-    <form id="formChild">
-      <div class="form-group">
-        <label for="nom">Nom</label>
-        <input type="text" class="form-control"  name="nom" value="Doe" readonly>
+
+      <!-------------- FORMULAIRE ENFANT ------------->
+      <div class="container">
+
+        <div class="edit-child">
+          <h1>Modification de profil enfant</h1>
+          <span id="edit-btnChild" class="edit-icon" style="cursor:pointer;">
+            <span class="material-icons">
+              edit
+            </span></span>
+          <button type="submit" id="save-btnChild" style="display:none;">Enregistrer</button>
+        </div>
+
+        <form id="formChild">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" class="form-control" name="nom" value="Doe" readonly>
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" class="form-control" name="prenom" value="Junior" readonly>
+          </div>
+          <div class="form-group">
+            <label for="birthday">Date de naissance</label>
+            <input type="date" class="form-control" name="birthday" value="01/02/2023" readonly>
+          </div>
+          <div class="form-group">
+            <label for="sexe">Garçon</label>
+            <input type="radio" class="form-control" name="sexe" value="male" readonly>
+            <input type="radio" class="form-control" name="sexe" value="female" readonly>
+            <label for="sexe">Fille</label>
+          </div>
+          <div class="form-group">
+            <label for="comments">Commentaire</label>
+            <input type="textarea" class="form-control" name="description" value="cacahuete" readonly>
+          </div>
+
+          <div class=" delete-btn-container">
+            <button id="delete-btn">Supprimer mon compte</button>
+          </div>
+          <div class="d-none" id="modalYesNo">
+            <p id="modalText">Etes-vous sûr de vouloir supprimer votre compte?</p>
+            <button id="yes-btn">Oui</button>
+            <button id="no-btn">Non</button>
+          </div>
+
+        </form>
       </div>
-      <div class="form-group">
-        <label for="prenom">Prénom</label>
-        <input type="text" class="form-control"  name="prenom" value="Junior" readonly>
-      </div>
-      <div class="form-group">
-        <label for="birthday">Date de naissance</label>
-        <input type="date" class="form-control"  name="birthday" value="01/02/2023" readonly>
-      </div>
-      <div class="form-group">
-        <label for="sexe">Garçon</label>
-        <input type="radio" class="form-control"  name="sexe" value="male" readonly>
-        <input type="radio" class="form-control"  name="sexe" value="female" readonly>
-        <label for="sexe">Fille</label>
-      </div>
-      <div class="form-group">
-        <label for="comments">Commentaire</label>
-        <input type="textarea" class="form-control"  name="description" value="cacahuete" readonly>
-      </div>
-      
-      <button type="button" id="edit-btnChild">Modifier Profil Enfant</button>
-      <button type="submit" id="save-btnChild" style="display:none;">Enregistrer</button>
-    </form>
+      </section>
   </div>
-  
-  
+  <footer>
+    <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
+    <p class="footer_mention"> Mentions légales</p>
+    <p class="footer_mention"> Condition général</p>
+  </footer>
+  <script src="/assets/public/integration/javascript/burger.js"></script>
   <script src="../javascript/userProfil.js"></script>
 </body>
+
 </html>

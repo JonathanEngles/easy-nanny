@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid'); // module to generate an UNIQUE RANDOM id
 const fs = require('fs');
 const { tableName } = require("../models/coreDataMapper");
-const path = require('path')
+const path = require('path');
+const { log } = require('console');
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
@@ -61,14 +62,18 @@ async register(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
+
        
         return res.render('homePage', {error: `cet email est déjà utilisé`});
+
     }
 
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
+
        
         return res.render('homePage', {error: `les mots de passe ne correspondent pas`});
+
     }
     
     //crypt the password
@@ -131,6 +136,7 @@ async modifyProfile(req, res) {
         return res.redirect(`/nanny/profile`);
     } else {
         return res.redirect(`/parent/profile`);
+
     }
     }}
 }
@@ -147,6 +153,7 @@ async modifyProfile(req, res) {
         return res.redirect(`/nanny/profile`);
     } else {
         return res.redirect(`/parent/profile`);
+
     }
     }
     
@@ -155,9 +162,11 @@ async modifyProfile(req, res) {
        
         // check if user is a nanny or a parent
     if (user.is_nanny) {
+
         return res.redirect(`/nanny/profile`);
     } else {
         return res.redirect(`/parent/profile`);
+
     }
     }
     
