@@ -64,7 +64,7 @@ const childController = {
     // update the child information in the database
     await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday, description, picture});
    
-    res.redirect('/profile');
+    res.redirect('/parent/profile');
     }
     },
 
@@ -90,7 +90,7 @@ const childController = {
     // delete the child from the database
     await childDataMapper.removeChildren(id, userId);
                 
-    res.redirect('/');
+    res.redirect('/parent/profile');
     }
     }
 }

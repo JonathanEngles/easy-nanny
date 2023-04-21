@@ -27,7 +27,7 @@ class ParentController extends CoreController {
                 //add suggest to database
                 await parentDataMapper.createSuggest(title, nannyId, user);
                 
-                res.redirect('/profile');
+                res.redirect('/parent/dashboard');
             } else {
                 res.redirect('/');
             }
