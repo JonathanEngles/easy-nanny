@@ -25,7 +25,7 @@ let sess = {
       maxAge: 1000 * 60 * 60 * 24
   }}
 
-  if (app.get('env') === 'production') {
+  if (app.get(process.env.NODE_ENV) === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     sess.cookie.secure = true // serve secure cookies
   }

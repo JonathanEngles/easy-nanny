@@ -47,6 +47,26 @@ class ParentController extends CoreController {
             const suggest = await parentDataMapper.getSuggests(user.id)
             const diary = await parentDataMapper.getLastDiary(user.id);
 
+            if (!children) {
+                children = [];
+              };
+
+              if (!nanny) {
+                nanny = [];
+              };
+
+              if (!activity) {
+                activity = [];
+              };
+
+              if (!suggest) {
+                suggest = [];
+              };
+
+              if (!diary) {
+                diary = [];
+              }
+
             res.render('parentDashboard', { user, activity, children, nanny, suggest, diary });
 
      } else {
@@ -64,6 +84,14 @@ class ParentController extends CoreController {
             const children = await parentDataMapper.getAllChildren(user.id);
             const nanny = await parentDataMapper.getNannyById(nannyId);
 
+            if (!children) {
+                children = [];
+              }
+              
+              if (!nanny) {
+                nanny = [];
+              }
+
             res.render('parentProfile', { user, children, nanny });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
@@ -76,6 +104,10 @@ class ParentController extends CoreController {
 
             const suggests = await parentDataMapper.getAllSuggests(user.id);
 
+            if (!suggests) {
+                suggests = [];
+              };
+
             res.render('parentSuggests', { user, suggests });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
@@ -85,6 +117,10 @@ async getParentDiaries(req, res) {
     if (req.session && req.session.user && !req.session.user.is_nanny) {
         const user = req.session.user;
         const diaries = await parentDataMapper.getAllDiaries(user.id);
+
+        if (!diaries) {
+            diaries = [];
+          }
         res.render('parentDiaries', { user, diaries });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});

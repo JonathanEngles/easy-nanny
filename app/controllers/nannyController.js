@@ -160,7 +160,24 @@ class NannyController extends CoreController {
             const activity = await nannyDataMapper.getAllActivity(user.id);
             const children = await nannyDataMapper.getAllChildren(user.id);
             const parent = await nannyDataMapper.getAllParents(user.id);
-            const suggest = await nannyDataMapper.getSuggests(user.id)
+            const suggest = await nannyDataMapper.getSuggests(user.id);
+
+            if (!children) {
+                children = [];
+              };
+
+              if (!parent) {
+                parent = [];
+              };
+
+              if (!activity) {
+                activity = [];
+              };
+
+              if (!suggest) {
+                suggest = [];
+              };
+
 
             res.render('nannyDashboard', { activity, children, parent, user, suggest });
 
@@ -174,9 +191,16 @@ class NannyController extends CoreController {
         //verify if a session exists and if a Nanny is connected
         if (req.session && req.session.user && req.session.user.is_nanny) {
             const user = req.session.user;
-            const error = req.query.error
             const children = await nannyDataMapper.getAllChildren(user.id);
             const parent = await nannyDataMapper.getAllParents(user.id);
+
+            if (!children) {
+                children = [];
+              };
+
+              if (!parent) {
+                parent = [];
+              }
 
     res.render('nannyProfile', { children, parent, user, error });
 
@@ -195,6 +219,10 @@ async getNannySuggests(req, res) {
 
         const suggests = await nannyDataMapper.getAllSuggests(user.id)
 
+        if (!suggests) {
+            suggests = [];
+          };
+
         res.render('nannySuggests', { suggests, user });
     } else {
 
@@ -209,6 +237,10 @@ async getNannyDiaries(req,res) {
         const user = req.session.user;
 
         const diaries = await nannyDataMapper.getAllDiaries(user.id);
+
+        if (!diaries) {
+            diaries = [];
+          };
         res.render('nannyDiaries', { user, diaries });
     } else {
         return res.render('homePage', {error: `pas d'utilisateurs connectés`});
