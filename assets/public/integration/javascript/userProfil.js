@@ -4,10 +4,9 @@ const saveBtn = document.getElementById('save-btn');
 const form = document.getElementById('form');
 const inputs = form.querySelectorAll('input');
 
-
 editBtn.addEventListener('click', () => {
   inputs.forEach(input => {
-    input.readOnly = false;
+    input.readOnly = !input.readOnly;
   });
   editBtn.style.display = 'none';
   saveBtn.style.display = 'block';
@@ -20,8 +19,10 @@ saveBtn.addEventListener('click', (e) => {
   });
   editBtn.style.display = 'block';
   saveBtn.style.display = 'none';
-  
+
+  form.submit(); // Soumet le formulaire une fois que les champs sont en lecture seule.
 });
+
 // EMAIL ET MDP BOUTON
 const togglePasswordForm = document.getElementById("toggle-password-form");
 const changePasswordForm = document.getElementById("change-password-form");
@@ -162,3 +163,13 @@ saveBtnChild.addEventListener('click', (e) => {
   saveBtnChild.style.display = 'none';
   
 });
+
+// Affichage pour ajouter un enfant
+
+document.getElementById('add-child-button').addEventListener('click', () => {
+  const form = document.getElementById('add-child-form');
+  form.style.display = form.style.display === 'none' ? 'block' : 'none';
+});
+
+
+

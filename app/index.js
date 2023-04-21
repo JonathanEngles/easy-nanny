@@ -38,7 +38,7 @@ app.use(bodySanitizer);
 // to get the req.body
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static("../assets/public"));
+app.use(express.static(path.join(__dirname, '../assets/public')));
 
 // configuration of the storage of multer stockage and rename file
 const storage = multer.diskStorage({
@@ -53,14 +53,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 app.use(upload.single('picture'));
-
-
-
-
-
-
-
-
 
 
 app.use(router);

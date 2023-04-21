@@ -39,7 +39,7 @@ class ParentController extends CoreController {
         //verify if a session exists and if an user is connected
         if (req.session && req.session.user && !req.session.user.is_nanny) {
             const user = req.session.user;
-            const nannyId = parent.nanny_id;
+            const nannyId = user.nanny_id;
 
             const activity = await parentDataMapper.getAllActivity(nannyId);
             const children = await parentDataMapper.getAllChildren(user.id);
@@ -58,7 +58,7 @@ class ParentController extends CoreController {
         //verify if a session exists and if an user is connected
         if (req.session && req.session.user && !req.session.user.is_nanny) {
             const user = req.session.user;
-            const nannyId = parent.nanny_id;
+            const nannyId = user.nanny_id;
 
             const children = await parentDataMapper.getAllChildren(user.id);
             const nanny = await parentDataMapper.getNannyById(nannyId);

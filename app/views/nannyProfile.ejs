@@ -1,12 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/userProfil.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <title>Easy Nanny | Mon Profile</title>
 </head>
+
 <body>
-    <%=error%>
+    <header>
+        <div class="logo">
+            <img class="img_logo" src="/images/Logo-removebg-preview.png" alt="Logo Easy Nanny">
+
+        </div>
+        <div class="burger-menu">
+            <div class="burger-menu-icon">&#9776;</div>
+            <ul class="burger-menu-list">
+                <li><a href="/assets/public/integration/html/index.html">Accueil</a></li>
+                <li><a href="/assets/public/integration/html/userProfil.html">Mon profil</a></li>
+                <li><a href="/assets/public/integration/html/dashboard.html">Mon tableau de bord</a></li>
+                <li><a href="/assets/public/integration/html/suggest.html">Suggestions</a></li>
+                <li><a href="/assets/public/integration/html/diary.html">Journal de suivi</a></li>
+                <li><a href="#">Deconnexion</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="contener">
+        <aside class="left_side">
+            <div class="profil_info">
+                <img class="profil_img" src="/images/Luimar_Cavani.JPG" alt="Photo de profile">
+                <p class="profil_name">Luimar Cavani</p>
+            </div>
+            <!-- Ajout d'un conteneur autour du bouton  pour les écrans de moniteur -->
+            <div class=" delete-btn-container">
+                <button id="delete-btn" class="d-none">Supprimer mon compte</button>
+            </div>
+            <div class="d-none" id="modalYesNo">
+                <p id="modalText">Etes-vous sûr de vouloir supprimer votre compte?</p>
+                <button id="yes-btn">Oui</button>
+                <button id="no-btn">Non</button>
+            </div>
+        </aside>
+
+        <!------------CLEF DE LIAISON -------------->
+        <aside class="right_side">
+            <div class="container-clef">
+                <label for="clef-de-liaison">Clef de liaison:</label>
+                <input type="text" id="clef-de-liaison" class="clef-de-liaison" placeholder="Clef de liaison" />
+                <span id="afficher-clef" class="afficher-clef" style="display:none;">clef vide</span>
+            </div>
+
+            <form action="/nanny/link" method="POST">
+                <label for="texte">Rentrer la clef parent :</label>
+                <input type="text" id="texte" name="texte">
+                <input type="submit" value="Envoyer">
+            </form>
+
+            <!--------------  MODIF PROFIL NANNY --------------->
+            <!------------  INFORMATION NON SENSIBLE  -------------->
+            <div class="container">
+                <div class="edit-parent">
+                    <h1>Mon profile</h1>
+                    <span id="edit-btn" class="edit-icon" style="cursor:pointer;">
+                        <span class="material-icons">
+                            edit
+                        </span>
+                </div>
+                <form id="form" action="/parent/profile" method="POST">
+
+
+                    </span>
+                    <button type="submit" id="save-btn" style="display:none;">Enregistrer</button>
+
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="name" value="<%=user.name%>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="prenom">Prénom</label>
+                        <input type="text" class="form-control" id="prenom" name="first_name"
+                            value="<%=user.first_name%>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="adresse">Adresse</label>
+                        <input type="text" class="form-control" id="adresse" name="address" value="<%=user.address%>"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="code_postal">Code postal</label>
+                        <input type="text" class="form-control" id="code_postal" name="zip_code"
+                            value="<%=user.zip_code%>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="ville">Ville</label>
+                        <input type="text" class="form-control" id="ville" name="city" value="<%=user.city%>" readonly>
+                    </div>
+
+                    <footer>
+                        <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
+                        <p class="footer_mention"> Mentions légales</p>
+                        <p class="footer_mention"> Condition général</p>
+                    </footer>
+                    <script src="/integration/javascript/burger.js"></script>
+                    <script src="/integration/javascript/userProfil.js"></script>
 </body>
+
 </html>
