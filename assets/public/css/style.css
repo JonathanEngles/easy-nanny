@@ -147,6 +147,7 @@ header {
 }
 
 
+
 .welcome_title {
     margin-top: 1em;
     font-size: 2em;
@@ -335,34 +336,6 @@ footer {
         display: none;
     }
 
-    /* #signupBtn {
-        margin-right: 2em;
-        padding: 1em;
-
-        background-color: var(--backgroung_color);
-        color: var(--primary_text_color);
-        text-decoration: none;
-        border-radius: 1.5em;
-        box-shadow: rgba(0, 0, 0, 0.277) 0px 20px 30px;
-
-        cursor: pointer;
-    }
-
-    #loginBtn {
-        background-color: var(--purple_pink);
-        color: var(--primary_text_color);
-        text-decoration: none;
-        border-radius: 2em;
-        padding: 1em;
-        box-shadow: rgba(0, 0, 0, 0.277) 0px 20px 30px;
-
-        cursor: pointer;
-    }
-
-    #signupBtn:active, #loginBtn:active {
-        box-shadow: inset 2px 2px 5px black;
-    } */
-
     .welcome_text {
         
             position: absolute;
@@ -371,7 +344,7 @@ footer {
             right: auto;
             width: 28em;
             height: 30em;
-            width: 20em;
+           
             
     }
 
