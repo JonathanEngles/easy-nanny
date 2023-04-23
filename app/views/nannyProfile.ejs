@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="/css/userProfil.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 
     <title>Easy Nanny | Mon Profile</title>
 </head>
@@ -23,23 +23,28 @@
         <div class="burger-menu">
             <div class="burger-menu-icon">&#9776;</div>
             <ul class="burger-menu-list">
-                <li><a href="/assets/public/integration/html/index.html">Accueil</a></li>
-                <li><a href="/assets/public/integration/html/userProfil.html">Mon profil</a></li>
-                <li><a href="/assets/public/integration/html/dashboard.html">Mon tableau de bord</a></li>
-                <li><a href="/assets/public/integration/html/suggest.html">Suggestions</a></li>
-                <li><a href="/assets/public/integration/html/diary.html">Journal de suivi</a></li>
-                <li><a href="#">Deconnexion</a></li>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/nanny/dashboard">Tableau de Bord</a></li>
+                <li><a href="/nanny/profile">Mon profil</a></li>
+                <li><a href="/nanny/suggests">Suggestions</a></li>
+                <li><a href="/nanny/diary">Journal de suivi</a></li>
+                <li><a href="/logout">Déconnexion</a></li>
             </ul>
         </div>
     </header>
 
-    <div class="contener">
-        <aside class="left_side">
-            <div class="profil_info">
-                <img class="profil_img" src="/images/Luimar_Cavani.JPG" alt="Photo de profile">
-                <p class="profil_name">Luimar Cavani</p>
-            </div>
-            <!-- Ajout d'un conteneur autour du bouton  pour les écrans de moniteur -->
+    <div class="main-contener">
+        <!-- INFORMATION DU COMPTE  -->
+        <div class="info-container">
+            <aside class="left_side">
+                <div class="profil_info">
+                    <img class="profil_img" src="/uploads/nanny_picture.jpg" alt="Photo de profile">
+                    <p class="profil_name">Lia Cavani</p>
+                </div>
+            </aside>
+
+            <!-- Ajout d'un conteneur autour du bouton  pour les écrans taille moniteur -->
+
             <div class=" delete-btn-container">
                 <button id="delete-btn" class="d-none">Supprimer mon compte</button>
             </div>
@@ -48,69 +53,183 @@
                 <button id="yes-btn">Oui</button>
                 <button id="no-btn">Non</button>
             </div>
-        </aside>
+        </div>
 
         <!------------CLEF DE LIAISON -------------->
-        <aside class="right_side">
-            <div class="container-clef">
-                <label for="clef-de-liaison">Clef de liaison:</label>
-                <input type="text" id="clef-de-liaison" class="clef-de-liaison" placeholder="Clef de liaison" />
-                <span id="afficher-clef" class="afficher-clef" style="display:none;">clef vide</span>
-            </div>
-
-            <form action="/nanny/link" method="POST">
-                <label for="texte">Rentrer la clef parent :</label>
-                <input type="text" id="texte" name="texte">
-                <input type="submit" value="Envoyer">
-            </form>
-
-            <!--------------  MODIF PROFIL NANNY --------------->
-            <!------------  INFORMATION NON SENSIBLE  -------------->
-            <div class="container">
-                <div class="edit-parent">
-                    <h1>Mon profile</h1>
-                    <span id="edit-btn" class="edit-icon" style="cursor:pointer;">
-                        <span class="material-icons">
-                            edit
-                        </span>
+        <div class="right-side">
+            <div class="container-parent">
+            <aside class="right_side">
+                <div class="container-clef">
+                    <label for="clef-de-liaison">Clef de liaison:</label>
+                    <input type="text" id="clef-de-liaison" class="clef-de-liaison" placeholder="Clef de liaison" />
+                    <span id="afficher-clef" class="afficher-clef" style="display:none;">clef vide</span>
                 </div>
-                <form id="form" action="/parent/profile" method="POST">
+            </aside>
+
+            <!--------------   PROFIL PARENTS AVEC MODIFICATION --------------->
+            <!------------  INFORMATION NON SENSIBLE  -------------->
 
 
-                    </span>
-                    <button type="submit" id="save-btn" style="display:none;">Enregistrer</button>
+                <!-- En-tête des informations -->
 
-                    <div class="form-group">
-                        <label for="nom">Nom</label>
-                        <input type="text" class="form-control" id="nom" name="name" value="<%=user.name%>" readonly>
+                <div class="edit-parent">
+                    <div class="edit-parent-header">
+                        <h1>Mon profile</h1>
+                        <span id="edit-btn" class="edit-icon" style="cursor:pointer;">
+                            <span class="material-icons">
+                                edit
+                            </span>
+                        </span>
                     </div>
-                    <div class="form-group">
-                        <label for="prenom">Prénom</label>
-                        <input type="text" class="form-control" id="prenom" name="first_name"
-                            value="<%=user.first_name%>" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="adresse">Adresse</label>
-                        <input type="text" class="form-control" id="adresse" name="address" value="<%=user.address%>"
-                            readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="code_postal">Code postal</label>
-                        <input type="text" class="form-control" id="code_postal" name="zip_code"
-                            value="<%=user.zip_code%>" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="ville">Ville</label>
-                        <input type="text" class="form-control" id="ville" name="city" value="<%=user.city%>" readonly>
-                    </div>
+                </div>
 
-                    <footer>
-                        <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
-                        <p class="footer_mention"> Mentions légales</p>
-                        <p class="footer_mention"> Condition général</p>
-                    </footer>
-                    <script src="/integration/javascript/burger.js"></script>
-                    <script src="/integration/javascript/userProfil.js"></script>
+                <!-- formulaire d'info et de modification -->
+
+                <div class="edit-parent-form">
+                    <form id="form" action="/parent/profile" method="POST" enctype="multipart/form-data">
+
+                        <button type="submit" id="save-btn" style="display:none;">Enregistrer</button>
+
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" class="form-control" id="nom" name="name" value="<%=user.name%>"
+                                readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" class="form-control" id="prenom" name="first_name"
+                                value="<%=user.first_name%>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresse">Adresse</label>
+                            <input type="text" class="form-control" id="adresse" name="address"
+                                value="<%=user.address%>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="code_postal">Code postal</label>
+                            <input type="text" class="form-control" id="code_postal" name="zip_code"
+                                value="<%=user.zip_code%>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="ville">Ville</label>
+                            <input type="text" class="form-control" id="ville" name="city" value="<%=user.city%>"
+                                readonly>
+                        </div>
+                    </form>
+
+
+                    <!----------  MODIF PROFIL PARENTS ----------->
+                    <!------------INFORMATION SENSIBLE -------------->
+
+
+                    <form id="form-sensitive" action="/parent/profile" method="POST" enctype="multipart/form-data">
+
+                        <div class="form-group d-none" id="change-password-form">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" value="<%=user.email%>"
+                                readonly>
+                        </div>
+
+                        <div class="form-group" action="/parent/profile" method="POST">
+                            <label for="old-password">Ancien mot de passe:</label>
+                            <input type="password" class="form-control" id="old-password" name="old-password">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">Nouveau mot de passe:</label>
+                            <input type="password" class="form-control" id="new-password" name="new-password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmation de mot de passe:</label>
+                            <input type="password" class="form-control" id="confirm-password" name="confirm-password">
+                        </div>
+                        <div class="update-btn">
+                            <button type="button" class="btn btn-primary" id="toggle-password-form">Modifier mot de
+                                passe</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            <!-------------- MODIF ENFANT ------------->
+            <div class="container-edit-child container">
+
+                <div class="edit-child">
+                    <div class="edit-child-header">
+                        <h1>Les Boutchous</h1>
+                    </div>
+                </div>
+
+                <% for (let i=0; i < children.length; i++) { %>
+                    <form id="formChild" action="/parent/children/patch/<%=children[i].id%>" method="POST"
+                        enctype="multipart/form-data">
+
+
+                        <div class="child-info">
+                            <span class="edit-btnChild edit-icon child-icon" style="cursor:pointer;" data-id="<%=i%>">
+                                <span class="material-icons child-edit">
+                                    edit
+                                </span>
+                            </span>
+                            <button type="submit" class="save-btnChild" style="display:none;"
+                                data-id="<%=i%>">Enregistrer</button>
+
+                            <div class="form-group">
+                                <label for="nom" class="child-label">Nom</label>
+                                <input type="text" class="form-control" name="nom" value="<%=children[i].name%>"
+                                    readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="prenom" class="child-label">Prénom</label>
+                                <input type="text" class="form-control" name="prénom"
+                                    value="<%=children[i].first_name%>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday" class="child-label">Date de naissance</label>
+                                <input type="date" class="form-control" name="Date de naissance"
+                                    value="<%=children[i].birthday%>" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="sexe" class="child-label">Garçon</label>
+                                <input type="radio" class="form-control" name="sexe" value="<%=children[i].sexe%>"
+                                    readonly>
+                                <label for="sexe" class="child-label">Fille</label>
+                                <input type="radio" class="form-control" name="sexe" value="<%=children[i].sexe%>"
+                                    readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="comments" class="child-label">Commentaire</label>
+                                <input type="textarea" class="form-control" name="description"
+                                    value="<%=children[i].description%>" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="picture">Photo: </label>
+                                <input type="file" name="picture">
+                            </div>
+
+                        </div>
+                    </form>
+                    <% } %>
+
+                        <!-- <div class=" delete-btn-container">
+                <button id="delete-btn">Supprimer mon compte</button>
+            </div>
+            <div class="d-none" id="modalYesNo">
+                <p id="modalText">Etes-vous sûr de vouloir supprimer votre compte?</p>
+                <button id="yes-btn">Oui</button>
+                <button id="no-btn">Non</button>
+            </div> -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
+        <p class="footer_mention"> Mentions légales</p>
+        <p class="footer_mention"> Condition général</p>
+    </footer>
+    <script src="/integration/javascript/burger.js"></script>
+    <script src="/integration/javascript/userProfil.js"></script>
 </body>
 
 </html>
