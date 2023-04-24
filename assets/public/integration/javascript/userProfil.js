@@ -140,29 +140,49 @@ yesBtn.addEventListener("click", () => {
 
 
 // ENFANT MODIFIER / ENREGISTRER PROFIL ENFANT
-const editBtnChild = document.getElementById('edit-btnChild');
-const saveBtnChild = document.getElementById('save-btnChild');
-const formChild = document.getElementById('formChild');
-const inputsChild = formChild.querySelectorAll('input');
+const editBtnsChild = document.querySelectorAll('.edit-btnChild');
+const saveBtnsChild = document.querySelectorAll('.save-btnChild');
 
-
-editBtnChild.addEventListener('click', () => {
-  inputsChild.forEach(input => {
-    input.readOnly = false;
+editBtnsChild.forEach((editBtnChild, index) => {
+  editBtnChild.addEventListener('click', () => {
+    const formChild = editBtnChild.closest('form');
+    const inputsChild = formChild.querySelectorAll('input');
+    inputsChild.forEach(input => {
+      input.readOnly = false;
+    });
+    editBtnChild.style.display = 'none';
+    saveBtnsChild[index].style.display = 'block';
   });
-  editBtnChild.style.display = 'none';
-  saveBtnChild.style.display = 'block';
 });
 
-saveBtnChild.addEventListener('click', (e) => {
-  e.preventDefault();
-  inputsChild.forEach(input => {
-    input.readOnly = true;
+saveBtnsChild.forEach((saveBtnChild) => {
+  saveBtnChild.addEventListener('click', (e) => {
+    e.preventDefault();
+    const formChild = saveBtnChild.closest('form');
+    const inputsChild = formChild.querySelectorAll('input');
+    inputsChild.forEach(input => {
+      input.readOnly = true;
+    });
+    saveBtnChild.style.display = 'none';
+    formChild.querySelector('.edit-btnChild').style.display = 'block';
+    formChild.submit(); // Soumet le formulaire une fois que les champs sont en lecture seule.
   });
-  editBtnChild.style.display = 'block';
-  saveBtnChild.style.display = 'none';
-  
 });
+
+// Listen for form submission to reset button display
+document.querySelectorAll('#formChild').forEach((formChild) => {
+  formChild.addEventListener('submit', (e) => {
+    const editBtnChild = formChild.querySelector('.edit-btnChild');
+    const saveBtnChild = formChild.querySelector('.save-btnChild');
+    editBtnChild.style.display = 'block';
+    saveBtnChild.style.display = 'none';
+  });
+});
+
+
+
+
+
 
 // Affichage pour ajouter un enfant
 
@@ -171,5 +191,16 @@ document.getElementById('add-child-button').addEventListener('click', () => {
   form.style.display = form.style.display === 'none' ? 'block' : 'none';
 });
 
+$(document).ready(function () {
+  $('.edit-icon, .add-icon').click(function () {
+    $(this).hide();
+    $(this).siblings('button').show();
+  });
+
+  $('button').click(function () {
+    $(this).hide();
+    $(this).siblings('.edit-icon, .add-icon').show();
+  });
+});
 
 

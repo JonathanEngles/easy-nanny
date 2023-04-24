@@ -67,6 +67,7 @@ const childController = {
     res.redirect('/parent/profile');
     }
     },
+    
 
     /**
      * remove an existing child by parent

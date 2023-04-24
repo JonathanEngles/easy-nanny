@@ -93,10 +93,10 @@ header {
 /* left Lateral space */
 
 
-*/ .left_side {
+ .left_side {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+   
    
 }
 
