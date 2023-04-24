@@ -124,7 +124,7 @@ header {
         cursor: pointer;
 }
 
-.nanny:active, .parent:active, .nanny2:active, .parent2:active {
+.nanny:active, .parent:active, .nanny2:active, .parent2:active, .submit:active {
     box-shadow: inset 2px 2px 5px black;
 }
 

@@ -22,7 +22,7 @@ body, html {
      
 }
 
-*:focus {
+input:focus {
     box-shadow: 0 0 10px blue;
     
 }
@@ -34,8 +34,8 @@ body, html {
     justify-content: center;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.8);
     animation: fadeIn .3s both;
 
@@ -44,9 +44,10 @@ body, html {
 
 .modal-wrapper {
     overflow: auto;
-    width: 600px;
+    width: 50%;
+    height: auto;
     max-width: calc(100vw - 20px);
-    max-height: calc(100vh - 20px);
+    max-height: 90vh;
     padding: 20px;
     background: linear-gradient(to right, var(--backgroung_color), var(--purple));
     border-radius: 0.5em;
@@ -63,7 +64,6 @@ body, html {
     position: absolute;
     top: 5px;
     right: 15px;
-    border: 1px solid var(--lilac_color);
     color: var(--purple_pink);
 }
 
@@ -98,10 +98,10 @@ body, html {
     flex-direction: column;
 
     font-size: 1.5em; 
-    padding: 15px; 
-    margin-bottom: 5px; 
+    padding: 1em; 
+    margin-bottom: 0.1em; 
     
-    border-radius: 5px;
+    border-radius: 0.5em;
     }
 
 input{
@@ -116,6 +116,7 @@ input{
     padding: 0.5em;
     border: 1px solid var(--primary_text_color);
     font-size: 1em;
+    cursor: pointer;
 
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     cursor: pointer;

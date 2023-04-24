@@ -13,17 +13,24 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "app/views");
 
-app.use(session({
+let sess = {
+  store: new (require('connect-pg-simple')(session)),
   resave: true,
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
   cookie: {
-      // false because not https
+      // false because not https //true because http // auto
       secure: false,
       // 24 hours duration
       maxAge: 1000 * 60 * 60 * 24
+  }}
+
+  if (app.get(process.env.NODE_ENV) === 'production') {
+    app.set('trust proxy', 1) // trust first proxy
+    sess.cookie.secure = true // serve secure cookies
   }
-}));
+
+app.use(session(sess));
 
 app.use((req,_ , next) => {
   
@@ -40,7 +47,7 @@ app.use(bodySanitizer);
 app.use(express.urlencoded({ extended: true }));
 
 
- app.use(express.static("./assets/public"));
+app.use(express.static("./assets/public"));
 
 
 // configuration of the storage of multer stockage and rename file

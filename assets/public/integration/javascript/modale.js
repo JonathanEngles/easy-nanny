@@ -1,4 +1,5 @@
 
+document.addEventListener('DOMContentLoaded', function() {
 let modal = null
 const focusableSelector = "button, a, input, textarea"
 let focusables = []
@@ -104,6 +105,6 @@ parentElementLogin.addEventListener('click', () =>{
 ;
 } 
 UserSelectors()
-
+})
 
 

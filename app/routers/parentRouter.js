@@ -30,17 +30,12 @@ router.post('/profile/delete', handlerController(parentController.deleteProfile.
 router.post('/suggest', handlerController(parentController.createSuggest));
 
 
-/**
- * route for disconnect to the session 
- */
-// router.get('/logout', handlerController(parentController.logout.bind(parentController)));
-
 
 /**
  * children routes: POST, PATCH, DELETE
  */
 router.post('/children', handlerController(childController.createChildren));
-router.post('/children/patch/:id', handlerController(childController.modifyChildren));
+router.post('/children/patch', handlerController(childController.modifyChildren));
 router.post('/children/delete', handlerController(childController.removeChildren));
 
 /**

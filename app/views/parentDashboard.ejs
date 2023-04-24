@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/dashboard.css">
@@ -42,6 +42,7 @@
                 <p class="profil_name"><%= user.first_name %></p>
             </div>
 
+
             <span class="kids_title">Enfants</span>         
                 <div class="kids_contener">
                    <% for (let i = 0; i < children.length; i++) { %> 
@@ -54,6 +55,7 @@
                 </div> 
                            
             <!-- <div class="bouton_contener">
+
                 <div class="suggestion_contener">
                     <span class="suggestion_title">Suggestions</span>
                 </div>
@@ -65,6 +67,7 @@
                 <div class="header_day">
                     <div id="planning"></div>
                     <div id="modale" title="Ajouter une tâche">
+
                       <form id="form-tache">
                         <label for="date">Date :</label>
                         <input type="date" id="date" name="date" required>
@@ -79,9 +82,10 @@
                         <button id="btnSupprimer" style="display:none;">Supprimer</button>
                         <input type="hidden" id="taskId" value="">
                       </form>
+
                     </div>
                 </div>
-               
+
 
             </div>
             <section class="bottom-right-side">
