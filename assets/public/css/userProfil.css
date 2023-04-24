@@ -25,170 +25,155 @@
   padding-right: calc(1.5em + .75rem);
   }
 
-/* STYLE */
+  .right_side{
+    margin-left: 2em;
+  }
 
+  label{
+    color: var(--purple_pink);
+  }
 
+  h1{
+    font-size: 1.5em;
+    color: var(--purple);
+    margin-left: 10px;
 
-.form-group {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 15px;
-}
+  }
 
-.form-group label {
-  display: inline-block;
-  max-width: 150px; /* Ajustez cette valeur selon vos besoins */
-  text-align: right;
-  margin-right: 10px;
-  word-break: break-word; /* Permet de couper les mots pour respecter la largeur maximale */
-  vertical-align: top;
-}
+  .edit-parent-header,
+  .edit-child-header,
+  .add-child-header {
+    display: flex;
+    align-items: center;
 
-label {
-  display: inline-block;
-  min-width: 150px;
-  text-align: right;
-  margin-right: 15px;
-  vertical-align: middle;
-  color: var(--purple_pink);
+  }
+  
+  .edit-icon,
+  .add-icon {
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 10px;
+
+    border: 1px solid var(--purple_pink);
+    border-radius: 50%;
+    padding: 0.2em;
+    color: var(--purple_pink);
+  }
+  
+  .form-group label,
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+input[type="textarea"] {
+  margin: 1em 1em 1em 1em;
+  width: 90%;
+  box-sizing: border-box;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="date"],
 input[type="password"],
-input[type="textarea"] {
-  width: 100%;
-  max-width: 300px;
+input[type="textarea"]{
+  border-color: var(--backgroung_color);
+  color: var(--powder-gray);
+  border: 1px solid var(--purple);
 }
 
-input[type="radio"] {
-  display: inline-block;
-  width: auto;
-  margin-right: 5px;
-}
-
-button {
-  border-radius: 25px;
-  padding: 10px 20px;
-  font-size: 1em;
-  background-color: var(--purple_pink);
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: var(--lilac_color);
-}
-
-.delete-btn-container{
-  display: flex;
-  justify-content: center;
-}
-
-
-
-#delete-btn{
-  padding: 10px 20px;
-  width: 14em;
-  margin-bottom: 2em;
-}
-
-.update-btn{
-  display: flex;
-  justify-content: space-around;
-}
-
-.edit-child, .edit-parent{
-   display: flex;
-}
-
-.add-child-header{
-  display: flex;
-  width: 100%;
-  align-items: center;
-  
-}
-
-h1{
-  margin: 1em;
-  color: var(--purple_pink);
-}
-
-.material-icons{
-  margin-top: 0.5em ;
-  border: 1px solid;
-  border-radius: 1em;
-  padding: 0.3em;
-
-}
-
-.edit-icon, .add-icon {
-  color: var(--purple_pink);
-}
-
-.container-clef{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1em;
-}
-
-.container-add-child {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.edit-child {
-  display: flex;
-  width: 100%;
-  
-  
-}
-
-#add-child-form {
-  width: 100%;
-  max-width: 500px; /* Ajustez cette valeur en fonction de la largeur souhaitée */
-  padding: 1em;
-  border-radius: 10px;
-  margin-top: 1em;
-  margin-right: 2em;
-  
-}
-
-#add-child-form label {
+label [for="sexe"] {
   display: block;
-  
-}
+  margin-bottom: 2em;
+  }
 
-#add-child-form input,
-#add-child-form textarea,
-#add-child-form select {
-  width: 100%;
+select{
+  box-shadow: none;
+  margin-left: 1em;
+  
+  width: 10em;
   padding: 0.5em;
-  margin-right: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: inherit;
+  border-radius: 1em;
 }
 
-#add-child-form button {
-  display: inline-block;
-  padding: 0.5em 1em;
+label[for="description"] {
+  display: block;
+  margin-bottom: 5px;
+}
+
+textarea[name="description"] {
+  height: 6em;
+  max-width: 100%;
+  padding: 5px;
+  font-size: 1em;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+button{
+  background-color: var(--purple_pink);
+  border-radius: 2em;
+  color: var(--primary_text_color);
   margin-top: 1em;
-  
-  background-color:var(--purple_pink);
-  color: #fff;
   border: none;
-  border-radius: 24px;
-  cursor: pointer;
-  font-family: inherit;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 
-#add-child-form button:hover {
-  background-color: #0056b3;
+.child-info{
+  
+  margin-bottom: 1em;
+  border-radius: 1em;
+  background: linear-gradient(to right, var(--backgroung_color), rgb(143, 213, 240));
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  width: 80%;
+  margin-left: 1em;
+  padding: 0.5em;
+}
+
+.edit-btnChild{
+  margin: 1em;
+  border: none;
+}
+
+.child-icon{
+  justify-content: right;
+  
+}
+.child-label{
+ color: var(--primary_text_color);
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1439px) {
+
+
+}
+
+@media only screen and (min-width: 1438px) {
+
+  .main-contener{
+    display: flex;
+
+  }
+  .info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .left_side{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+
+.right-side{
+  display: flex;
+  margin-left: 2em;
+}
+  
+.container{
+  margin-left: 4em;
+}
 }
