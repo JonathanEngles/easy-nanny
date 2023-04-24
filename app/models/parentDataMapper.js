@@ -47,12 +47,12 @@ class ParentDataMapper extends CoreDataMapper {
     };
 
   async  getLastDiary(id) {
-        const result = await client.query('SELECT "date", "description" FROM "diary" WHERE "parent_id" = $1 ORDER BY "created_at" DESC LIMIT 1', [id]);
+        const result = await client.query(`SELECT "date", "description", to_char(Date, 'TMDay DD TMMonth YYYY') FROM "diary" WHERE "parent_id" = $1 ORDER BY "created_at" DESC LIMIT 1;`, [id]);
         return result.rows[0];
     }
     
     async getAllDiaries(id) {
-        const result = await client.query('SELECT * FROM "diary" WHERE "parent_id" = $1 ORDER BY "created_at" DESC', [id]);
+        const result = await client.query(`SELECT *, to_char(Date, 'TMDay DD TMMonth YYYY') FROM "diary" WHERE "parent_id" = $1 ORDER BY "created_at" DESC`, [id]);
         return result.rows;
     };
 

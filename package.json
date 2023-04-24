@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "table:import": "psql -U nanny -d nanny -f app/data/import_tables.sql"
+    "table:import": "psql -U nanny -d nanny -f app/data/import_tables.sql",
+    "table:session": "psql -U nanny -d nanny -f app/data/table_session.sql"
   },
   "repository": {
     "type": "git",
