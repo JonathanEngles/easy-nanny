@@ -38,8 +38,11 @@
         <div class="info-container">
             <aside class="left_side">
                 <div class="profil_info">
-                    <img class="profil_img" src="/uploads/nanny_picture.jpg" alt="Photo de profile">
-                    <p class="profil_name">Lia Cavani</p>
+                    <img class="profil_img" src="/uploads/<%=user.picture%>" alt="Photo de profile">
+                    <p class="profil_name">
+                        <%= user.first_name%>
+                            <%= user.name%>
+                    </p>
                 </div>
             </aside>
 
@@ -58,16 +61,22 @@
         <!------------CLEF DE LIAISON -------------->
         <div class="right-side">
             <div class="container-parent">
-            <aside class="right_side">
-                <div class="container-clef">
-                    <label for="clef-de-liaison">Clef de liaison:</label>
-                    <input type="text" id="clef-de-liaison" class="clef-de-liaison" placeholder="Clef de liaison" />
-                    <span id="afficher-clef" class="afficher-clef" style="display:none;">clef vide</span>
-                </div>
-            </aside>
+                <aside class="right_side">
 
-            <!--------------   PROFIL PARENTS AVEC MODIFICATION --------------->
-            <!------------  INFORMATION NON SENSIBLE  -------------->
+                    <!-- <div class="container-clef">
+                        <label for="clef-de-liaison">Clef de liaison:</label>
+                        <input type="text" id="clef-de-liaison" class="clef-de-liaison" placeholder="Clef de liaison" />
+                        <span id="afficher-clef" class="afficher-clef" style="display:none;">clef vide</span>
+                    </div> -->
+                    <form action="/nanny/link" method="POST">
+                        <label for="texte">Rentrer la clef parent :</label>
+                        <input type="text" id="texte" name="uniqueId">
+                        <input type="submit" value="Envoyer">
+                    </form>
+                </aside>
+
+                <!--------------   PROFIL PARENTS AVEC MODIFICATION --------------->
+                <!------------  INFORMATION NON SENSIBLE  -------------->
 
 
                 <!-- En-tête des informations -->
@@ -148,81 +157,68 @@
                         </div>
                     </form>
                 </div>
+            </div>
 
+                <!-------------- MODIF ENFANT ------------->
+                <div class="container-edit-child container">
 
-            <!-------------- MODIF ENFANT ------------->
-            <div class="container-edit-child container">
-
-                <div class="edit-child">
-                    <div class="edit-child-header">
-                        <h1>Les Boutchous</h1>
-                    </div>
-                </div>
-
-                <% for (let i=0; i < children.length; i++) { %>
-                    <form id="formChild" action="/parent/children/patch/<%=children[i].id%>" method="POST"
-                        enctype="multipart/form-data">
-
-
-                        <div class="child-info">
-                            <span class="edit-btnChild edit-icon child-icon" style="cursor:pointer;" data-id="<%=i%>">
-                                <span class="material-icons child-edit">
-                                    edit
-                                </span>
-                            </span>
-                            <button type="submit" class="save-btnChild" style="display:none;"
-                                data-id="<%=i%>">Enregistrer</button>
-
-                            <div class="form-group">
-                                <label for="nom" class="child-label">Nom</label>
-                                <input type="text" class="form-control" name="nom" value="<%=children[i].name%>"
-                                    readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="prenom" class="child-label">Prénom</label>
-                                <input type="text" class="form-control" name="prénom"
-                                    value="<%=children[i].first_name%>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="birthday" class="child-label">Date de naissance</label>
-                                <input type="date" class="form-control" name="Date de naissance"
-                                    value="<%=children[i].birthday%>" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="sexe" class="child-label">Garçon</label>
-                                <input type="radio" class="form-control" name="sexe" value="<%=children[i].sexe%>"
-                                    readonly>
-                                <label for="sexe" class="child-label">Fille</label>
-                                <input type="radio" class="form-control" name="sexe" value="<%=children[i].sexe%>"
-                                    readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="comments" class="child-label">Commentaire</label>
-                                <input type="textarea" class="form-control" name="description"
-                                    value="<%=children[i].description%>" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="picture">Photo: </label>
-                                <input type="file" name="picture">
-                            </div>
-
+                    <div class="edit-child">
+                        <div class="edit-child-header">
+                            <h1>Les Boutchous</h1>
                         </div>
-                    </form>
+                    </div>
+
+                    <% for (let i=0; i < children.length; i++) { %>
+                        <form id="formChild" action="/parent/children/patch/<%=children[i].id%>" method="POST"
+                            enctype="multipart/form-data">
+
+
+                            <div class="child-info">
+                                
+
+                                <div class="form-group">
+                                    <label for="nom" class="child-label">Nom</label>
+                                    <input type="text" class="form-control" name="name" value="<%=children[i].name%>"
+                                        readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prenom" class="child-label">Prénom</label>
+                                    <input type="text" class="form-control" name="first_name"
+                                        value="<%=children[i].first_name%>" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthday" class="child-label">Date de naissance</label>
+                                    <input type="date" class="form-control" name="birthday"
+                                        value="<%= children[i].birthday ? new Date(children[i].birthday).toISOString().split('T')[0] : '' %>" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="sexe" class="child-label">Garçon</label>
+                                    <input type="radio" class="form-control" name="sexe" value="<%=children[i].sexe%>"
+                                        readonly>
+                                    <label for="sexe" class="child-label">Fille</label>
+                                    <input type="radio" class="form-control" name="sexe" value="<%=children[i].sexe%>"
+                                        readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comments" class="child-label">Commentaire</label>
+                                    <input type="textarea" class="form-control" name="description"
+                                        value="<%=children[i].description%>" readonly>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="picture">Photo: </label>
+                                    <input type="file" name="picture">
+                                </div>
+
+                            </div>
+                        </form>
                     <% } %>
 
-                        <!-- <div class=" delete-btn-container">
-                <button id="delete-btn">Supprimer mon compte</button>
-            </div>
-            <div class="d-none" id="modalYesNo">
-                <p id="modalText">Etes-vous sûr de vouloir supprimer votre compte?</p>
-                <button id="yes-btn">Oui</button>
-                <button id="no-btn">Non</button>
-            </div> -->
+                </div>
             </div>
         </div>
     </div>
-
     <footer>
         <p class="footer_mention"> &copy; Easy Nanny - 2023</p>
         <p class="footer_mention"> Mentions légales</p>

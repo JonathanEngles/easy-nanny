@@ -155,6 +155,18 @@ button{
     display: flex;
 
   }
+  .info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .left_side{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
 
 .right-side{
   display: flex;
