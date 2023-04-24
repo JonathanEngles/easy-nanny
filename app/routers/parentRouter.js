@@ -35,7 +35,7 @@ router.post('/suggest', handlerController(parentController.createSuggest));
  * children routes: POST, PATCH, DELETE
  */
 router.post('/children', handlerController(childController.createChildren));
-router.post('/children/patch', handlerController(childController.modifyChildren));
+router.post('/children/patch/:id', handlerController(childController.modifyChildren));
 router.post('/children/delete', handlerController(childController.removeChildren));
 
 /**
