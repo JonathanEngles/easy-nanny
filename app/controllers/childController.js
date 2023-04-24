@@ -28,7 +28,7 @@ const childController = {
     //add children  to database
         await childDataMapper.createChildren(name, first_name, sexe, birthday, description, userId, user.nanny_id, picture);
     
-    res.redirect('/'); 
+    res.redirect('/parent/profile');
     } else {
         res.send('vous devez être connecté en tant que parent');
     }
