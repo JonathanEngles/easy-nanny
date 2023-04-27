@@ -22,7 +22,9 @@ let sess = {
     secure: app.get(process.env.NODE_ENV) === 'production',
       // 24 hours duration
       maxAge: 1000 * 60 * 60 * 24
-  }}
+  },
+proxy:true
+}
 
   if (app.get(process.env.NODE_ENV) === 'production') {
     app.set('trust proxy', 1) // trust first proxy
