@@ -8,27 +8,34 @@ html {
     --nanny: #F7E07A;
     --primary-color1: #d9c7e6 ;
     --primary-color2: #99cbe4 ;
-    
+    --focus-form: #f1f0ab;
    
     --color-bg-main: linear-gradient(180deg, var(--primary-color2) 10%, var(--primary-color1) 100%);
     --color-bg-invert: linear-gradient(180deg, var(--primary-color1) 10%, var(--primary-color2) 100%);
+    --color-nanny: linear-gradient(to left, var(--children-boy) 2%, var(--nanny) 100%);
     --color-boy: var(--children-boy);
     --color-girl: var(--children-girl);
     --color-hoover-nanny: var(--nanny);
    --color-btn: var(--alt-text-color);
+   --color-text: var(--primary-text-color);
+   --color-alt-text: var(--secondary-text-color);
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #ece0ab;
+    background-color: #eeead9;
+    /* max-width: 100vw; */
+    overflow-x: hidden;
 }
-
+button {
+    border: none;
+    background-color: transparent;
+}
 
 .btn {
     text-decoration: none;
     font-weight: 800;
     color: var(--color-btn);
-    font-size: 2rem;
 }
 
 /* HEADER */
@@ -42,7 +49,7 @@ body {
   background: var(--color-bg-main);
   position: sticky;
   top: 0;
-  left: 0;
+  z-index: 1;
 }
 
 
@@ -69,7 +76,7 @@ body {
 .navbar-mobile i {
    margin-right: 2rem;
     z-index: 9999;
-    font-size: 5rem;
+    font-size: 4rem;
 }
 
 
@@ -99,10 +106,8 @@ body {
 
 
 
-.navbar-mobile-list a {
+.btn-mobile {
    font-size: 4vh;
-    font-weight: 800;
-    color: var(--color-btn);
     padding: 2rem;
     margin: 0.45em 0;
 }
@@ -117,11 +122,13 @@ body {
 .navbar-deskop {
         display: none;
         width: 100vw;
-        justify-content: space-around;
-        font-weight: 800;
+        justify-content:flex-end;
+        padding: 2rem;
 }
 
-
+.is-nanny:hover {
+   color: var(--nanny);
+}
 
 
 
@@ -130,11 +137,10 @@ body {
 .footer-container {
     z-index: -1;
     background: var(--color-bg-invert);
-    position: absolute;
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    bottom: 0;
+   
     width: 100vw;
 }
 
@@ -154,7 +160,7 @@ body {
     margin: 0.3rem;
     padding: 0.3rem;
     font-size: 1.3rem;
-    font-weight: normal;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -188,7 +194,6 @@ body {
 @media screen and (min-width: 850px) {
 
     .footer-element {
-        font-size: 2rem;
         padding: 1rem;
     }
 
@@ -204,9 +209,17 @@ body {
 
 
 
-@media screen and (min-width: 1024px) {
-    .btn {
+@media screen and (min-width: 1050px) {
+    i:hover, .submit:hover, button:hover, .logo-container, .nanny, .parent {
+        cursor: pointer;
+    }
+    .btn-desktop {
         font-size: 1.5rem;
+        padding: 1.6rem;
+    }
+
+    .two-links{
+        font-size: 3rem;
     }
 
     .header-title {
@@ -223,14 +236,22 @@ body {
         flex-direction: row;
     }
 
-    .footer-element {
-        font-size: 2.3rem;
-    }
+
 
 
     .navbar-deskop{
         display: flex;
     }
+
+
+      .navbar-desktop {
+        justify-content: space-around;
+      }
+
+      /* mettre la classe 2 links à se connecter et s'enregistrer */
+    .navbar-desktop.two-links {
+        justify-content: flex-end;
+      }
 
     .navbar-mobile {
         display: none;
@@ -241,9 +262,14 @@ body {
 
 
 @media screen and (min-width: 1520px) {
-    .btn {
+    .btn-desktop {
         font-size: 2rem;
     }
 
+    .two-links {
+       font-size: 3.5rem;
+    }
+
+    
 }
 

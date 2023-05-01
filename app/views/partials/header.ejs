@@ -1,55 +1,81 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="/css/reset.css">
-    <!-- <link rel="stylesheet" href="/css/dashboard.css">
-    <link rel="stylesheet" href="/css/planning.css">
-    <link rel="stylesheet" href="/css/suggest.css">
-    <link rel="stylesheet" href="/css/userProfil.css">
-    <link rel="stylesheet" href="/css/404.css"> -->
-    <link rel="stylesheet" href="/css/modale.css">
-    <link rel="stylesheet" href="/css/style.css">
-
-    <title>Easy Nanny</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/public/images/favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/public/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/public/images/favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="/public/css/reset.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/homePage.css">
+    <link rel="stylesheet" href="/public/css/faq.css">
+    <link rel="stylesheet" href="/public/css/modals.css">
+    <title>Easy-Nanny</title>
 </head>
 
 <body>
-
-    <header>
-        <div class="logo">
-            <img class="img_logo" src="/images/Logo-removebg-preview.png" alt="Logo Easy Nanny">
-
+    <header class="header-container">
+        <div class="logo-container">
+            <a href="/"><img src="/public/images/logo-removebg-preview.png" alt="Logo easy nanny"></a>
         </div>
-        <div class="burger-menu">
-            <div class="burger-menu-icon">&#9776;</div>
-            <ul class="burger-menu-list">
-              <% if (!locals.session.user) { %>
-                <li><a id="signupBtn" class="modal-btn js-modal" href="#modal1">S'inscrire</a></li>
-                <li><a id="loginBtn" class="modal-btn js-modal" href="#modal2">Se connecter</a></li>
+        <h1 class="header-title">Easy Nanny</h1>
+        <!-- desktop menu -->
+        <div class="navbar-deskop">
+            <% if (!locals.session.user) { %>
+                <button class="open-modal btn btn-desktop two-links" data-modal="register-modal">S'inscrire</button>
+<button class="open-modal btn btn-desktop two-links" data-modal="login-modal">Se connecter</button>
+                
                 <% } else { %>
-                  <% if (locals.session.user.is_nanny) { %>
-                    <li><a href="/">Accueil</a></li>
-                <li><a href="/nanny/dashboard"><%= user.first_name %></a></li>
-                <li><a href="/nanny/profile">Mon profil</a></li>
-                <li><a href="/nanny/suggests">Suggestions</a></li>
-                <li><a href="/nanny/diary">Journal de suivi</a></li>
-                <li><a href="/logout">Déconnexion</a></li>
-                <% } else { %>
-                    <li><a href="/">Accueil</a></li>
-                <li><a href="/parent/dashboard"><%= user.first_name %></a></li>
-                <li><a href="/parent/profile">Mon profil</a></li>
-                <li><a href="/parent/suggests">Suggestions</a></li>
-                <li><a href="/parent/diary">Journal de suivi</a></li>
-                <li><a href="/logout">Déconnexion</a></li>
-                <% } %>
-                <% } %>
-            </ul>
-           
+                    <% if (locals.session.user.is_nanny) { %>
+                        <a class="btn btn-desktop is-nanny" href="/">ACCUEIL</a>
+                        <a class="btn btn-desktop is-nanny" href="/nanny/dashboard">DASHBOARD</a>
+                        <a class="btn btn-desktop is-nanny" href="/nanny/profile">MON PROFIL</a>
+                        <a class="btn btn-desktop is-nanny" href="/nanny/suggests">SUGGESTIONS</a>
+                        <a class="btn btn-desktop is-nanny" href="/nanny/diary">JOURNAUX DE SUIVI</a>
+                        <a class="btn btn-desktop is-nanny" href="/logout">DECONNEXION</a>
+                        <% } else { %>
+                            <a class="btn btn-desktop" href="/">ACCUEIL</a>
+                            <a class="btn btn-desktop" href="/parent/dashboard">DASHBOARD</a>
+                            <a class="btn btn-desktop" href="/parent/profile">MON PROFIL</a>
+                            <a class="btn btn-desktop" href="/parent/suggests">SUGGESTIONS</a>
+                            <a class="btn btn-desktop" href="/parent/diary">JOURNAUX DE SUIVI</a>
+                            <a class="btn btn-desktop" href="/logout">DECONNEXION</a>
+                            <% } %>
+                                <% } %>
         </div>
-        
+        <!-- mobile menu -->
+        <div class="navbar-mobile">
+            <i class="fas fa-bars"></i>
+            <div class="modal-burger-menu">
+                <div class="navbar-mobile-list">
+                    <% if (!locals.session.user) { %>
+                        <button class="open-modal btn btn-mobile two-links" data-modal="register-modal">S'inscrire</button>
+                        <button class="open-modal btn btn-mobile two-links" data-modal="login-modal">Se connecter</button>
+                        <% } else { %>
+                            <% if (locals.session.user.is_nanny) { %>
+                                <a class="btn btn-mobile" href="/">ACCUEIL</a>
+                                <a class="btn btn-mobile" href="/nanny/dashboard">DASHBOARD</a>
+                                <a class="btn btn-mobile" href="/nanny/profile">MON PROFIL</a>
+                                <a class="btn btn-mobile" href="/nanny/suggests">SUGGESTIONS</a>
+                                <a class="btn btn-mobile" href="/nanny/diary">JOURNAUX DE SUIVI</a>
+                                <a class="btn btn-mobile" href="/logout">DECONNEXION</a>
+                                <% } else { %>
+                                    <a class="btn btn-mobile" href="/">ACCUEIL</a>
+                                    <a class="btn btn-mobile" href="/parent/dashboard">DASHBOARD</a>
+                                    <a class="btn btn-mobile" href="/parent/profile">MON PROFIL</a>
+                                    <a class="btn btn-mobile" href="/parent/suggests">SUGGESTIONS</a>
+                                    <a class="btn btn-mobile" href="/parent/diary">JOURNAUX DE SUIVI</a>
+                                    <a class="btn btn-mobile" href="/logout">DECONNEXION</a>
+                                    <% } %>
+                                        <% } %>
+                </div>
+            </div>
+        </div>
     </header>

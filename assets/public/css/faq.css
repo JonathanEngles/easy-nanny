@@ -15,7 +15,7 @@ html {
     --color-boy: var(--children-boy);
     --color-girl: var(--children-girl);
     --color-hoover-nanny: var(--nanny);
-   --color-btn: var(--alt-text-color);
+    --color-btn: var(--alt-text-color);
 }
 /* FAQ Accordeon */
 
@@ -25,29 +25,32 @@ html {
     
 }
 
+
 .question {
-    height: 3vh;
+    height: 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 0;
     border-bottom: 1px solid var(--color-btn);
     background:  var(--primary-color2);
     transition: background-color 0.3s;
+    color: var(--color-btn);
+
 }
 
 
 
 .reponse {
-    height: 5vh;
+    height: 4rem;
     color: var(--color-btn);
     background: var(--color-faq-response);
-    padding: 3rem;
+    padding: 3vh 0;
     display: none;
 }
 
 .text-faq {
-    font-size: 2rem;
+    font-size: 2vh;
 }
 
 .reponse.visible {
@@ -56,6 +59,7 @@ html {
 
 .fa-chevron-down {
     font-size: 2vh;
+    margin: 2rem;
     transition: transform 0.3s ease;
 }
 
@@ -81,7 +85,7 @@ html {
     
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1050px) {
     .question:hover {
         background: var(--color-girl);
         }

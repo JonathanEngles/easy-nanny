@@ -48,7 +48,7 @@ app.use(bodySanitizer);
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use(express.static("./assets/public"));
+app.use(express.static("./assets"));
 
 
 // configuration of the storage of multer stockage and rename file

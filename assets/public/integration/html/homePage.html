@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,60 +8,147 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="/assets/public/css/reset.css">
-        <link rel="stylesheet" href="/assets/public/css/style.css">
-        <link rel="stylesheet" href="/assets/public/css/faq.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/public/images/favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/public/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/public/images/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/assets/public/images/favicon_io/site.webmanifest">
+    <link rel="stylesheet" href="/assets/public/css/reset.css">
+    <link rel="stylesheet" href="/assets/public/css/style.css">
+    <link rel="stylesheet" href="/assets/public/css/homePage.css">
+    <link rel="stylesheet" href="/assets/public/css/faq.css">
+    <link rel="stylesheet" href="/assets/public/css/forms.css">
     <title>Easy-Nanny</title>
 </head>
+
 <body>
     <header class="header-container">
         <div class="logo-container">
             <img src="/assets/public/images/logo-removebg-preview.png" alt="Logo easy nanny">
         </div>
-
         <h1 class="header-title">Easy Nanny</h1>
-        
         <!-- menu bureau -->
-    <div class="navbar-deskop">
-        
-        <a class="btn btn-desktop" href="#">ACCUEIL</a>
-        <a class="btn btn-desktop" href="#">DASHBOARD</a>
-        <a class="btn btn-desktop" href="#">MON PROFIL</a>
-        <a class="btn btn-desktop" href="#">SUGGESTIONS</a>
-        <a class="btn btn-desktop" href="#">JOURNAUX DE SUIVI</a>
-        <a class="btn btn-desktop" href="#">DECONNEXION</a>
-    </div>
-    <!-- menu mobile -->
-    <div class="navbar-mobile">
-        <i class="fas fa-bars"></i>
-        <div class="modal-burger-menu">
-            <div class="navbar-mobile-list">
-                <a class="btn btn-mobile" href="#">ACCUEIL</a>
-                <a class="btn btn-mobile" href="#">DASHBOARD</a>
-                <a class="btn btn-mobile" href="#">MON PROFIL</a>
-                <a class="btn btn-mobile" href="#">SUGGESTIONS</a>
-                <a class="btn btn-mobile" href="#">JOURNAUX DE SUIVI</a>
-                <a class="btn btn-mobile" href="#">DECONNEXION</a>
+        <div class="navbar-deskop">
+            <a class="btn btn-desktop" href="#">ACCUEIL</a>
+            <a class="btn btn-desktop" href="#">DASHBOARD</a>
+            <a class="btn btn-desktop" href="#">MON PROFIL</a>
+            <a class="btn btn-desktop" href="#">SUGGESTIONS</a>
+            <a class="btn btn-desktop" href="#">JOURNAUX DE SUIVI</a>
+            <a class="btn btn-desktop" href="#">DECONNEXION</a>
+        </div>
+        <!-- menu mobile -->
+        <div class="navbar-mobile">
+            <i class="fas fa-bars"></i>
+            <div class="modal-burger-menu">
+                <div class="navbar-mobile-list">
+                    <a class="btn btn-mobile" href="#">ACCUEIL</a>
+                    <a class="btn btn-mobile" href="#">DASHBOARD</a>
+                    <a class="btn btn-mobile" href="#">MON PROFIL</a>
+                    <a class="btn btn-mobile" href="#">SUGGESTIONS</a>
+                    <a class="btn btn-mobile" href="#">JOURNAUX DE SUIVI</a>
+                    <a class="btn btn-mobile" href="#">DECONNEXION</a>
+                </div>
             </div>
         </div>
-    </div>
     </header>
-
+    <aside id="register-modal" class="modal">
+        <div class="modal-register">
+            <i class="fas fa-bars"></i>
+            <div class="container-selector">
+                <div class="nanny">Je veux créer un compte Nounou</div>
+                <div class="parent">Je veux créer un compte Parent</div>
+            </div>
+            <form class="signup-form" action="" method="POST" enctype="multipart/form-data">
+                <label for="picture">Photo :</label>
+                <input type="file" id="picture" name="picture">
+                <img id="photo-preview" src="#" alt="Aperçu de la photo">
+                <label for="name">Nom :</label>
+                <input type="text" id="name" name="name" required>
+                <label for="firstname">Prénom :</label>
+                <input type="text" id="firstname" name="firstname" required>
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" class="email" name="email" required>
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+                <label for="passwordCofirmation">Confirmez votre mot de passe :</label>
+                <input type="password" id="passwordCofirmation" name="passwordCofirmation" required>
+                <label for="address">Adresse :</label>
+                <input type="text" id="address" name="address" required>
+                <label for="zip_code">Code postal :</label>
+                <input type="text" id="zip_code" name="zip_code" required>
+                <label for="city">Ville :</label>
+                <input type="text" id="city" name="city" required>
+                <input type="submit" value="S'inscrire" class="submit">
+            </form>
+        </div>
+    </aside>
+    <aside id="login-modal" class="modal">
+        <div class="modal-login">
+            <i class="fas fa-bars"></i>
+            <div class="container-selector">
+                <div class="nanny">Je me connecte en tant que Nounou</div>
+                <div class="parent">Je me connecte en tant que Parent</div>
+            </div>
+            <form class="signup-form loginForm" action="" method="POST">
+                <label for="email">Adresse e-mail :</label>
+                <input type="email" class="email" name="email" required>
+                <label for="password-login">Mot de passe :</label>
+                <input type="password" id="password-login" name="password" required>
+                <input type="submit" value="Se connecter" class="submit">
+            </form>
+        </div>
+    </aside>
     <main class="main-container-homepage">
+        <div class="welcome-container">
+            <div class="welcome-text-container">
+                <h2 class="welcome-title">Bienvenue</h2>
+                <p class="welcome-text">Easy Nanny améliore la vie des parents et des nounous! </p>
+            </div>
+            <img class="service-picture blue-shadow" src="/assets/public/images/blocks-geb66666bc_1920.jpg"
+                alt="jeux en bois">
+        </div>
+        <div class="services-container">
+            <h2 class="services-title">Nos Services à votre service</h2>
+            <div class="articles">
+                <h3 class="service-title">Le Tableau de bord</h3>
+                <div class="article-container">
+                    <img class="service-picture pink-shadow"
+                        src="/assets/public/images/DALL·E 2023-04-26 09.41.05 - une photo d'un tableau avec un agenda dessus.png"
+                        alt="agenda">
+                    <p class="service-text">Il s'agit de l'outil principal pour la nounou. Elle pourra y afficher les
+                        activités qu'elle proposera tout au long de la semaine. Et chaque parent pourra les consulter
+                    </p>
+                </div>
+            </div>
+            <div class="articles">
+                <h3 class="service-title">Les Suggestions</h3>
+                <div class="article-container row">
+                    <img class="service-picture blue-shadow"
+                        src="/assets/public/images/DALL·E 2023-04-26 09.37.51 - une photo de  femme qui écrit un rapport.png"
+                        alt="suggestions">
+                    <p class="service-text">Il sera possible pour le parent de proposer des activités dont la nounou
+                        pourra s'inspirer.</p>
+                </div>
+            </div>
+        </div>
+        <!-- FAQ with accordeon effect -->
         <div class="accordeon">
+            <h2 class="accordeon-title">Une Question? La réponse se trouve peut-être dans notre F.A.Q</h2>
             <div class="question">
-                <p class="text-faq">Question 1</p>
+                <p class="text-faq">Comment puis-je créer un compte pour accéder au site de communication entre parents
+                    et nounou ?</p>
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="reponse">
-                <p class="text-faq">Réponse 1</p>
+                <p class="text-faq">C'est très simple, vous cliquez sur le bouton créer un compte, vous choisissez si
+                    vous créez un compte parent ou nounou puis vous remplissez le formulaire d'inscription</p>
             </div>
             <div class="question">
-                <p class="text-faq">Question 2</p>
+                <p class="text-faq">Une fois mon compte créé, comment me lier à une nounou ou à un parent</p>
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="reponse">
-                <p class="text-faq">Réponse 2</p>
+                <p class="text-faq">Il suffira de communiquer à la nounou une clé de liaison que vous trouverez dans
+                    votre profil et la nounou n'aura plus qu'à rentrer cette clé dans un champs prévu à cet effet</p>
             </div>
             <div class="question">
                 <p class="text-faq">Question 3</p>
@@ -71,17 +159,15 @@
             </div>
         </div>
     </main>
-
     <footer class="footer-container">
         <p class="footer-element"> &copy; Easy Nanny - 2023</p>
         <div class="container-footer-element">
-            
             <a href="" class="footer-element border-right">Mentions légales</a>
             <a href="" class="footer-element border-right">Conditions générales</a>
             <p class="footer-element contact"> Nous Contacter</p>
-       
-    </div>
+        </div>
     </footer>
     <script src="../../../js/app.js"></script>
 </body>
+
 </html>
