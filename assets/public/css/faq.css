@@ -1,0 +1,100 @@
+html {
+    font-size: 62.5%; /*pour que 1 rem = 10 px */
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #000000;
+    --alt-text-color: #1E2337;
+    --children-girl: #CAABCC;
+    --children-boy: #379DDD;
+    --nanny: #F7E07A;
+    --primary-color1: #d9c7e6 ;
+    --primary-color2: #99cbe4 ;
+    
+    --color-faq-response: linear-gradient(to left, var(--primary-color2) 10%, var(--primary-color1) 100%);
+    --color-bg-main: linear-gradient(180deg, var(--primary-color2) 10%, var(--primary-color1) 100%);
+    --color-bg-invert: linear-gradient(180deg, var(--primary-color1) 10%, var(--primary-color2) 100%);
+    --color-boy: var(--children-boy);
+    --color-girl: var(--children-girl);
+    --color-hoover-nanny: var(--nanny);
+    --color-btn: var(--alt-text-color);
+}
+/* FAQ Accordeon */
+
+.accordeon {
+    width: 100vw;
+   
+    
+}
+
+
+.question {
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--color-btn);
+    background:  var(--primary-color2);
+    transition: background-color 0.3s;
+    color: var(--color-btn);
+
+}
+
+
+
+.reponse {
+    height: 4rem;
+    color: var(--color-btn);
+    background: var(--color-faq-response);
+    padding: 3vh 0;
+    display: none;
+}
+
+.text-faq {
+    font-size: 2vh;
+}
+
+.reponse.visible {
+    display: block;
+}
+
+.fa-chevron-down {
+    font-size: 2vh;
+    margin: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.fa-chevron-down.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+
+
+@media screen and (min-width: 650px) {
+    
+    
+
+    
+
+}
+
+@media screen and (min-width: 850px) {
+
+  
+
+    
+}
+
+@media screen and (min-width: 1050px) {
+    .question:hover {
+        background: var(--color-girl);
+        }
+
+}
+
+
+@media screen and (min-width: 1520px) {
+    
+    
+
+}

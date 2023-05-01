@@ -21,8 +21,12 @@ router.get('/logout', handlerController(nannyController.logout));
 router.use('/parent', parentRouter);
 router.use('/nanny', nannyRouter);
 
-
-
+/**
+ * middleware for error
+ */
+router.use((err, req, res, next) => {
+    res.status(err.status).render('error', { error: err.message });
+});
 
 /**
  * route 404

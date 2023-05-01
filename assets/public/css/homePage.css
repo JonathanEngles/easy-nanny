@@ -1,0 +1,132 @@
+.main-container-homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-container,
+.services-container {
+    margin: 1rem 0;
+}
+
+.service-picture {
+    margin: 3rem auto;
+    max-width:90%;
+    height: auto;
+    display:block;
+    border-radius: 5%;
+}
+
+.welcome-title {
+    font-size: 6vh;
+    padding: 2rem;
+}
+
+.service-title,
+.services-title {
+    margin: auto;
+    margin-top: 2rem;
+    padding: 2rem 0;
+    border-radius: 5rem;
+    width: 85vw;
+}
+
+.services-title,
+.accordeon-title {
+    font-size: 3vh;
+    background: var(--primary-color1);
+    opacity: 0.6;
+}
+
+.service-title{
+    font-size: 2.5vh;
+    background: var(--primary-color2);
+  opacity: 0.6;
+}
+
+.service-text,
+.welcome-text {
+    font-size: 2vh;
+    padding: 2rem;
+    color: var(--color-btn);
+    width: 60%;
+    margin: auto;
+}
+
+.welcome-text{
+font-size: 4vh;
+}
+.pink-shadow {
+    box-shadow: 3rem 2rem 2rem var( --primary-color1), -2rem 0 .4rem var( --primary-color2);
+}
+.blue-shadow {
+    box-shadow: 3rem 2rem 2rem var( --primary-color2), -2rem 0 .4rem var( --primary-color1);
+}
+
+
+
+.welcome-title,
+.welcome-text,
+.services-title,
+.service-title,
+.service-text,
+.accordeon-title {
+  text-align: center; 
+}
+
+.accordeon-title {
+    padding: 2rem 0;
+}
+
+@media screen and (min-width: 650px) {
+    
+
+
+}
+
+@media screen and (min-width: 850px) {
+
+  
+
+    
+}
+
+@media screen and (min-width: 1050px) {
+    .service-picture {
+        max-width:30%;
+        height: auto;
+    }
+    .welcome-container,
+    .article-container {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .service-title,
+    .services-title {
+        width: 100vw;
+    }
+
+    .service-text,
+    .welcome-text {
+        font-size: 2rem;
+        width: 40%;
+    }
+
+    .welcome-title{
+        font-size: 10rem;
+        width:50vw;
+    }
+
+    .row {
+        flex-direction: row;
+      }
+}
+
+
+@media screen and (min-width: 1520px) {
+    
+    
+
+}
