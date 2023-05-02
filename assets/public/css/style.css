@@ -216,7 +216,13 @@ button {
     .btn-desktop {
         font-size: 1.5rem;
         padding: 1.6rem;
+        border-bottom: 2px solid transparent;
     }
+
+    .is-nanny:hover {
+        border-bottom: 2px solid var(--nanny);
+    }
+
 
     .two-links{
         font-size: 3rem;

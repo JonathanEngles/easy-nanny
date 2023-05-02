@@ -63,4 +63,28 @@ const modal = {
         nanny.classList.remove('is-not-clicked');
         parent.classList.add('is-not-clicked');
     },
+
+
+
+/**
+ * Function validate the form
+ */
+    submitForm: (event) => {
+        event.preventDefault();
+
+        const selectedRole = document.querySelector('.nanny-register.is-not-clicked, .parent-register.is-not-clicked, .nanny-login.is-not-clicked, .parent-login.is-not-clicked');
+
+        if(!selectedRole) {
+            Toastify({
+                text: 'Veuillez sélectionner un rôle (Parent ou Nounou) avant de continuer.',
+                duration: 3000, 
+                gravity: 'top', 
+                position: 'center', 
+                backgroundColor: 'linear-gradient(to right, #ff416c, #ff4b2b)',
+              }).showToast();
+        } else {
+            event.target.submit();
+        }
+    },
+
 }

@@ -75,6 +75,10 @@ usersSelector : () => {
     nannyRegister.addEventListener('click', modal.selectNannyRegister);
     parentLogin.addEventListener('click', modal.selectParentLogin);
     nannyLogin.addEventListener('click', modal.selectNannyLogin);
+
+    modal.formLogin.addEventListener('submit', modal.submitForm);
+    modal.formSignUp.addEventListener('submit', modal.submitForm);
+
 }
 
 
