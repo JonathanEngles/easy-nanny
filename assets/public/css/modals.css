@@ -2,7 +2,8 @@
     position: fixed;
     width: 100vw;
     max-width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     display: none;
     flex-direction: column;
     z-index: 2;
@@ -11,6 +12,7 @@
     top: 0;
     left: 0;
     background: var(--color-bg-invert);
+    
 }
 
 .form-container {
@@ -18,6 +20,7 @@
     height: auto;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .left-form,
@@ -34,7 +37,8 @@
 }
 
 .choose-role {
-    margin: 3rem 0;
+  max-width: 60%;
+    margin: 2rem 0;
     font-size: 2vh;
     text-align: center;
 }
@@ -89,6 +93,7 @@
     margin: auto;
     display: block;
     margin-top: 2rem;
+    margin-bottom: 1rem;
     padding: 2rem;
     border: none;
     background-color: var( --color-girl);
@@ -101,7 +106,7 @@
   }
 
 
-input:focus {
+input:not([type="submit"]):focus {
     background-color: var(--focus-form)
     
 }
@@ -122,33 +127,40 @@ input:focus {
 
 @media screen and (min-width: 650px) {
     
-
+  .form-container {
+    width: 70vw;
+      }
 
 }
 
 @media screen and (min-width: 850px) {
 
-  
+ 
 
     
 }
 
-@media screen and (min-width: 1050px) {
-    
+@media screen and (min-width: 1024px) {
+  .form-container {
+    width: 50vw;
+      }
 }
 
 
 @media screen and (min-width: 1520px) {
     
-    
+  .form-container {
+    width: 40vw;
+      }
 
 }
 
-@media screen and (max-height: 650px) {
+@media screen and (max-height: 680px) {
     .submit {
       font-size: 1.5rem;
       padding: 1rem;
       margin-bottom: 1rem;
+      margin-top: .7rem;
     }
     .form-item label,
     .form-item input[type="text"],

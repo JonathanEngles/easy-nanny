@@ -1,0 +1,43 @@
+
+
+.container-error{
+    background-image: url("/public/images/404.jpg");
+   
+    background-position: center;
+    background-size:cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column; 
+   justify-content: center;
+    overflow: hidden;
+}
+
+
+.error{
+       
+    width: auto;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 5rem; 
+    border-radius: 2rem;
+    text-align: center;
+    align-self: center;
+}
+
+.title-error,
+.content-error {
+background: linear-gradient(45deg, var(--primary-color1) 10%, var(--primary-color2) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+  color: white; /* Fallback color for browsers that don't support -webkit-background-clip */
+}
+
+.title-error {
+    font-size: 20vh;
+}
+
+.content-error {
+    font-size: 5vh;
+}

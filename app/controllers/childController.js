@@ -7,8 +7,6 @@ const childController = {
 
     /**
      * create a new child by parent
-     * @param {*} req 
-     * @param {*} res 
      */
     async createChildren(req, res) {
 
@@ -28,9 +26,11 @@ const childController = {
     //add children  to database
         await childDataMapper.createChildren(name, first_name, sexe, birthday, description, userId, user.nanny_id, picture);
     
-    res.redirect('/parent/profile');
+        req.session.flash = {success:`${first_name} créé avec succès`}
+        return res.redirect('/parent/dashboard');
     } else {
-        res.send('vous devez être connecté en tant que parent');
+        req.session.flash = {error:`Vous devez être connecté`}
+                return res.redirect('/');
     }
     },
 
@@ -64,15 +64,14 @@ const childController = {
     // update the child information in the database
     await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday, description, picture});
    
-    res.redirect('/parent/profile');
+    req.session.flash = {success:`${first_name} modifié avec succès`}
+        return res.redirect('/parent/dashboard');
     }
     },
     
 
     /**
      * remove an existing child by parent
-     * @param {*} req 
-     * @param {*} res 
      */
     async removeChildren(req, res) {
     //verify if a session exists and if an user is connected and if the user is a parent
@@ -91,7 +90,8 @@ const childController = {
     // delete the child from the database
     await childDataMapper.removeChildren(id, userId);
                 
-    res.redirect('/parent/profile');
+    req.session.flash = {success:`Enfant supprimé avec succès de votre compte`}
+    return res.redirect('/parent/dashboard');
     }
     }
 }

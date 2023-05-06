@@ -12,13 +12,13 @@ class NannyController extends CoreController {
 
 
     logout(req, res) {
+        req.session.flash = {success: `Vous avez été bien déconnecté`}
         req.session.destroy();
-        res.redirect('/');
+       
+       return res.redirect('/');
     }
 /**
  * create activity by the nanny
- * @param {*} req 
- * @param {*} res 
  */
     async createActivity (req, res) {
         //verify if a session exists and if an user is connected and if the user is a nanny
@@ -29,16 +29,17 @@ class NannyController extends CoreController {
 
             //add activity to the database
         await nannyDataMapper.createActivity(title, description, date, begin, end, color, category, user);
-        res.redirect('/nanny/dashboard')
-        } else {res.redirect('/')
+        req.session.flash = {success: `Activité ${title} créée avec succès`}
+        return res.redirect('/nanny/dashboard')
+        } else {
+            req.session.flash = {error: `vous devez être conecté`}
+            return res.redirect('/')
     }
 
     }
 
     /**
      * Modify the activity by the nanny
-     * @param {*} req 
-     * @param {*} res 
      */
     async modifyActivity(req, res) {
         //verify if a session exists and if an user is connected and if the user is a nanny
@@ -48,15 +49,16 @@ class NannyController extends CoreController {
             const {id, title, description, date, begin, end, color, category} = req.body;
             //modify the activity in the database
             await nannyDataMapper.modifyActivity(id, userId, {title, description, date, begin, end, color, category});
-            res.redirect('/nanny/dashboard')
-        } else {res.redirect('/')
+            req.session.flash = {success:`Activité ${title} modifiée avec succès`}
+            return res.redirect('/nanny/dashboard')
+        } else {
+            req.session.flash = {error: `vous devez être conecté`}
+            return res.redirect('/')
     }
 };
 
 /**
  * delete the activity
- * @param {*} req 
- * @param {*} res 
  */
     async deleteActivity(req, res) {
         //verify if a session exists and if an user is connected and if the user is a nanny
@@ -67,16 +69,16 @@ class NannyController extends CoreController {
 
             //delete the activity in database
             await nannyDataMapper.deleteActivity(userId, activityId);
-            res.redirect('/nanny/dashboard');
+            req.session.flash = {success:`Activité supprimée avec succès`}
+            return res.redirect('/nanny/dashboard');
         } else {
-            res.redirect('/')
+            req.session.flash = {error: `vous devez être conecté`}
+            return res.redirect('/')
     }
     };
 
     /**
      * add the parent and the children to nanny
-     * @param {*} req 
-     * @param {*} res 
      */
     async linkAccount(req, res) {
         //verify if a session exists and if an user is connected and if the user is a nanny
@@ -89,7 +91,8 @@ class NannyController extends CoreController {
             const parent = await nannyDataMapper.getParentByUniqueId(uniqueId);
 
             if (!parent) {
-                return res.send('pas de parent trouvé')
+                req.session.flash = {error:`Clé de liaison incorrecte`}
+               return res.redirect('/nanny/dashboard');
             }
 
             //verify if the parent hasn't already a nanny
@@ -98,19 +101,20 @@ class NannyController extends CoreController {
 
             await nannyDataMapper.updateFamily(parentId, nannyId);
             
-
-            return res.send(`la famille ${parent.name} est correctement liée`) 
+            req.session.flash = {success:`la famille ${parent.name} est correctement liée`}
+            return res.redirect('/nanny/dashboard');
+           
         } else {
-            return res.send('le parent est déjà lié à une nounou')
+            req.session.flash = {error:`Ce parent est déjà lié à une Nounou`}
+               return res.redirect('/nanny/dashboard');
         }} else {
-            res.send ('vous devez être connecté en tant que nanny')
+            req.session.flash = {error:`Vous devez être connecté`}
+               return res.redirect('/');
         }
     };
 
     /**
      * create a Diary by Nanny to one Parent
-     * @param {*} req 
-     * @param {*} res 
      */
     async createDiary(req, res) {
        //verify if a session exists and if an user is connected
@@ -121,18 +125,17 @@ class NannyController extends CoreController {
             
                 //add diary to database
                 await nannyDataMapper.createDiary(date, description, user, parentId);
-                
-                res.redirect('/dashboard');
+                req.session.flash = {success:`Journal de suivi créé avec succès`}
+                return res.redirect('/nanny/dashboard');
             } else {
-                res.redirect('/');
+                req.session.flash = {error:`Vous devez être connecté`}
+                return res.redirect('/');
             }
         
     }
 
 /**
  * add suggest by nanny to one Parent
- * @param {*} req 
- * @param {*} res 
  */
     async createSuggest(req, res) {
         //verify if a session exists and if an user is connected
@@ -143,10 +146,11 @@ class NannyController extends CoreController {
             
                 //add suggest to database
                 await nannyDataMapper.createSuggest(title, parentId, user);
-                
-                res.redirect('nannyDashboard');
+                req.session.flash = {success:`Journal de suivi créé avec succès`}
+                res.redirect('/nanny/dashboard');
             } else {
-                res.redirect('/');
+                req.session.flash = {error:`Vous devez être connecté`}
+                return res.redirect('/');
             }
     }
 
@@ -162,54 +166,33 @@ class NannyController extends CoreController {
             const parent = await nannyDataMapper.getAllParents(user.id);
             const suggest = await nannyDataMapper.getSuggests(user.id);
 
-            // if (!children) {
-            //     children = [];
-            //   };
-
-            //   if (!parent) {
-            //     parent = [];
-            //   };
-
-            //   if (!activity) {
-            //     activity = [];
-            //   };
-
-            //   if (!suggest) {
-            //     suggest = [];
-            //   };
-
-
+          
             res.render('nannyDashboard', { activity, children, parent, user, suggest });
 
      } else {
-        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+        req.session.flash = {error:`Vous devez être connecté`}
+                return res.redirect('/');
 }
 
     }
 
-    async getNannyProfile(req, res) {
-        //verify if a session exists and if a Nanny is connected
-        if (req.session && req.session.user && req.session.user.is_nanny) {
-            const user = req.session.user;
-            const children = await nannyDataMapper.getAllChildren(user.id);
-            const parent = await nannyDataMapper.getAllParents(user.id);
+//     async getNannyProfile(req, res) {
+//         //verify if a session exists and if a Nanny is connected
+//         if (req.session && req.session.user && req.session.user.is_nanny) {
+//             const user = req.session.user;
+//             const children = await nannyDataMapper.getAllChildren(user.id);
+//             const parent = await nannyDataMapper.getAllParents(user.id);
 
-            // if (!children) {
-            //     children = [];
-            //   };
 
-            //   if (!parent) {
-            //     parent = [];
-            //   }
+//     return res.render('nannyProfile', { children, parent, user, error });
 
-    res.render('nannyProfile', { children, parent, user, error });
+// } else {
 
-} else {
-
-   return res.render('homePage', {error: `pas d'utilisateurs connectés`});
-}
+//     req.session.flash = {error:`Vous devez être connecté`}
+//     return res.redirect('/');
+// }
     
-    }
+//     }
 
 async getNannySuggests(req, res) {
     //verify if a session exists and if a Nanny is connected
@@ -219,14 +202,11 @@ async getNannySuggests(req, res) {
 
         const suggests = await nannyDataMapper.getAllSuggests(user.id)
 
-        // if (!suggests) {
-        //     suggests = [];
-        //   };
-
-        res.render('nannySuggests', { suggests, user });
+        return res.render('nannySuggests', { suggests, user });
     } else {
 
-        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+        req.session.flash = {error:`Vous devez être connecté`}
+                return res.redirect('/');
      }
 }
 
@@ -241,9 +221,10 @@ async getNannyDiaries(req,res) {
         // if (!diaries) {
         //     diaries = [];
         //   };
-        res.render('nannyDiaries', { user, diaries });
+       return res.render('nannyDiaries', { user, diaries });
     } else {
-        return res.render('homePage', {error: `pas d'utilisateurs connectés`});
+        req.session.flash = {error:`Vous devez être connecté`}
+        return res.redirect('/');
 }
 }
 
