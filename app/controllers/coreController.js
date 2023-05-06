@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require('uuid'); // module to generate an UNIQUE RANDOM i
 const fs = require('fs');
 const { tableName } = require("../models/coreDataMapper");
 const path = require('path');
-const { log } = require('console');
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
@@ -21,19 +20,25 @@ class CoreController {
     const user = await this.constructor.dataMapper.getUserByEmail(email);
     
     if (!user){
-        return res.render('homePage', {error: `l'email est incorrect`});
+         //message for toast notification
+        req.session.flash = {error: `l'email ou le mot de passe est incorrect`}
+        return res.redirect('/');
     }
 
     //we compare the password of the user if it is the same
     const ok = await bcrypt.compare(password, user.password);
 
     if(!ok) {
-        return res.render('homePage', {error: `le mot de passe est erronné`});
+         //message for toast notification
+        req.session.flash = {error: `l'email ou le mot de passe est incorrect`}
+        return res.redirect('/');
     }
     //we delete the password of the req.body
     delete req.body.password;
     req.session.user = user;
-   
+    //message for toast notification
+   req.session.flash = {success: `Bienvenue ${user.first_name}`};
+   console.log("login" + JSON.stringify(req.session.flash));
     // check if user is a nanny or a parent
     if (user.is_nanny) {
         return res.redirect('/nanny/dashboard');
@@ -44,9 +49,6 @@ class CoreController {
 
 /**
  * create account of Nanny or Parent
- * @param {*} req 
- * @param {*} res 
- * @returns 
  */
 async register(req, res) {
 
@@ -64,7 +66,8 @@ async register(req, res) {
     if (comparedEmail){
 
        
-        return res.render('homePage', {error: `cet email est déjà utilisé`});
+        req.session.flash = {error: `un compte avec cet email existe déjà`}
+        return res.redirect('/');
 
     }
 
@@ -72,7 +75,8 @@ async register(req, res) {
     if(password !== passwordConfirmation) {
 
        
-        return res.render('homePage', {error: `les mots de passe ne correspondent pas`});
+        req.session.flash = {error: `les mots de passe ne correspondent pas`}
+       return res.redirect('/');
 
     }
     
@@ -89,16 +93,14 @@ async register(req, res) {
     //add user to database
     await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, picture, uniqueId);
     
-    res.render('homePage', {message:'Compte créé correctement'});
+    req.session.flash = {success: `compté créé avec succès, vous pouvez vous connecter`}
+     return res.redirect('/');
 
 }
 
 
 /**
  * Modify the Profile of the user
- * @param {*} req 
- * @param {*} res 
- * @returns 
  */
 
 async modifyProfile(req, res) {
@@ -130,7 +132,7 @@ async modifyProfile(req, res) {
     const comparedEmail = await this.constructor.dataMapper.getUserByEmail(email);
 
     if (comparedEmail){
-       
+        req.session.flash = {error: `un compte avec cet email existe déjà`}
         // check if user is a nanny or a parent
     if (user.is_nanny) {
         return res.redirect(`/nanny/profile`);
@@ -146,7 +148,7 @@ async modifyProfile(req, res) {
         const ok = await bcrypt.compare(oldPassword, user.password);
 
     if(!ok) {
-        
+        req.session.flash = {error: `le mot de passe est érroné`}
         // check if user is a nanny or a parent
     if (user.is_nanny) {
         
@@ -159,7 +161,7 @@ async modifyProfile(req, res) {
     
     //compare password to passwordConfirmation from the form
     if(password !== passwordConfirmation) {
-       
+        req.session.flash = {error: `les mots de passe ne correspondent pas`}
         // check if user is a nanny or a parent
     if (user.is_nanny) {
 
@@ -187,6 +189,9 @@ async modifyProfile(req, res) {
             delete req.body.passwordConfirmation;
             delete req.body.oldPassword;
             req.session.user = updatedUser;
+
+            req.session.flash = {success: `votre compte a été modifié avec succès`}
+
             // check if user is a nanny or a parent
     if (updatedUser.is_nanny) {
         return res.redirect('/nanny/profile');
@@ -195,7 +200,7 @@ async modifyProfile(req, res) {
     }
 
 }else {
-  
+    req.session.flash = {error: `Vous devez être connecté`}
     res.redirect(`/`);
 }
 }
@@ -203,9 +208,6 @@ async modifyProfile(req, res) {
 
 /**
  * delete an user : if nanny is deleted just nanny is deleted, if parent is deleted his children are deleted too
- * @param {*} req 
- * @param {*} res 
- * @returns 
  */
  async deleteProfile(req, res) {
     //verify if a session exists and if an user is connected
@@ -220,6 +222,7 @@ async modifyProfile(req, res) {
             }
         //delete the user in database
         await this.constructor.dataMapper.deleteProfile(user.id);
+        req.session.flash = {success: `Votre compte a été supprimé avec succès`}
         return res.redirect('/');
 }}
 

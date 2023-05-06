@@ -12,7 +12,6 @@ const app = {
     app.iconeBurgerMenu = document.querySelector('.navbar-mobile i');
     app.iconeBurgerMenu.addEventListener('click', app.handleBurgerMenu);
 
-        
         //event for the click on the FAQ
         const questions = document.querySelectorAll('.question');
         questions.forEach((question) => {
@@ -24,10 +23,16 @@ const app = {
         openModals.forEach((button) => {
             button.addEventListener('click', modal.openModal);
     });
-
+//event on click to close modals
     const closeModals = document.querySelectorAll('.btn-close');
 closeModals.forEach((closeButton) => {
   closeButton.addEventListener('click', modal.closeModal)});
+
+  //event on input ta validate Inputs
+
+  validation.emailField.addEventListener('input', validation.validateEmail);
+  validation.passwordField.addEventListener('input', validation.validatePassword);
+  validation.zip_codeField.addEventListener('input', validation.validateZipCode);
 },
 
 
@@ -76,12 +81,10 @@ usersSelector : () => {
     parentLogin.addEventListener('click', modal.selectParentLogin);
     nannyLogin.addEventListener('click', modal.selectNannyLogin);
 
-    modal.formLogin.addEventListener('submit', modal.submitForm);
-    modal.formSignUp.addEventListener('submit', modal.submitForm);
+    modal.formLogin.addEventListener('submit', modal.submitFormLogin);
+    modal.formSignUp.addEventListener('submit', modal.submitFormRegister);
 
-}
-
-
+},
 
 
 

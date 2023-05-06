@@ -42,7 +42,8 @@ html {
 
 
 .reponse {
-    height: 4rem;
+    min-height: 4rem;
+    height: auto;
     color: var(--color-btn);
     background: var(--color-faq-response);
     padding: 3vh 0;
@@ -51,6 +52,7 @@ html {
 
 .text-faq {
     font-size: 2vh;
+    padding-left: 2rem;
 }
 
 .reponse.visible {

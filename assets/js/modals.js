@@ -69,7 +69,33 @@ const modal = {
 /**
  * Function validate the form
  */
-    submitForm: (event) => {
+submitFormRegister: (event) => {
+    event.preventDefault();
+
+    const selectedRole = document.querySelector('.nanny-register.is-not-clicked, .parent-register.is-not-clicked, .nanny-login.is-not-clicked, .parent-login.is-not-clicked');
+    const emailValid = validation.emailRegex.test(validation.emailField.value);
+    const passwordValid = validation.passwordRegex.test(validation.passwordField.value);
+    if(!selectedRole) {
+        Toastify({
+            text: 'Veuillez sélectionner un rôle (Parent ou Nounou) avant de continuer.',
+            duration: 3000, 
+            gravity: 'top', 
+            position: 'center', 
+            backgroundColor: 'linear-gradient(to right, #ff416c, #ff4b2b)',
+          }).showToast();
+    } else if (!emailValid) {
+        validation.emailError.textContent = 'Veuillez saisir une adresse email valide';
+        validation.emailError.classList.add('is-invalid');
+    } 
+    else if (!passwordValid) {
+        validation.passwordError.textContent = 'Veuillez saisir un mot de passe valide : 8 caractère minimum avec au moins 1 majuscule et un caractère spécial';
+        validation.passwordError.classList.add('is-invalid');
+    }else {
+
+        event.target.submit();
+    }
+},
+    submitFormLogin: (event) => {
         event.preventDefault();
 
         const selectedRole = document.querySelector('.nanny-register.is-not-clicked, .parent-register.is-not-clicked, .nanny-login.is-not-clicked, .parent-login.is-not-clicked');
@@ -83,8 +109,9 @@ const modal = {
                 backgroundColor: 'linear-gradient(to right, #ff416c, #ff4b2b)',
               }).showToast();
         } else {
+
             event.target.submit();
         }
     },
-
+   
 }

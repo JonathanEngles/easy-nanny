@@ -6,6 +6,7 @@ const express = require("express");
 const router = require("./routers/mainRouter");
 const multer = require('multer');
 const path = require('path');
+const Toastify = require('toastify-js');
 const app = express();
 
 
@@ -34,14 +35,19 @@ proxy:true
 app.use(session(sess));
 
 app.use((req,_ , next) => {
-  
   // transmit session's information to views
 app.locals.session = req.session;
-
+app.locals.flash = req.session.flash;
+if (req.session && req.session.flash) {
+  console.log("middleware", req.session.flash);
+  delete req.session.flash;
+}
+console.log("middleware", req.session);
 next();
 });
 
 const bodySanitizer = require('./middlewares/body-sanitizer');
+
 app.use(bodySanitizer);
 
 // to get the req.body
@@ -49,7 +55,6 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.use(express.static("./assets"));
-
 
 // configuration of the storage of multer stockage and rename file
 const storage = multer.diskStorage({
