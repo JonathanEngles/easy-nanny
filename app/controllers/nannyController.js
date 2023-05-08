@@ -26,9 +26,9 @@ class NannyController extends CoreController {
           const user = req.session.user
           //get the form with req.body
         const {title, description, date, begin, end, color, category} = req.body;
-
+     const colorValue = color.substring(1)
             //add activity to the database
-        await nannyDataMapper.createActivity(title, description, date, begin, end, color, category, user);
+        await nannyDataMapper.createActivity(title, description, date, begin, end, colorValue, category, user);
         req.session.flash = {success: `Activité ${title} créée avec succès`}
         return res.redirect('/nanny/dashboard')
         } else {
@@ -47,12 +47,13 @@ class NannyController extends CoreController {
             const userId = req.session.user.id
             //get the form with req.body
             const {id, title, description, date, begin, end, color, category} = req.body;
+            const colorValue = color.substring(1)
             //modify the activity in the database
-            await nannyDataMapper.modifyActivity(id, userId, {title, description, date, begin, end, color, category});
+            await nannyDataMapper.modifyActivity(id, userId, {title, description, date, begin, end, colorValue, category});
             req.session.flash = {success:`Activité ${title} modifiée avec succès`}
             return res.redirect('/nanny/dashboard')
         } else {
-            req.session.flash = {error: `vous devez être conecté`}
+            req.session.flash = {error: `vous devez être connecté`}
             return res.redirect('/')
     }
 };
@@ -65,14 +66,13 @@ class NannyController extends CoreController {
         if (req.session && req.session.user && req.session.user.is_nanny) {
             const userId = req.session.user.id;
             //get the id of activity by his form
-            const activityId = req.body.id;
-
+            const activityId = Number(req.params.id);
             //delete the activity in database
             await nannyDataMapper.deleteActivity(userId, activityId);
             req.session.flash = {success:`Activité supprimée avec succès`}
             return res.redirect('/nanny/dashboard');
         } else {
-            req.session.flash = {error: `vous devez être conecté`}
+            req.session.flash = {error: `vous devez être connecté`}
             return res.redirect('/')
     }
     };

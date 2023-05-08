@@ -22,7 +22,8 @@ let sess = {
   cookie: {
     secure: app.get(process.env.NODE_ENV) === 'production',
       // 24 hours duration
-      maxAge: 1000 * 60 * 60 * 24
+      maxAge: 1000 * 60 * 60 * 24,
+      sameSite: 'lax',
   },
 proxy:true
 }

@@ -11,6 +11,7 @@ const validation = {
     zip_codeError: document.querySelector('#zip_code-error'),
     zip_codeRegex: /^[0-9]{5}$/,
 
+    
 
     validateEmail: function()  {
         const value = validation.emailField.value;
@@ -46,4 +47,16 @@ validateZipCode: function()  {
 }
 },
 
+init: function() {
+    //event on input ta validate Inputs
+validation.emailField.addEventListener('input', validation.validateEmail);
+validation.passwordField.addEventListener('input', validation.validatePassword);
+validation.zip_codeField.addEventListener('input', validation.validateZipCode);
+
+},
+
 };
+
+document.addEventListener('DOMContentLoaded', validation.init);
+
+

@@ -1,4 +1,70 @@
 <%- include('partials/header.ejs') %>
+  <!-- Slider main container -->
+  <div class="swiper">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+      <!-- Slides -->
+      <div class="swiper-slide">
+        <div id="calendar-parent"></div>
+      </div>
+      <div class="swiper-slide">
+        <div class="profil-container">
+          <div class="user-profil blue-shadow">
+            <div class="profile-picture-container">
+              <img class="profile-picture" src="/public/uploads/<%= user.picture %>" alt="Profile Picture">
+            </div>
+            <div class="profile-text-container">
+              <h3 class="welcome-profil"> Bienvenue <%= user.first_name %>
+                  <%= user.name %>
+              </h3>
+              <button class="open-modal btn-profile" data-modal="profile-modal">voir mon profil</button>
+            </div>
+          </div>
+          <div class="add-children-container">
+            <p class="text-add-children">Rajouter un enfant</p>
+            <button class="add-children" type="button">
+              <svg id="Flat" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                <path
+                  d="M172,56a4.0002,4.0002,0,0,1,4-4h20V32a4,4,0,0,1,8,0V52h20a4,4,0,0,1,0,8H204V80a4,4,0,0,1-8,0V60H176A4.0002,4.0002,0,0,1,172,56Zm54.76318,56.23145A101.03921,101.03921,0,0,1,228,128a99.76346,99.76346,0,0,1-32.71167,73.91113,3.97148,3.97148,0,0,1-.83813.74756,99.79345,99.79345,0,0,1-132.89795.00195,3.97186,3.97186,0,0,1-.84229-.751A99.95588,99.95588,0,0,1,128,28a101.06719,101.06719,0,0,1,15.76855,1.23682,4,4,0,1,1-1.25195,7.90136A93.04738,93.04738,0,0,0,128,36,91.95438,91.95438,0,0,0,62.82861,192.87158a75.6171,75.6171,0,0,1,44.50782-34.04,44,44,0,1,1,41.32714,0,75.616,75.616,0,0,1,44.50782,34.04053A91.70971,91.70971,0,0,0,220,128a93.00839,93.00839,0,0,0-1.13818-14.51611,4,4,0,0,1,7.90136-1.25244ZM128,156a36,36,0,1,0-36-36A36.04061,36.04061,0,0,0,128,156Zm0,64a91.58351,91.58351,0,0,0,59.135-21.583,68.01136,68.01136,0,0,0-118.27026,0A91.58413,91.58413,0,0,0,128,220Z" />
+              </svg>
+            </button>
+            
+          </div>
 
-
-<%- include('partials/footer.ejs') %>
+          <div class="children-list">
+            <% if (!children) { %>
+              <p> Vous n'avez pas encore ajouté d'enfant </p>
+            <% } else { %>
+              <% for (const child of children) { %>
+                <div class="children-profil">
+                  <div class="children-picture-container">
+                    <img class="children-picture" src="/public/uploads/<%= child.child_picture %>" alt="Photo de <%= child.child_first_name %>">
+                  </div>
+                  <div class="children-text-container">
+                    <p class="text-children-profil"> <%= child.child_first_name %> </p>
+                    <p class="text-children-nanny"> Ma nounou: <%= child.nanny_first_name %> <%= child.nanny_name %> </p>
+                  </div>
+                </div>
+              <% } %>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">Slide 3</div> ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+  </div>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/locales/fr.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js"></script>
+  <script src="/js/dashboard.js"></script>
+  <script src="/js/swipper.js"></script>
+  <script src="/js/calendar.js"></script>
+  <%- include('partials/footer.ejs') %>

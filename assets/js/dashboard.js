@@ -3,7 +3,6 @@ const app = {
 
     init: function() {
         app.addEventListenerToAction();
-        app.usersSelector();
     },
 
 
@@ -12,11 +11,7 @@ const app = {
     app.iconeBurgerMenu = document.querySelector('.navbar-mobile i');
     app.iconeBurgerMenu.addEventListener('click', app.handleBurgerMenu);
 
-        //event for the click on the FAQ
-        const questions = document.querySelectorAll('.question');
-        questions.forEach((question) => {
-            question.addEventListener('click', app.handlerFaq);
-        });
+        
         //event on click to open the right modale
         const openModals = document.querySelectorAll('.open-modal');// all the button wich have the class open-modal
 
@@ -30,7 +25,6 @@ closeModals.forEach((closeButton) => {
 
   
 },
-
 
 /**
  * handler to open and hide the modal of burger menu
@@ -52,40 +46,25 @@ handleBurgerMenu : () => {
 });
 },
 
-/**
- * handler to open FAQ accordeon
- */
-
-handlerFaq :  (event) => {
-    const question = event.target.closest('.question');//search the most near element of  .question
-    if(question) {
-    const next = question.nextElementSibling;
-    const icone = question.lastElementChild;
-    next.classList.toggle('visible');
-    icone.classList.toggle('rotate');
-    }
-},
-
-usersSelector : () => {
-    const parentLogin = document.querySelector('.parent-login');
-  const nannyLogin = document.querySelector('.nanny-login');
-  const parentRegister = document.querySelector('.parent-register');
-  const nannyRegister = document.querySelector('.nanny-register');
-
-    parentRegister.addEventListener('click', modal.selectParentRegister);
-    nannyRegister.addEventListener('click', modal.selectNannyRegister);
-    parentLogin.addEventListener('click', modal.selectParentLogin);
-    nannyLogin.addEventListener('click', modal.selectNannyLogin);
-
-    modal.formLogin.addEventListener('submit', modal.submitFormLogin);
-    modal.formSignUp.addEventListener('submit', modal.submitFormRegister);
-
-},
-
-
-
 }
 
+const modal = {
+    /**
+     * function to open allmodal thanks to the data-modal
+     */
+    openModal : function() {
+        const modal = document.querySelector('.' + this.dataset.modal);
+        modal.classList.add('active');
+    },
+    /**
+     * function to close all modal
+     */
+    closeModal : (event) => {
+        const closeButton = event.target
+        const modal =  closeButton.closest('.modal');
+        modal.classList.remove('active');
+    },
+}
 
 
 

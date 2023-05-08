@@ -47,15 +47,17 @@ router.get('/dashboard', handlerController(parentController.getParentDashboard))
 /**
  * Parent route for Suggests en GET
  */
-
-
 router.get('/suggests', handlerController(parentController.getParentSuggests));
 
 /**
  * Parent route for Diary en GET
  */
-
-
 router.get('/diary', handlerController(parentController.getParentDiaries));
+
+
+/**
+ * Parent route for get all activities
+ */
+router.get('/activities', handlerController(parentController.getParentActivity));
 
 module.exports = router;

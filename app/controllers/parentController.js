@@ -28,7 +28,7 @@ class ParentController extends CoreController {
                 await parentDataMapper.createSuggest(title, nannyId, user);
                 
                 req.session.flash = {success:`Journal de suivi créé avec succès`}
-                res.redirect('/parent/dashboard');
+               return res.redirect('/parent/dashboard');
             } else {
                 req.session.flash = {error:`Vous devez être connecté`}
                 return res.redirect('/');
@@ -41,17 +41,36 @@ class ParentController extends CoreController {
         //verify if a session exists and if an user is connected
         if (req.session && req.session.user && !req.session.user.is_nanny) {
             const user = req.session.user;
+            // const nannyId = user.nanny_id;
+
+            // const activities = await parentDataMapper.getAllActivity(nannyId);
+            const children = await parentDataMapper.getAllChildrenAndNanny(user.id);
+            // const nanny = await parentDataMapper.getNannyById(nannyId);
+            // const suggest = await parentDataMapper.getSuggests(user.id)
+            // const diary = await parentDataMapper.getLastDiary(user.id);
+
+            // , activity, children, nanny, suggest, diary 
+
+           return res.render('parentDashboard', { user, children });
+
+     } else {
+        req.session.flash = {error:`Vous devez être connecté`}
+                return res.redirect('/');
+}
+
+    }
+
+
+    async getParentActivity(req, res) {
+        //verify if a session exists and if an user is connected
+        if (req.session && req.session.user && !req.session.user.is_nanny) {
+            const user = req.session.user;
             const nannyId = user.nanny_id;
 
-            const activity = await parentDataMapper.getAllActivity(nannyId);
-            const children = await parentDataMapper.getAllChildren(user.id);
-            const nanny = await parentDataMapper.getNannyById(nannyId);
-            const suggest = await parentDataMapper.getSuggests(user.id)
-            const diary = await parentDataMapper.getLastDiary(user.id);
-
+            const activities = await parentDataMapper.getAllActivity(nannyId);
            
 
-            res.render('parentDashboard', { user, activity, children, nanny, suggest, diary });
+           return res.json(activities);
 
      } else {
         req.session.flash = {error:`Vous devez être connecté`}
@@ -82,7 +101,7 @@ class ParentController extends CoreController {
 
             const suggests = await parentDataMapper.getAllSuggests(user.id);
 
-            res.render('parentSuggests', { user, suggests });
+            return res.render('parentSuggests', { user, suggests });
     } else {
         req.session.flash = {error:`Vous devez être connecté`}
                 return res.redirect('/');
@@ -93,7 +112,7 @@ async getParentDiaries(req, res) {
         const user = req.session.user;
         const diaries = await parentDataMapper.getAllDiaries(user.id);
 
-        res.render('parentDiaries', { user, diaries });
+       return res.render('parentDiaries', { user, diaries });
     } else {
         req.session.flash = {error:`Vous devez être connecté`}
                 return res.redirect('/');
