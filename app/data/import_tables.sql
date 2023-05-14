@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS "activity" (
     "date" DATE NOT NULL,
     "begin" TIME NOT NULL,
     "end" TIME NOT NULL,
-    "color" VARCHAR(6) NOT NULL DEFAULT 'FFFFFF',
+    "color" VARCHAR(6) NOT NULL DEFAULT '379DDD',
     "category" VARCHAR(255) NOT NULL,
     "nanny_id" INTEGER  REFERENCES "nanny" ("id") ON DELETE SET NULL,
     "created_by" TEXT NOT NULL,

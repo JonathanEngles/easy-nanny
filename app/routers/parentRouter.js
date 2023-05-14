@@ -21,8 +21,9 @@ router.post('/login',handlerController(parentController.login.bind(parentControl
  * routes for the profil in GET/PATCH/DELETE
  */
 router.get('/profile', handlerController(parentController.getParentProfile));
-router.post('/profile', handlerController(parentController.modifyProfile.bind(parentController)));
 router.post('/profile/delete', handlerController(parentController.deleteProfile.bind(parentController)));
+router.post('/profile', handlerController(parentController.modifyProfile.bind(parentController)));
+
 
 /**
  * Route for suggest : POST
@@ -47,15 +48,17 @@ router.get('/dashboard', handlerController(parentController.getParentDashboard))
 /**
  * Parent route for Suggests en GET
  */
-
-
 router.get('/suggests', handlerController(parentController.getParentSuggests));
 
 /**
  * Parent route for Diary en GET
  */
-
-
 router.get('/diary', handlerController(parentController.getParentDiaries));
+
+
+/**
+ * Parent route for get all activities
+ */
+router.get('/activities', handlerController(parentController.getParentActivity));
 
 module.exports = router;

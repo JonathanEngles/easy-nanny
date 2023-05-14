@@ -28,11 +28,7 @@ const app = {
 closeModals.forEach((closeButton) => {
   closeButton.addEventListener('click', modal.closeModal)});
 
-  //event on input ta validate Inputs
-
-  validation.emailField.addEventListener('input', validation.validateEmail);
-  validation.passwordField.addEventListener('input', validation.validatePassword);
-  validation.zip_codeField.addEventListener('input', validation.validateZipCode);
+  
 },
 
 

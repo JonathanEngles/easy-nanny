@@ -1,0 +1,231 @@
+.modal-profile-container,.link-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+font-size: 2vh;
+}
+
+
+
+.profile-item {
+  
+  padding: 1rem 0;
+  margin-top: 1rem;
+}
+
+.link-container {
+  width: 95%;
+  padding: .5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--color-girl);
+}
+
+.link-notice {
+  font-size: 1.3vh;
+}
+
+.link-key {
+  text-align: center;
+  font-size: 3vh;
+  margin-top: 1rem;
+}
+
+.button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 3rem;
+}
+
+.btn-handler-profile {
+  font-size: 2vh;
+  padding: .8rem;
+  border-radius: 2rem;
+  color: var(--color-btn);
+  border: .1rem solid var(--color-btn);
+    box-shadow: 2px 2px 5px black;
+}
+
+.modify-profile {
+  background-color: var(--nanny);
+}
+
+.delete-profile {
+  background-color: red;
+}
+
+.text-delete {
+  text-align: center;
+  font-size: 3rem;
+  color: red;
+}
+
+ .profil-container {
+  width: 85%;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+}
+
+.user-profil {
+  width: 95%;
+    height: 100%;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-radius: 2rem;
+    
+
+}
+
+.profile-picture-container {
+    max-width: 50%;
+    display: flex;
+   align-items: center;
+   margin-left: 1rem;
+  
+}
+
+.modal-profile-picture-container {
+  max-width: 30%;
+}
+.profile-text-container {
+   
+    display: flex;
+    flex-direction: column;
+   
+   justify-content:space-around;
+   
+}
+
+
+.profile-picture, .children-picture {
+    margin: auto;
+    width: 100%;
+    border-radius: 2rem;
+  }
+
+  .welcome-profil {
+    font-size: 2.5vh;
+    background: linear-gradient(45deg, var(--color-girl) 10%, var(--color-boy) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-align: center;
+font-weight: 800;
+padding: 2rem 0;;
+  }
+  .text-parent-nanny {
+    font-size: 2vh;
+    color: var(--color-boy);
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+
+  .btn-profile {
+    align-self: center;
+    width: 80%;
+    font-size: 2vh;
+    font-weight: 600;
+    color: var(--color-boy);
+    border-radius: 5rem;
+    padding: .5rem 0;
+    margin-top: 1rem;
+    border: 2px solid var(--primary-color1);
+
+  }
+
+  .add-children-container {
+    margin-top: 3rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #Flat {
+    width: 5vh;
+    height: auto;
+    align-self: center;
+  }
+
+  .children-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.children-profil {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2rem 0;
+    border-radius: 2rem;
+    padding: 2rem 0;
+
+
+}
+
+
+
+.is-a-girl {
+  background-color: var(--color-girl);
+}
+
+.is-a-boy {
+  background-color: var(--color-boy);
+}
+  .children-picture-container {
+    max-width: 40%;
+    margin-left: 1rem;
+
+    
+  }
+
+  .children-picture {
+    margin: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .children-text-container {
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .text-children-profil {
+    color: var(--color-btn);
+    text-align: center;
+    font-size: 5vh;
+  }
+
+  @media screen and (min-width: 650px) {
+    
+
+
+  }
+  
+  @media screen and (min-width: 850px) {
+  
+    
+  
+      
+  }
+  
+  @media screen and (min-width: 1050px) {
+    .link-container {
+      width: 50%;
+    }
+  }
+  
+  
+  @media screen and (min-width: 1520px) {
+      
+      
+  
+  }

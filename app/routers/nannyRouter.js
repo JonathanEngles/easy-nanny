@@ -40,7 +40,7 @@ router.post('/diary', handlerController(nannyController.createDiary));
  */
 router.post('/activity', handlerController(nannyController.createActivity));
 router.post('/activity/patch', handlerController(nannyController.modifyActivity));
-router.get('/activity/delete/:id', handlerController(nannyController.deleteActivity));
+router.delete('/activity/delete/:id', handlerController(nannyController.deleteActivity));
 
 
 /**

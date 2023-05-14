@@ -58,10 +58,10 @@
 font-size: 4vh;
 }
 .pink-shadow {
-    box-shadow: 3rem 2rem 2rem var( --primary-color1), -2rem 0 .4rem var( --primary-color2);
+    box-shadow: 3rem 2rem 1.5rem var( --primary-color1), -2rem 0 .4rem var( --primary-color2);
 }
 .blue-shadow {
-    box-shadow: 3rem 2rem 2rem var( --primary-color2), -2rem 0 .4rem var( --primary-color1);
+    box-shadow: 3rem 2rem 1.5rem var( --primary-color2), -2rem 0 .4rem var( --primary-color1);
 }
 
 

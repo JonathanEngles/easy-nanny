@@ -38,7 +38,6 @@ class CoreController {
     req.session.user = user;
     //message for toast notification
    req.session.flash = {success: `Bienvenue ${user.first_name}`};
-   console.log("login" + JSON.stringify(req.session.flash));
     // check if user is a nanny or a parent
     if (user.is_nanny) {
         return res.redirect('/nanny/dashboard');
@@ -135,9 +134,9 @@ async modifyProfile(req, res) {
         req.session.flash = {error: `un compte avec cet email existe déjà`}
         // check if user is a nanny or a parent
     if (user.is_nanny) {
-        return res.redirect(`/nanny/profile`);
+        return res.redirect(`/nanny/dashboard`);
     } else {
-        return res.redirect(`/parent/profile`);
+        return res.redirect(`/parent/dashboard`);
 
     }
     }}
@@ -152,9 +151,9 @@ async modifyProfile(req, res) {
         // check if user is a nanny or a parent
     if (user.is_nanny) {
         
-        return res.redirect(`/nanny/profile`);
+        return res.redirect(`/nanny/dashboard`);
     } else {
-        return res.redirect(`/parent/profile`);
+        return res.redirect(`/parent/dashboard`);
 
     }
     }
@@ -165,9 +164,9 @@ async modifyProfile(req, res) {
         // check if user is a nanny or a parent
     if (user.is_nanny) {
 
-        return res.redirect(`/nanny/profile`);
+        return res.redirect(`/nanny/dashboard`);
     } else {
-        return res.redirect(`/parent/profile`);
+        return res.redirect(`/parent/dashboard`);
 
     }
     }
@@ -194,12 +193,12 @@ async modifyProfile(req, res) {
 
             // check if user is a nanny or a parent
     if (updatedUser.is_nanny) {
-        return res.redirect('/nanny/profile');
+        return res.redirect('/nanny/dashboard');
     } else {
-        return res.redirect('/parent/profile');
+        return res.redirect('/parent/dashboard');
     }
 
-}else {
+} else {
     req.session.flash = {error: `Vous devez être connecté`}
     res.redirect(`/`);
 }
@@ -213,20 +212,25 @@ async modifyProfile(req, res) {
     //verify if a session exists and if an user is connected
     if (req.session && req.session.user) {
         const user = req.session.user;
+        const { id } = req.body;
+        
         // Check if the user has a photo and if it is not the default photo
-        if (req.file && req.file.filename) {
             if (user.picture && user.picture !== `${tableName}_picture.jpg`) {
                 // Delete the user's photo from the server
                 const pathToDelete = path.join(__dirname, '..', '..', 'assets', 'public', 'uploads', user.picture);
                 fs.unlinkSync(pathToDelete);
             }
+
+           
         //delete the user in database
-        await this.constructor.dataMapper.deleteProfile(user.id);
-        req.session.flash = {success: `Votre compte a été supprimé avec succès`}
+        await this.constructor.dataMapper.deleteProfile(id);
+        req.session.destroy();
+        // req.session.flash = {success: `Votre compte a été supprimé avec succès`}
         return res.redirect('/');
-}}
+}
 
 
-}}
+}
+}
   
 module.exports = CoreController;
