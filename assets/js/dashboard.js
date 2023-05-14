@@ -1,5 +1,6 @@
 const app = {
     iconeBurgerMenu : null,
+    formModifyProfile : document.querySelector('.modify-form'), 
 
     init: function() {
         app.addEventListenerToAction();
@@ -23,7 +24,8 @@ const app = {
 closeModals.forEach((closeButton) => {
   closeButton.addEventListener('click', modal.closeModal)});
 
-  
+  app.formModifyProfile.addEventListener('submit', app.submitFormModify);
+
 },
 
 /**
@@ -46,6 +48,42 @@ handleBurgerMenu : () => {
 });
 },
 
+submitFormModify : (event) => {
+    event.preventDefault();
+
+
+    const emailNotEmpty = validation.emailField.value.trim() !== '';
+    const passwordNotEmpty = validation.passwordField.value.trim() !== '';
+
+
+    if (!emailNotEmpty && !passwordNotEmpty) {
+        if (!confirm(`êtes vous sur de vouloir modifier votre profil?`)) return;
+        event.target.submit();
+        return;
+      }
+
+      if (emailNotEmpty) {
+        const emailValid = validation.emailRegex.test(validation.emailField.value);
+        if (!emailValid) {
+          validation.emailError.textContent = 'Veuillez saisir une adresse email valide';
+          validation.emailError.classList.add('is-invalid');
+          return;
+        }
+      }
+      
+      if (passwordNotEmpty) {
+        const passwordValid = validation.passwordRegex.test(validation.passwordField.value);
+        if (!passwordValid) {
+          validation.passwordError.textContent = 'Veuillez saisir un mot de passe valide : 8 caractère minimum avec au moins 1 majuscule et un caractère spécial';
+          validation.passwordError.classList.add('is-invalid');
+          return;
+        }
+      }
+        if (!confirm(`êtes vous sur de vouloir modifier votre profil?`)) return;
+        event.target.submit();
+    
+},
+
 }
 
 const modal = {
@@ -64,9 +102,8 @@ const modal = {
         const modal =  closeButton.closest('.modal');
         modal.classList.remove('active');
     },
+
 }
-
-
 
 document.addEventListener('DOMContentLoaded', app.init);
 

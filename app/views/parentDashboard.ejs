@@ -17,7 +17,15 @@
               <h3 class="welcome-profil"> Bienvenue <%= user.first_name %>
                   <%= user.name %>
               </h3>
-              <button class="open-modal btn-profile" data-modal="profile-modal">voir mon profil</button>
+              <% if (!user.nanny_id) { %>
+                <p class="text-parent-nanny">Vous n'êtes lié à aucune nounou</p>
+                <% } else { %>
+                  <p class="text-parent-nanny">
+                    <%= nanny.first_name %>
+                      <%= nanny.name %> est la nounou de vos enfants
+                  </p>
+                  <% } %>
+                    <button class="open-modal btn-profile" data-modal="profile-user-modal">voir mon profil</button>
             </div>
           </div>
           <div class="add-children-container">
@@ -28,25 +36,26 @@
                   d="M172,56a4.0002,4.0002,0,0,1,4-4h20V32a4,4,0,0,1,8,0V52h20a4,4,0,0,1,0,8H204V80a4,4,0,0,1-8,0V60H176A4.0002,4.0002,0,0,1,172,56Zm54.76318,56.23145A101.03921,101.03921,0,0,1,228,128a99.76346,99.76346,0,0,1-32.71167,73.91113,3.97148,3.97148,0,0,1-.83813.74756,99.79345,99.79345,0,0,1-132.89795.00195,3.97186,3.97186,0,0,1-.84229-.751A99.95588,99.95588,0,0,1,128,28a101.06719,101.06719,0,0,1,15.76855,1.23682,4,4,0,1,1-1.25195,7.90136A93.04738,93.04738,0,0,0,128,36,91.95438,91.95438,0,0,0,62.82861,192.87158a75.6171,75.6171,0,0,1,44.50782-34.04,44,44,0,1,1,41.32714,0,75.616,75.616,0,0,1,44.50782,34.04053A91.70971,91.70971,0,0,0,220,128a93.00839,93.00839,0,0,0-1.13818-14.51611,4,4,0,0,1,7.90136-1.25244ZM128,156a36,36,0,1,0-36-36A36.04061,36.04061,0,0,0,128,156Zm0,64a91.58351,91.58351,0,0,0,59.135-21.583,68.01136,68.01136,0,0,0-118.27026,0A91.58413,91.58413,0,0,0,128,220Z" />
               </svg>
             </button>
-            
           </div>
-
           <div class="children-list">
-            <% if (!children) { %>
+            <% if (!children || children.length === 0) { %>
               <p> Vous n'avez pas encore ajouté d'enfant </p>
-            <% } else { %>
-              <% for (const child of children) { %>
-                <div class="children-profil">
-                  <div class="children-picture-container">
-                    <img class="children-picture" src="/public/uploads/<%= child.child_picture %>" alt="Photo de <%= child.child_first_name %>">
+              <% } else { %>
+                <% for (const child of children) { %>
+                  <div
+                    class="children-profil  <% if (child.child_sexe === 'M') { %> is-a-boy <% } else { %> is-a-girl  <% } %> <% if (child.child_sexe === 'M') { %> pink-shadow <% } else { %> blue-shadow  <% } %>">
+                    <div class="children-picture-container">
+                      <img class="children-picture" src="/public/uploads/<%= child.child_picture %>"
+                        alt="Photo de <%= child.child_first_name %>">
+                    </div>
+                    <div class="children-text-container">
+                      <p class="text-children-profil">
+                        <%= child.child_first_name %>
+                      </p>
+                    </div>
                   </div>
-                  <div class="children-text-container">
-                    <p class="text-children-profil"> <%= child.child_first_name %> </p>
-                    <p class="text-children-nanny"> Ma nounou: <%= child.nanny_first_name %> <%= child.nanny_name %> </p>
-                  </div>
-                </div>
-              <% } %>
-            <% } %>
+                  <% } %>
+                    <% } %>
           </div>
         </div>
       </div>
@@ -60,11 +69,136 @@
     <!-- If we need scrollbar -->
     <div class="swiper-scrollbar"></div>
   </div>
+  <aside class="modal profile-user-modal">
+    <i class="fas fa-times btn-close"></i>
+    <div class="modal-profile-container ">
+      <div class="profile-picture-container modal-profile-picture-container shadow-blue">
+        <img class="profile-picture" src="/public/uploads/<%= user.picture %>" alt="Profile Picture">
+      </div>
+      <div class="profile-item">
+        <p>Nom: <%= user.name %>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Prénom: <%= user.first_name %>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Email: <%= user.email %>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Adresse: <%= user.address %>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Code postal: <%= user.zip_code %>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Ville: <%= user.city %>
+        </p>
+      </div>
+      <div class="profile-item link-container">
+        <p class="link-text">Clé de liaison</p>
+        <p class="link-notice">(à communiquer à votre nounou pour lier vos comptes)</p>
+        <p class="link-key">
+          <%= user.uniqueId %>
+        </p>
+      </div>
+      <div class="button-container">
+        <button class="open-modal btn-handler-profile modify-profile" data-modal="modify-modal">Modifier mon profil</button>
+        <button class="open-modal btn-handler-profile delete-profile" data-modal="delete-modal">Supprimer mon profil</button>
+      </div>
+    </div>
+  </aside>
+
+  <aside class="modal modify-modal">
+       
+    <i class="fas fa-times btn-close"></i>
+
+<div class="form-container">
+    <form class="form modify-form" action="/parent/profile" method="POST" enctype="multipart/form-data">
+        <div class="form-item image-preview">
+            <label for="picture-register">Photo :</label>
+            <input type="file" id="picture" name="picture">
+            <img id="photo-preview" src="#" alt="Aperçu de la photo">
+        </div>
+
+        <div class="form-item">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" placeholder="<%= user.name %>">
+        </div>
+        <div class="form-item">
+            <label for="first_name">Prénom :</label>
+            <input type="text" id="first_name" name="first_name" placeholder="<%= user.first_name %>">
+        </div>
+        <div class="form-item">
+            <label for="email">Adresse e-mail :</label>
+            <input type="email" id = "email" class="email" name="email" placeholder="<%= user.email %>">
+            <span class="error-form is-valid" id="email-error">placeholder</span>
+            
+        </div>
+
+        <div class="form-item">
+          <label for="oldPassword">Ancien mot de passe :</label>
+          <input type="password" id="oldPassword" name="oldPassword">
+      </div>
+        <div class="form-item">
+            <label for="password">Nouveau mot de passe :</label>
+            <input type="password" id="password" name="password">
+            <span class="error-form is-valid" id="password-error">Veuillez saisir un mot de passe valide : 8 caractère minimum, au moins 1 majuscule et un caractère spécial</span>
+        </div>
+        <div class="form-item">
+            <label for="passwordConfirmation">Confirmez votre mot de passe :</label>
+            <input type="password" id="passwordConfirmation" name="passwordConfirmation">
+            <span class="error-form is-valid" id="passwordConfirmation-error">placeholder</span>
+        </div>
+    
+   
+        <div class="form-item">
+            <label for="address">Adresse :</label>
+            <input type="text" id="address" name="address" placeholder="<%= user.address %>">
+        </div>
+        <div class="form-item">
+            <label for="zip_code">Code postal :</label>
+            <input type="text" id="zip_code" name="zip_code" placeholder="<%= user.zip_code %>">
+            <span class="error-form is-valid" id="zip_code-error">placeholder</span>
+        </div>
+        <div class="form-item">
+            <label for="city">Ville :</label>
+            <input type="text" id="city" name="city" placeholder="<%= user.city %>">
+        </div>
+    
+       
+        <input type="submit" value="Modifier" class="submit">
+    
+    </form>
+</div>
+
+</aside>
+
+<aside class="modal delete-modal">
+       
+  <i class="fas fa-times btn-close"></i>
+
+<div class="form-container">
+  <form class="form delete-form" action="/parent/profile/delete" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="<%= user.id %>">
+      <p class="text-delete">Vous êtes sur le point de supprimer votre compte définitivement. Appuyer sur Supprimer pour confirmer</p>
+      <input type="submit" value="Supprimer" class="submit">
+  
+  </form>
+</div>
+
+</aside>
+  
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/locales/fr.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js"></script>
   <script src="/js/dashboard.js"></script>
+  <script src="/js/validation.js"></script>
   <script src="/js/swipper.js"></script>
   <script src="/js/calendar.js"></script>
   <%- include('partials/footer.ejs') %>

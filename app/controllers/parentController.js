@@ -27,7 +27,7 @@ class ParentController extends CoreController {
                 //add suggest to database
                 await parentDataMapper.createSuggest(title, nannyId, user);
                 
-                req.session.flash = {success:`Journal de suivi créé avec succès`}
+                req.session.flash = {success:`Suhhestion créée avec succès`}
                return res.redirect('/parent/dashboard');
             } else {
                 req.session.flash = {error:`Vous devez être connecté`}
@@ -41,17 +41,16 @@ class ParentController extends CoreController {
         //verify if a session exists and if an user is connected
         if (req.session && req.session.user && !req.session.user.is_nanny) {
             const user = req.session.user;
-            // const nannyId = user.nanny_id;
+            const nannyId = user.nanny_id;
 
             // const activities = await parentDataMapper.getAllActivity(nannyId);
             const children = await parentDataMapper.getAllChildrenAndNanny(user.id);
-            // const nanny = await parentDataMapper.getNannyById(nannyId);
+            const nanny = await parentDataMapper.getNannyById(nannyId);
             // const suggest = await parentDataMapper.getSuggests(user.id)
             // const diary = await parentDataMapper.getLastDiary(user.id);
-
+        
             // , activity, children, nanny, suggest, diary 
-
-           return res.render('parentDashboard', { user, children });
+           return res.render('parentDashboard', { user, children, nanny });
 
      } else {
         req.session.flash = {error:`Vous devez être connecté`}

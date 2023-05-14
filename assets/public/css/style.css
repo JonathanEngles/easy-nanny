@@ -227,7 +227,7 @@ button {
         cursor: pointer;
     }
     .btn-desktop {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         padding: 1.6rem;
         border-bottom: 2px solid transparent;
         text-shadow: rgba(0, 0, 0, 0.277) 4px 4px 10px;
@@ -241,7 +241,7 @@ button {
 
 
     .two-links{
-        font-size: 3rem;
+        font-size: 3.5rem;
     }
 
     .header-title {
@@ -263,16 +263,14 @@ button {
 
     .navbar-deskop{
         display: flex;
+        justify-content: space-around;
     }
 
 
-      .navbar-desktop {
-        justify-content: space-around;
-      }
+ 
 
-      /* mettre la classe 2 links à se connecter et s'enregistrer */
-    .navbar-desktop.two-links {
-        justify-content: flex-end;
+    .navbar-deskop-not-connected {
+       justify-content: flex-end;
       }
 
     .navbar-mobile {
@@ -285,11 +283,11 @@ button {
 
 @media screen and (min-width: 1520px) {
     .btn-desktop {
-        font-size: 2rem;
+        font-size: 2.4rem;
     }
 
     .two-links {
-       font-size: 3.5rem;
+       font-size: 3.8rem;
     }
 
     

@@ -23,7 +23,6 @@ let sess = {
     secure: app.get(process.env.NODE_ENV) === 'production',
       // 24 hours duration
       maxAge: 1000 * 60 * 60 * 24,
-      sameSite: 'lax',
   },
 proxy:true
 }
@@ -43,7 +42,7 @@ if (req.session && req.session.flash) {
   console.log("middleware", req.session.flash);
   delete req.session.flash;
 }
-console.log("middleware", req.session);
+// console.log("middleware", req.session);
 next();
 });
 
