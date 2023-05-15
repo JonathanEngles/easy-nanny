@@ -6,7 +6,6 @@ const express = require("express");
 const router = require("./routers/mainRouter");
 const multer = require('multer');
 const path = require('path');
-const Toastify = require('toastify-js');
 const app = express();
 
 
@@ -42,7 +41,7 @@ if (req.session && req.session.flash) {
   console.log("middleware", req.session.flash);
   delete req.session.flash;
 }
-// console.log("middleware", req.session);
+// console.log("middleware 2", req.session);
 next();
 });
 

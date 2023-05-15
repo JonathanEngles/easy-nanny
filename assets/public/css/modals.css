@@ -125,6 +125,18 @@ input:not([type="submit"]):focus {
     
 }
 
+.success-modal,
+.error-modal {
+  background-color: red;
+  color: white;
+  width: 50%;
+  height: auto;
+  display: none;
+  position: fixed;
+  top: 25%;
+  right: 50%;
+  z-index: 30;
+}
 
 .active {
     display: flex;
@@ -138,6 +150,8 @@ input:not([type="submit"]):focus {
     background:var(--color-btn);
     opacity: 0.4;
 }
+
+
 
 @media screen and (min-width: 650px) {
     

@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/public/css/modals.css">
     <link rel="stylesheet" href="/public/css/swiper.css">
     <link rel="stylesheet" href="/public/css/dashboard.css">
+    <link rel="stylesheet" href="/public/css/toast.css">
     <link rel="stylesheet" href="/public/css/404.css">
     <title>Easy-Nanny</title>
 </head>
@@ -83,3 +84,34 @@
             </div>
         </div>
     </header>
+    <div class="container__notification">
+    </div>
+    <script>
+        const contNot = document.querySelector('.container__notification');
+      
+        <% if (locals.flash && locals.flash.success) { %>
+          const notificationSuccess = document.createElement('div');
+          notificationSuccess.classList.add('toast', 'toast-success');
+          notificationSuccess.innerHTML = '<%= locals.flash.success %>';
+          contNot.appendChild(notificationSuccess);
+          setTimeout(() => {
+            notificationSuccess.classList.add('hide');
+          }, 6000);
+          setTimeout(() => {
+            notificationSuccess.remove();
+          }, 8000);
+        <% } %>
+      
+        <% if (locals.flash && locals.flash.error) { %>
+          const notificationError = document.createElement('div');
+          notificationError.classList.add('toast', 'toast-error');
+          notificationError.innerHTML = '<%= locals.flash.error %>';
+          contNot.appendChild(notificationError);
+          setTimeout(() => {
+            notificationError.classList.add('hide');
+          }, 6000);
+          setTimeout(() => {
+            notificationError.remove();
+          }, 8000);
+        <% } %>
+      </script>
