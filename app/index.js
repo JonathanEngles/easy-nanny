@@ -19,7 +19,7 @@ let sess = {
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
   cookie: {
-    secure: app.get(process.env.NODE_ENV) === 'production',
+    secure: app.get(process.env.NODE_ENV),
       // 24 hours duration
       maxAge: 1000 * 60 * 60 * 24,
   },
