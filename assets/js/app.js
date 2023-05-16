@@ -28,7 +28,8 @@ const app = {
 closeModals.forEach((closeButton) => {
   closeButton.addEventListener('click', modal.closeModal)});
 
-  
+
+
 },
 
 
@@ -82,6 +83,35 @@ usersSelector : () => {
 
 },
 
+handlerFlashMessage: function () {
+    const flashSuccess = document.querySelector('.success-modal');
+    const flashError = document.querySelector('.error-modal');
+    const messageSuccess = document.querySelector('.success-message');
+    const messageError = document.querySelector('.error-message');
+    if (messageSuccess.textContent) {
+        flashSuccess.classList.add('active');
+        setTimeout(() => {
+          flashSuccess.classList.remove('active');
+          messageSuccess.textContent = '';
+        }, 5000);
+      }
+  
+      if (messageError.textContent) {
+        flashError.classList.add('active');
+        setTimeout(() => {
+          flashError.classList.remove('active');
+          messageError.textContent = '';
+        }, 5000);
+      }
+
+      const btnClose = document.querySelectorAll('.btn-close-message');
+  btnClose.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      btn.parentNode.classList.remove('active');
+      btn.parentNode.querySelector('p').textContent = '';
+    });
+  });
+  },
 
 
 }

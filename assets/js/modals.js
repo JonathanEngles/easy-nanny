@@ -79,6 +79,7 @@ submitFormRegister: (event) => {
         Toastify({
             text: 'Veuillez sélectionner un rôle (Parent ou Nounou) avant de continuer.',
             duration: 3000, 
+            close: true,
             gravity: 'top', 
             position: 'center', 
             backgroundColor: 'linear-gradient(to right, #ff416c, #ff4b2b)',
@@ -104,6 +105,7 @@ submitFormRegister: (event) => {
             Toastify({
                 text: 'Veuillez sélectionner un rôle (Parent ou Nounou) avant de continuer.',
                 duration: 3000, 
+                close: true,
                 gravity: 'top', 
                 position: 'center', 
                 backgroundColor: 'linear-gradient(to right, #ff416c, #ff4b2b)',
