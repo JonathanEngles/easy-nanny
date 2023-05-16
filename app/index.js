@@ -19,18 +19,12 @@ let sess = {
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
   cookie: {
-    secure: false,
+    secure:process.env.NODE_ENV === 'production' ? true : false,
       // 24 hours duration
       maxAge: 1000 * 60 * 60 * 24,
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   },
 proxy:true
-}
-
- 
-if (app.get(process.env.NODE_ENV) === 'production') {
-  app.set('trust proxy', 1);
-  sess.cookie.secure = true;
 }
 
 app.use(session(sess));
