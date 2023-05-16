@@ -151,6 +151,26 @@ input:not([type="submit"]):focus {
     opacity: 0.4;
 }
 
+.connection-remember-container {
+  margin-top: 2rem;
+}
+
+
+.checkbox-remember {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+.checkbox-login {
+  margin-left: .8rem;
+  font-size: 3rem;
+}
+
+#remember-checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+}
 
 
 @media screen and (min-width: 650px) {
@@ -170,7 +190,7 @@ input:not([type="submit"]):focus {
 
 @media screen and (min-width: 1024px) {
   .form-container {
-    width: 50vw;
+    width: 60vw;
       }
 }
 
@@ -178,7 +198,7 @@ input:not([type="submit"]):focus {
 @media screen and (min-width: 1520px) {
     
   .form-container {
-    width: 40vw;
+    width: 50vw;
       }
 
 }

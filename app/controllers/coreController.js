@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid'); // module to generate an UNIQUE RANDOM i
 const fs = require('fs');
 const { tableName } = require("../models/coreDataMapper");
 const path = require('path');
+const { log } = require("console");
 /** Class representing an abstract core controller. */
 class CoreController {
   static dataMapper;
@@ -14,7 +15,7 @@ class CoreController {
   async login(req, res) {
     
     //we get the form
-    const {email, password } = req.body;
+    const {email, password, rememberMe } = req.body;
 
     //we compare the email if exists in database
     const user = await this.constructor.dataMapper.getUserByEmail(email);
@@ -36,6 +37,13 @@ class CoreController {
     //we delete the password of the req.body
     delete req.body.password;
     req.session.user = user;
+//if checkbox is checked, we add reload expires of the session.
+    if(rememberMe){
+        const time = 3600000*24*30; // La loi permet de conserver un cookie jusqu'à 1 an maximum
+        req.session.cookie.expires = new Date(Date.now() + time);
+        req.session.cookie.maxAge = time;
+    }
+
     //message for toast notification
    req.session.flash = {success: `Bienvenue ${user.first_name}`};
     // check if user is a nanny or a parent

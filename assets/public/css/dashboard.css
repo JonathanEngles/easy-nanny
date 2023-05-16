@@ -14,10 +14,10 @@ font-size: 2vh;
 }
 
 .link-container {
-  width: 95%;
+  width: 60%;
   padding: .5rem;
   border-radius: 1rem;
-  border: 1px solid var(--color-girl);
+  border: 2px solid var(--color-girl);
 }
 
 .link-notice {
@@ -91,7 +91,7 @@ font-size: 2vh;
 }
 
 .modal-profile-picture-container {
-  max-width: 30%;
+  max-width: 50%;
 }
 .profile-text-container {
    
@@ -219,7 +219,11 @@ padding: 2rem 0;;
   
   @media screen and (min-width: 1050px) {
     .link-container {
-      width: 50%;
+      width: 40%;
+    }
+
+    .modal-profile-picture-container {
+      max-width: 20%;
     }
 
     .profil-container {

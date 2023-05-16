@@ -19,17 +19,20 @@ let sess = {
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
   cookie: {
-    secure: app.get(process.env.NODE_ENV) === 'production',
+    secure:process.env.NODE_ENV === 'production' ? true : false,
       // 24 hours duration
-      maxAge: 1000 * 60 * 60 * 24,
+      maxAge: 1000 * 60 * 60 * 1,
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   },
 proxy:true
 }
 
-  if (app.get(process.env.NODE_ENV) === 'production') {
-    app.set('trust proxy', 1) // trust first proxy
-    sess.cookie.secure = true // serve secure cookies
-  }
+ 
+// if (app.get(process.env.NODE_ENV) === 'production') {
+//   app.set('trust proxy', 1);
+//   sess.cookie.secure = true;
+// }
+  
 
 app.use(session(sess));
 
@@ -38,7 +41,7 @@ app.use((req,_ , next) => {
 app.locals.session = req.session;
 app.locals.flash = req.session.flash;
 if (req.session && req.session.flash) {
-  console.log("middleware", req.session.flash);
+  // console.log("middleware", req.session.flash);
   delete req.session.flash;
 }
 // console.log("middleware 2", req.session);
