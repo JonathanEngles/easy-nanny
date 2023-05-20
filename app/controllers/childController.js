@@ -35,23 +35,35 @@ const childController = {
     },
 
     /**
-     * modify an existing child by parent
-     * @param {*} req 
-     * @param {*} res 
+     * modify an existing child by parent 
      */
     async modifyChildren(req, res) {
-   
+        if (req.session && req.session.user && !req.session.user.is_nanny) {
         const { id } = req.params;
+        const childrenId = parseInt(id, 10);
+
+        const child = await childDataMapper.getChildById(childrenId);
+        const originalFirstName = child.first_name;
+
         //get the form with req.body
     const { name, first_name, sexe, birthday, description} = req.body;
     //verify if a session exists and if an user is connected and if the user is a parent
-    if (req.session && req.session.user && !req.session.user.is_nanny) {
+   
     //get the id of the user
     const userId = req.session.user.id;
+
+    let modifiedFirstName = '';
+    if (first_name) {
+      modifiedFirstName = first_name;
+    } else {
+      // Utiliser le prénom original de la base de données si le prénom n'a pas été renseigné dans le formulaire
+      modifiedFirstName = originalFirstName;
+    }
+
     //check if a picture was upload and require the name of the file
     let picture
         if (req.file && req.file.filename) {
-            const child = await childDataMapper.getChildById(id);
+           
             if (child.picture && child.picture !== 'children_picture.jpg') {
                 // Delete the child's photo from the server
                 const pathToDelete = path.join(__dirname, '..', '..', 'assets', 'public', 'uploads', child.picture);
@@ -62,9 +74,9 @@ const childController = {
     
             
     // update the child information in the database
-    await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday, description, picture});
+    await childDataMapper.modifyChildren(childrenId, userId, {name, first_name: modifiedFirstName, sexe, birthday, description, picture});
    
-    req.session.flash = {success:`${first_name} modifié(e) avec succès`}
+    req.session.flash = {success:`${modifiedFirstName} a été modifié(e) avec succès`}
         return res.redirect('/parent/dashboard');
     }
     },
@@ -81,7 +93,6 @@ const childController = {
     const child = await childDataMapper.getChildById(id);   
      // Check if the child has a photo and if it is not the default photo
 
-        if (req.file && req.file.filename) {
             if (child.picture && child.picture !== 'children_picture.jpg') {
                 // Delete the children's photo from the server
                 const pathToDelete = path.join(__dirname, '..', '..', 'assets', 'public', 'uploads', child.picture);
@@ -92,7 +103,7 @@ const childController = {
                 
     req.session.flash = {success:`Enfant supprimé avec succès de votre compte`}
     return res.redirect('/parent/dashboard');
-    }
+    
     }
 }
 }

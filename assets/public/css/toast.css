@@ -1,15 +1,16 @@
 .container__notification  {
+    font-size: 2rem;
     position: fixed;
     top: 25%;
     left: 50%;
     transform: translateX(-80%);
     margin: 2em;
-    font-size: 3rem;
     z-index: 30;
 }
 .toast {
     transition: opacity 1.5s;
     padding: 1.2rem;
+    border-radius: .3rem;
    
 }
 

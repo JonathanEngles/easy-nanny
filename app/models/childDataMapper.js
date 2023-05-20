@@ -3,7 +3,7 @@ const client = require('../database')
 const childDataMapper = {
 
     async getChildById(childId) {
-        const result = await client.query('SELECT "picture" FROM children WHERE id = $1', [childId]);
+        const result = await client.query('SELECT "picture", "first_name" FROM children WHERE id = $1', [childId]);
         return result.rows[0];
       },
       

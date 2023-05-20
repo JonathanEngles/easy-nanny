@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
           height: 'auto',
           weekNumberCalculation: 'ISO',
           firstDay: 1,
-          // initialView: 'timeGridDay',
           allDaySlot: false,
           slotMinTime: "07:00:00",
           slotMaxTime: "20:00:00",
@@ -65,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         }
   
-        // Appeler la fonction pour mettre à jour la visibilité du bouton initialement et à chaque redimensionnement de l'écran
+    
         updateButtonVisibility();
         window.addEventListener('resize', updateButtonVisibility);
   
         calendar.changeView(initialView);
 
-        calendar.changeView(initialView);
+        
       });
   });

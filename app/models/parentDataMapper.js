@@ -38,7 +38,7 @@ class ParentDataMapper extends CoreDataMapper {
  FROM children c
  INNER JOIN parent p ON c.parent_id = p.id
  LEFT JOIN nanny n ON p.nanny_id = n.id
- WHERE p.id = $1;`, [id]);
+ WHERE p.id = $1 ORDER BY c.id ASC;`, [id]);
         return result.rows;
     };
 

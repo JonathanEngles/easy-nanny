@@ -100,7 +100,7 @@ async register(req, res) {
     //add user to database
     await this.constructor.dataMapper.createUser(name, first_name, email, _password, address, zip_code, city, picture, uniqueId);
     
-    req.session.flash = {success: `compté créé avec succès, vous pouvez vous connecter`}
+    req.session.flash = {success: `compte créé avec succès, vous pouvez vous connecter dès à présent`}
      return res.redirect('/');
 
 }
