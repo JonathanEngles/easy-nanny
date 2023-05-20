@@ -2,6 +2,17 @@ const app = {
     iconeBurgerMenu : null,
     formModifyProfile : document.querySelector('.modify-form'), 
 
+     modal: document.querySelector('.profile-children-modal'),
+     childPictureElement: document.getElementById('child-picture'),
+ childNameElement: document.getElementById('child-name'),
+ childFirstNameElement: document.getElementById('child-first-name'),
+ childBirthdayElement: document.getElementById('child-birthday'),
+ childDescriptionElement: document.getElementById('child-description'),
+ nannyNameElement: document.getElementById('nanny-name'),
+ nannyFirstNameElement: document.getElementById('nanny-first-name'),
+
+
+
     init: function() {
         app.addEventListenerToAction();
     },
@@ -26,6 +37,12 @@ closeModals.forEach((closeButton) => {
 
   app.formModifyProfile.addEventListener('submit', app.submitFormModify);
 
+  const children = document.querySelectorAll('.children-profil');
+  children.forEach((child) => {
+    child.addEventListener('click', () => {
+      modal.displayChildInformation(child);
+    });
+  });
 },
 
 /**
@@ -51,10 +68,8 @@ handleBurgerMenu : () => {
 submitFormModify : (event) => {
     event.preventDefault();
 
-
     const emailNotEmpty = validation.emailField.value.trim() !== '';
     const passwordNotEmpty = validation.passwordField.value.trim() !== '';
-
 
     if (!emailNotEmpty && !passwordNotEmpty) {
         if (!confirm(`êtes vous sur de vouloir modifier votre profil?`)) return;
@@ -81,7 +96,6 @@ submitFormModify : (event) => {
       }
         if (!confirm(`êtes vous sur de vouloir modifier votre profil?`)) return;
         event.target.submit();
-    
 },
 
 }
@@ -101,6 +115,26 @@ const modal = {
         const closeButton = event.target
         const modal =  closeButton.closest('.modal');
         modal.classList.remove('active');
+    },
+
+    displayChildInformation: function(child) {
+      const childPicture = child.dataset.childPicture;
+      const childName = child.dataset.childName;
+      const childFirstName = child.dataset.childFirstName;
+      const childBirthday = child.dataset.childBirthday;
+      const childDescription = child.dataset.childDescription;
+      const nannyName = child.dataset.nannyName;
+      const nannyFirstName = child.dataset.nannyFirstName;
+    
+      app.childPictureElement.src = '/public/uploads/' + childPicture;
+      app.childNameElement.textContent = childName;
+      app.childFirstNameElement.textContent = childFirstName;
+      app.childBirthdayElement.textContent = childBirthday;
+      app.childDescriptionElement.textContent = childDescription;
+      app.nannyNameElement.textContent = nannyName;
+      app.nannyFirstNameElement.textContent = nannyFirstName;
+    
+      app.modal.classList.add('active');
     },
 
 }

@@ -19,6 +19,7 @@ const modal = {
         modal.classList.remove('active');
     },
 
+
    /**
     * function to change the action of the register form to create a parent
     */

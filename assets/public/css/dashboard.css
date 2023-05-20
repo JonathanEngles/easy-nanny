@@ -2,13 +2,13 @@
 display: flex;
 flex-direction: column;
 align-items: center;
-font-size: 2vh;
+font-size: 2rem;
 }
 
 
 
 .profile-item {
-  
+  max-width: 100%;
   padding: 1rem 0;
   margin-top: 1rem;
 }
@@ -62,7 +62,7 @@ font-size: 2vh;
 }
 
  .profil-container {
-  width: 85%;
+  width: 80%;
   margin: 2rem auto;
   display: flex;
   flex-direction: column;
@@ -122,7 +122,7 @@ padding: 2rem 0;;
     font-size: 2vh;
     color: var(--color-boy);
     text-align: center;
-    padding: 1.5rem 0;
+    padding: 1.5rem;
   }
 
   .btn-profile {
@@ -138,6 +138,10 @@ padding: 2rem 0;;
 
   }
 
+  .nanny-name {
+    color: var(--color-girl);
+  }
+
   .add-children-container {
     margin-top: 3rem;
     align-items: center;
@@ -145,10 +149,17 @@ padding: 2rem 0;;
     flex-direction: column;
   }
 
+
   #Flat {
-    width: 5vh;
+    width: 6vh;
     height: auto;
     align-self: center;
+  }
+
+
+  .text-add-children{
+    font-size: 2rem;
+    font-weight: bold;
   }
 
   .children-list {
@@ -165,8 +176,6 @@ padding: 2rem 0;;
     margin: 2rem 0;
     border-radius: 2rem;
     padding: 2rem 0;
-
-
 }
 
 
@@ -181,8 +190,6 @@ padding: 2rem 0;;
   .children-picture-container {
     max-width: 40%;
     margin-left: 1rem;
-
-    
   }
 
   .children-picture {
@@ -201,7 +208,9 @@ padding: 2rem 0;;
   .text-children-profil {
     color: var(--color-btn);
     text-align: center;
-    font-size: 5vh;
+   width: 90%;
+   font-size: 2rem;
+   font-weight: bold;
   }
 
   @media screen and (min-width: 650px) {
@@ -212,12 +221,6 @@ padding: 2rem 0;;
   
   @media screen and (min-width: 850px) {
   
-    
-  
-      
-  }
-  
-  @media screen and (min-width: 1050px) {
     .link-container {
       width: 40%;
     }
@@ -228,6 +231,33 @@ padding: 2rem 0;;
 
     .profil-container {
       width: 50%;
+    }
+
+    .children-profil {
+      width: 40%;
+      margin: 2.8rem;
+    }
+    .children-list {
+      width:80vw;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+      
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .link-container {
+      width: 40%;
+    }
+
+    .modal-profile-picture-container {
+      max-width: 20%;
+    }
+   
+    .button-container {
+      justify-content: space-evenly;
     }
   }
   

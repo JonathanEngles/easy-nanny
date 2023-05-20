@@ -26,7 +26,7 @@ const childController = {
     //add children  to database
         await childDataMapper.createChildren(name, first_name, sexe, birthday, description, userId, user.nanny_id, picture);
     
-        req.session.flash = {success:`${first_name} créé avec succès`}
+        req.session.flash = {success:`${first_name} créé(e) avec succès`}
         return res.redirect('/parent/dashboard');
     } else {
         req.session.flash = {error:`Vous devez être connecté`}
@@ -64,7 +64,7 @@ const childController = {
     // update the child information in the database
     await childDataMapper.modifyChildren(id, userId, {name, first_name, sexe, birthday, description, picture});
    
-    req.session.flash = {success:`${first_name} modifié avec succès`}
+    req.session.flash = {success:`${first_name} modifié(e) avec succès`}
         return res.redirect('/parent/dashboard');
     }
     },

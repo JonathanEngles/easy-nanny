@@ -26,12 +26,6 @@ let sess = {
   },
 proxy:true
 }
-
- 
-// if (app.get(process.env.NODE_ENV) === 'production') {
-//   app.set('trust proxy', 1);
-//   sess.cookie.secure = true;
-// }
   
 
 app.use(session(sess));
@@ -69,7 +63,21 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  fileFilter: function(req, file, cb) {
+    // verify type of file
+    const filetypes = /png|jpg|jpeg/;
+    const mimetype = filetypes.test(file.mimetype);
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+    if (mimetype && extname) {
+      cb(null, true); 
+    } else {
+      cb('Erreur : Seuls les fichiers PNG, JPG et JPEG sont autorisés.');
+    }
+  }
+});
 app.use(upload.single('picture'));
 
 

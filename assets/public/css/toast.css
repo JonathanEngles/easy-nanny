@@ -1,27 +1,28 @@
 .container__notification  {
     position: fixed;
-    bottom: 0;
-    right: 5%;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-80%);
     margin: 2em;
-    font-size: 1.5rem;
+    font-size: 3rem;
     z-index: 30;
 }
 .toast {
     transition: opacity 1.5s;
-    background-color: rgba(187, 148, 148, 0.8);
-    padding: 0.6rem;
-    margin: 0.6rem;
-    border: 0.05em solid rgb(181, 181, 181);
-    border-left: 0.1em solid red;
+    padding: 1.2rem;
    
 }
 
 .toast-error {
-
+    border: .05em solid rgb(181, 181, 181);
+    background-color: rgba(218, 81, 81, 0.8);
+    border-left: 0.1em solid red;
 }
 
 .toast-success {
-    
+    border: .05em solid rgb(181, 181, 181);
+    background-color: rgba(184, 238, 170, 0.8);
+    border-left: 0.1em solid green;
 }
 
 .hide {
