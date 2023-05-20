@@ -21,11 +21,14 @@ let sess = {
   cookie: {
     secure:process.env.NODE_ENV === 'production' ? true : false,
       // 24 hours duration
-      maxAge: 1000 * 60 * 60 * 24,
+
+      maxAge: 1000 * 60 * 60 * 1,
+
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   },
 proxy:true
 }
+
 
 app.use(session(sess));
 
@@ -34,7 +37,7 @@ app.use((req,_ , next) => {
 app.locals.session = req.session;
 app.locals.flash = req.session.flash;
 if (req.session && req.session.flash) {
-  console.log("middleware", req.session.flash);
+  // console.log("middleware", req.session.flash);
   delete req.session.flash;
 }
 // console.log("middleware 2", req.session);
@@ -62,7 +65,21 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  fileFilter: function(req, file, cb) {
+    // verify type of file
+    const filetypes = /png|jpg|jpeg/;
+    const mimetype = filetypes.test(file.mimetype);
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+
+    if (mimetype && extname) {
+      cb(null, true); 
+    } else {
+      cb('Erreur : Seuls les fichiers PNG, JPG et JPEG sont autorisés.');
+    }
+  }
+});
 app.use(upload.single('picture'));
 
 

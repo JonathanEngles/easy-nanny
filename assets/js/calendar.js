@@ -3,11 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(response => response.json())
       .then(activities => {
         let calendarEl = document.getElementById('calendar-parent');
+        let initialView = 'timeGridDay';
+        if (window.innerWidth >= 1024) {
+          initialView = 'timeGridWeek'; // 
+        }
         let calendar = new FullCalendar.Calendar(calendarEl, {
           height: 'auto',
           weekNumberCalculation: 'ISO',
-  firstDay: 1,
-          initialView: 'timeGridDay',
+          firstDay: 1,
+          // initialView: 'timeGridDay',
           allDaySlot: false,
           slotMinTime: "07:00:00",
           slotMaxTime: "20:00:00",
@@ -25,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hour12: false
           },
           headerToolbar: {
-            left: 'timeGridDay, timeGridWeek',
+            left: 'timeGridDay',
             center: 'title',
             right: 'prev,next today'
           },
@@ -45,5 +49,28 @@ document.addEventListener('DOMContentLoaded', function() {
             
         });
         calendar.render();
+
+        function updateButtonVisibility() {
+          if (window.innerWidth >= 650) {
+            calendar.setOption('headerToolbar', {
+              left: 'timeGridDay, timeGridWeek',
+              center: 'title',
+              right: 'prev,next today'
+            });
+          } else {
+            calendar.setOption('headerToolbar', {
+              center: 'title',
+              right: 'prev,next today'
+            });
+          }
+        }
+  
+        // Appeler la fonction pour mettre à jour la visibilité du bouton initialement et à chaque redimensionnement de l'écran
+        updateButtonVisibility();
+        window.addEventListener('resize', updateButtonVisibility);
+  
+        calendar.changeView(initialView);
+
+        calendar.changeView(initialView);
       });
   });

@@ -15,7 +15,7 @@
             <form class="form signup-form" action="" method="POST" enctype="multipart/form-data">
                 <div class="form-item image-preview">
                     <label for="picture-register">Photo :</label>
-                    <input type="file" id="picture" name="picture">
+                    <input type="file" accept=".png, .jpg, .jpeg" id="picture" name="picture">
                     <img id="photo-preview" src="#" alt="Aperçu de la photo">
                 </div>
         
@@ -85,7 +85,14 @@
                     <label for="password-login label-login">Mot de passe :</label>
                     <input type="password" id="password-login" name="password" required>
                 </div>
+                <div class="connection-remember-container">
+                    <div class="form-item checkbox-remember">
+                        <label for="remember-checkbox" class="checkbox-login">Se souvenir de moi</label>
+                        <input type="checkbox" id="remember-checkbox" name="rememberMe">
+                    </div>
                 <input type="submit" value="Se connecter" class="submit">
+                
+            </div>
             </form>
         </div>
     </aside>
@@ -142,11 +149,11 @@
                     votre profil et la nounou n'aura plus qu'à rentrer cette clé dans un champs prévu à cet effet</p>
             </div>
             <div class="question">
-                <p class="text-faq">Question 3</p>
+                <p class="text-faq">Comment savoir à l'avance les activités que fera mon enfant?</p>
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="reponse">
-                <p class="text-faq">Réponse 3</p>
+                <p class="text-faq">Il vous suffira de vous connecter et vous aurez accès à un calendrier dans lequel la nounou y indiquera toutes les activités</p>
             </div>
         </div>
     </main>

@@ -1,6 +1,6 @@
 const app = {
     iconeBurgerMenu : null,
-
+   
     init: function() {
         app.addEventListenerToAction();
         app.usersSelector();
@@ -27,8 +27,6 @@ const app = {
     const closeModals = document.querySelectorAll('.btn-close');
 closeModals.forEach((closeButton) => {
   closeButton.addEventListener('click', modal.closeModal)});
-
-
 
 },
 

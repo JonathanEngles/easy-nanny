@@ -84,8 +84,9 @@
     display: none;
   }
   
-  .form-item label {
-    font-size: 2vh;
+  .form-item label,
+  .form-item legend {
+    font-size: 1.5rem;
     display: block;
     margin-bottom: 0.5rem;
   }
@@ -101,7 +102,7 @@
     border-radius: 5rem;
     
   }
-  
+
   .submit {
     margin: auto;
     display: block;
@@ -151,7 +152,61 @@ input:not([type="submit"]):focus {
     opacity: 0.4;
 }
 
+.connection-remember-container {
+  margin-top: 2rem;
+}
 
+
+.checkbox-remember {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+.checkbox-login {
+  margin-left: .8rem;
+  font-size: 1rem;
+}
+
+#remember-checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.sexes-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.sexe-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+input[type="radio"] {
+  margin-bottom: 0.5rem;
+}
+.description {
+  margin-top: .5rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.infos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.infos-complementaire {
+  font-size: 1.3rem;
+  margin-top: .5rem;
+  text-align: center;
+}
 
 @media screen and (min-width: 650px) {
     
@@ -170,15 +225,17 @@ input:not([type="submit"]):focus {
 
 @media screen and (min-width: 1024px) {
   .form-container {
-    width: 50vw;
+    width: 60vw;
       }
+
+   
 }
 
 
 @media screen and (min-width: 1520px) {
     
   .form-container {
-    width: 40vw;
+    width: 50vw;
       }
 
 }
@@ -198,6 +255,14 @@ input:not([type="submit"]):focus {
       font-size: 1.5rem;
       margin-bottom: 0.3rem;
     }
+
+    input[type="radio"] {
+      margin-bottom: .3rem;
+    }
+    .description {
+      margin-top: .3rem;
+    }
+    
     .choose-role {
       font-size: 1.8vh;
       margin: 2rem 0;

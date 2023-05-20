@@ -26,21 +26,48 @@ height:100%;
 }
 
 .fc-timegrid-slot {
-    height: 3vh !important;
+    height: 2.5rem !important;
 }
-@media screen and (min-width: 300px) {
+
+.fc-col-header-cell-cushion {
+    font-size: 1.8rem !important;
+}
+
+.fc-scrollgrid-sync-inner,
+.fc-timegrid-axis {
+    background: var(--color-bg-invert);
+}
+
+.fc-col-header-cell {
+    background-color: var(--primary-color2);
+}
+
+.fc-button-primary {
+    font-size: .7rem !important;
+}
+
+@media screen and (min-width: 354px) {
 
     .fc-button-primary {
-        font-size: .7rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+@media screen and (min-width: 425px) {
+
+    .fc-button-primary {
+        font-size: 1.3rem !important;
     }
 }
 
 @media screen and (min-width: 650px) {
     
     .fc-button-primary {
-        font-size: 1.5vh !important;
+        font-size: 1.5rem !important;
     }
-
+    .fc-col-header-cell-cushion {
+       font-size: 1.5rem !important;
+    }
 }
 
 @media screen and (min-width: 850px) {
