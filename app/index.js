@@ -21,12 +21,14 @@ let sess = {
   cookie: {
     secure:process.env.NODE_ENV === 'production' ? true : false,
       // 24 hours duration
+
       maxAge: 1000 * 60 * 60 * 1,
+
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   },
 proxy:true
 }
-  
+
 
 app.use(session(sess));
 
