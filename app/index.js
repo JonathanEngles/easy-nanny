@@ -20,10 +20,9 @@ let sess = {
   secret: process.env.SESSION_SECRET,
   cookie: {
     secure:process.env.NODE_ENV === 'production' ? true : false,
-      // 24 hours duration
-
+      httpOnly: true,
+      // 1 hours duration
       maxAge: 1000 * 60 * 60 * 1,
-
       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
   },
 proxy:true
