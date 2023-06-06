@@ -56,8 +56,9 @@ font-size: 2rem;
 }
 
 .text-delete {
+  margin-bottom: 3rem;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   color: red;
 }
 
@@ -72,7 +73,6 @@ font-size: 2rem;
 
 .user-profil {
   width: 95%;
-    height: 100%;
     padding: 1rem 0;
     display: flex;
     flex-direction: row;
@@ -83,6 +83,7 @@ font-size: 2rem;
 }
 
 .profile-picture-container {
+    width: 50%;
     max-width: 50%;
     display: flex;
    align-items: center;
@@ -91,22 +92,24 @@ font-size: 2rem;
 }
 
 .modal-profile-picture-container {
-  max-width: 50%;
+ width: 30%;
+ max-height: 20%;
 }
 .profile-text-container {
-   
     display: flex;
     flex-direction: column;
-   
    justify-content:space-around;
    
 }
 
 
 .profile-picture, .children-picture {
-    margin: auto;
-    width: 100%;
-    border-radius: 2rem;
+  margin:auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 2rem;
   }
 
   .welcome-profil {
@@ -169,10 +172,12 @@ padding: 2rem 0;;
   }
 
 .children-profil {
-    width: 80%;
+    width: 60vw;
+    height: 10vh;
+    max-height: 10vh;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 2rem 0;
     border-radius: 2rem;
     padding: 2rem 0;
@@ -188,15 +193,11 @@ padding: 2rem 0;;
   background-color: var(--color-boy);
 }
   .children-picture-container {
-    max-width: 40%;
-    margin-left: 1rem;
+    max-width: 50%;
+   
   }
 
-  .children-picture {
-    margin: auto;
-    max-width: 100%;
-    height: auto;
-  }
+
 
   .children-text-container {
     min-width: 50%;

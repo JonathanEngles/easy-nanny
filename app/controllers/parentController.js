@@ -13,8 +13,6 @@ class ParentController extends CoreController {
     
 /**
  * add suggest by parent to his nanny
- * @param {*} req 
- * @param {*} res 
  */
     async createSuggest(req, res) {
        //verify if a session exists and if an user is connected

@@ -38,7 +38,7 @@ class ParentDataMapper extends CoreDataMapper {
  FROM children c
  INNER JOIN parent p ON c.parent_id = p.id
  LEFT JOIN nanny n ON p.nanny_id = n.id
- WHERE p.id = $1;`, [id]);
+ WHERE p.id = $1 ORDER BY c.id ASC;`, [id]);
         return result.rows;
     };
 
@@ -48,7 +48,7 @@ class ParentDataMapper extends CoreDataMapper {
     };
 
     async getSuggests(id) {
-        const result = await client.query(`SELECT *, to_char(Date, 'TMDay DD TMMonth YYYY') FROM "suggest" WHERE "parent_id" = $1 ORDER BY "created_at" DESC LIMIT 5`, [id]);
+        const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY') FROM "suggest" WHERE "parent_id" = $1 ORDER BY "created_at" DESC LIMIT 5`, [id]);
         return result.rows;
     };
 

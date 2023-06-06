@@ -20,10 +20,12 @@ let sess = {
   secret: process.env.SESSION_SECRET,
   cookie: {
     secure:process.env.NODE_ENV === 'production' ? true : false,
-      httpOnly: true,
-      // 1 hours duration
-      maxAge: 1000 * 60 * 60 * 1,
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+
+    httpOnly: true,
+      // 1 hour duration
+    maxAge: 1000 * 60 * 60 * 1,
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+
   },
 proxy:true
 }
@@ -32,14 +34,12 @@ proxy:true
 app.use(session(sess));
 
 app.use((req,_ , next) => {
-  // transmit session's information to views
+  // transmit session's information to all views
 app.locals.session = req.session;
 app.locals.flash = req.session.flash;
 if (req.session && req.session.flash) {
-  // console.log("middleware", req.session.flash);
   delete req.session.flash;
 }
-// console.log("middleware 2", req.session);
 next();
 });
 
