@@ -156,13 +156,13 @@ class NannyController extends CoreController {
             const user = req.session.user;
 
 
-            const activity = await nannyDataMapper.getAllActivity(user.id);
+            // const activity = await nannyDataMapper.getAllActivity(user.id);
             const children = await nannyDataMapper.getAllChildren(user.id);
-            const parent = await nannyDataMapper.getAllParents(user.id);
-            const suggest = await nannyDataMapper.getSuggests(user.id);
+            // const parent = await nannyDataMapper.getAllParents(user.id);
+            // const suggest = await nannyDataMapper.getSuggests(user.id);
 
 
-            res.render('nannyDashboard', { activity, children, parent, user, suggest });
+            res.render('nannyDashboard', { user, children });
 
         } else {
             req.session.flash = { error: `Vous devez être connecté` }

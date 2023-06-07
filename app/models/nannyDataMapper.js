@@ -123,17 +123,25 @@ async createSuggest(title, parentId, nanny) {
 };
 
 async getAllActivity(id) {
-    const result = await client.query('SELECT * FROM "activity" WHERE "id" = $1', [id]);
-    return result.rows;
-};
+  
 
-async getAllChildren(id) {
-    const result = await client.query(`SELECT title,
+        const result = await client.query(`SELECT title,
         to_char(date + begin, 'YYYY-MM-DD"T"HH24:MI:SS') AS start,
         to_char(date + "end", 'YYYY-MM-DD"T"HH24:MI:SS') AS end,
         color,
         category,
         description FROM "activity" WHERE "nanny_id" = $1`, [id]);
+        return result.rows;
+    
+};
+
+async getAllChildren(id) {
+    const result = await client.query(`SELECT c.id as child_id, c.first_name as child_first_name, c.picture as child_picture, c.description as child_description, c.sexe as child_sexe, c.name as child_name,
+    to_char(c.birthday, 'DD TMMonth YYYY') as child_birthday,
+    p.id as parent_id, p.first_name as parent_first_name, p.name as parent_name, p.email as parent_email, p.address as parent_address, p.zip_code as parent_zip_code, p.city as parent_city
+    FROM children c
+    INNER JOIN nanny n ON c.nanny_id = n.id
+    LEFT JOIN parent p ON c.parent_id = p.id WHERE n.id = $1 ORDER BY c.id ASC;`, [id]);
         return result.rows;
 };
 

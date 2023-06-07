@@ -13,8 +13,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/public/images/favicon_io/favicon-16x16.png">
     <link rel="manifest" href="/public/images/favicon_io/site.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/public/css/reset.css">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/public/css/dashboard.css">
     <link rel="stylesheet" href="/public/css/toast.css">
     <link rel="stylesheet" href="/public/css/suggestions.css">
+    <link rel="stylesheet" href="/public/css/dashboard-nanny.css">
     <link rel="stylesheet" href="/public/css/404.css">
     <title>Easy-Nanny</title>
 </head>
@@ -37,56 +38,55 @@
         </div>
         <h1 class="header-title">Easy Nanny</h1>
         <!-- desktop menu -->
-       
-            <% if (!locals.session.user) { %>
-                <div class="navbar-deskop navbar-deskop-not-connected">
+        <% if (!locals.session.user) { %>
+            <div class="navbar-deskop navbar-deskop-not-connected">
                 <button class="open-modal btn btn-desktop two-links" data-modal="register-modal">S'inscrire</button>
                 <button class="open-modal btn btn-desktop two-links" data-modal="login-modal">Se connecter</button>
                 <% } else { %>
                     <div class="navbar-deskop">
-                    <% if (locals.session.user.is_nanny) { %>
-                        <a class="btn btn-desktop is-nanny" href="/">ACCUEIL</a>
-                        <a class="btn btn-desktop is-nanny" href="/nanny/dashboard">DASHBOARD</a>
-                        <a class="btn btn-desktop is-nanny" href="/nanny/suggests">SUGGESTIONS</a>
-                        <a class="btn btn-desktop is-nanny" href="/nanny/diary">JOURNAUX DE SUIVI</a>
-                        <a class="btn btn-desktop is-nanny" href="/logout">DECONNEXION</a>
-                        <% } else { %>
-                            <a class="btn btn-desktop" href="/">ACCUEIL</a>
-                            <a class="btn btn-desktop" href="/parent/dashboard">DASHBOARD</a>
-                            <a class="btn btn-desktop" href="/parent/suggests">SUGGESTIONS</a>
-                            <a class="btn btn-desktop" href="/parent/diary">JOURNAUX DE SUIVI</a>
-                            <a class="btn btn-desktop" href="/logout">DECONNEXION</a>
-                            <% } %>
+                        <% if (locals.session.user.is_nanny) { %>
+                            <a class="btn btn-desktop is-nanny" href="/">ACCUEIL</a>
+                            <a class="btn btn-desktop is-nanny" href="/nanny/dashboard">DASHBOARD</a>
+                            <a class="btn btn-desktop is-nanny" href="/nanny/suggests">SUGGESTIONS</a>
+                            <a class="btn btn-desktop is-nanny" href="/nanny/diary">JOURNAUX DE SUIVI</a>
+                            <a class="btn btn-desktop is-nanny" href="/logout">DECONNEXION</a>
+                            <% } else { %>
+                                <a class="btn btn-desktop" href="/">ACCUEIL</a>
+                                <a class="btn btn-desktop" href="/parent/dashboard">DASHBOARD</a>
+                                <a class="btn btn-desktop" href="/parent/suggests">SUGGESTIONS</a>
+                                <a class="btn btn-desktop" href="/parent/diary">JOURNAUX DE SUIVI</a>
+                                <a class="btn btn-desktop" href="/logout">DECONNEXION</a>
                                 <% } %>
-        </div>
-        <!-- mobile menu -->
-        <div class="navbar-mobile">
-            <i class="fas fa-bars"></i>
-            <div class="modal-burger-menu">
-                <div class="navbar-mobile-list">
-                    <% if (!locals.session.user) { %>
-                        <button class="open-modal btn btn-mobile two-links"
-                            data-modal="register-modal">S'inscrire</button>
-                        <button class="open-modal btn btn-mobile two-links" data-modal="login-modal">Se
-                            connecter</button>
-                        <% } else { %>
-                            <% if (locals.session.user.is_nanny) { %>
-                                <a class="btn btn-mobile" href="/">ACCUEIL</a>
-                                <a class="btn btn-mobile" href="/nanny/dashboard">DASHBOARD</a>
-                                <a class="btn btn-mobile" href="/nanny/suggests">SUGGESTIONS</a>
-                                <a class="btn btn-mobile" href="/nanny/diary">JOURNAUX DE SUIVI</a>
-                                <a class="btn btn-mobile" href="/logout">DECONNEXION</a>
-                                <% } else { %>
-                                    <a class="btn btn-mobile" href="/">ACCUEIL</a>
-                                    <a class="btn btn-mobile" href="/parent/dashboard">DASHBOARD</a>
-                                    <a class="btn btn-mobile" href="/parent/suggests">SUGGESTIONS</a>
-                                    <a class="btn btn-mobile" href="/parent/diary">JOURNAUX DE SUIVI</a>
-                                    <a class="btn btn-mobile" href="/logout">DECONNEXION</a>
                                     <% } %>
-                                        <% } %>
-                </div>
-            </div>
-        </div>
+                    </div>
+                    <!-- mobile menu -->
+                    <div class="navbar-mobile">
+                        <i class="fas fa-bars"></i>
+                        <div class="modal-burger-menu">
+                            <div class="navbar-mobile-list">
+                                <% if (!locals.session.user) { %>
+                                    <button class="open-modal btn btn-mobile two-links"
+                                        data-modal="register-modal">S'inscrire</button>
+                                    <button class="open-modal btn btn-mobile two-links" data-modal="login-modal">Se
+                                        connecter</button>
+                                    <% } else { %>
+                                        <% if (locals.session.user.is_nanny) { %>
+                                            <a class="btn btn-mobile" href="/">ACCUEIL</a>
+                                            <a class="btn btn-mobile" href="/nanny/dashboard">DASHBOARD</a>
+                                            <a class="btn btn-mobile" href="/nanny/suggests">SUGGESTIONS</a>
+                                            <a class="btn btn-mobile" href="/nanny/diary">JOURNAUX DE SUIVI</a>
+                                            <a class="btn btn-mobile" href="/logout">DECONNEXION</a>
+                                            <% } else { %>
+                                                <a class="btn btn-mobile" href="/">ACCUEIL</a>
+                                                <a class="btn btn-mobile" href="/parent/dashboard">DASHBOARD</a>
+                                                <a class="btn btn-mobile" href="/parent/suggests">SUGGESTIONS</a>
+                                                <a class="btn btn-mobile" href="/parent/diary">JOURNAUX DE SUIVI</a>
+                                                <a class="btn btn-mobile" href="/logout">DECONNEXION</a>
+                                                <% } %>
+                                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
     </header>
     <div class="container__notification">
     </div>
@@ -95,27 +95,27 @@
       
         <% if (locals.flash && locals.flash.success) { %>
           const notificationSuccess = document.createElement('div');
-          notificationSuccess.classList.add('toast', 'toast-success');
-          notificationSuccess.innerHTML = '<%= locals.flash.success %>';
-          contNot.appendChild(notificationSuccess);
-          setTimeout(() => {
-            notificationSuccess.classList.add('hide');
-          }, 6000);
-          setTimeout(() => {
-            notificationSuccess.remove();
-          }, 8000);
+            notificationSuccess.classList.add('toast', 'toast-success');
+            notificationSuccess.innerHTML = '<%= locals.flash.success %>';
+            contNot.appendChild(notificationSuccess);
+            setTimeout(() => {
+                notificationSuccess.classList.add('hide');
+            }, 6000);
+            setTimeout(() => {
+                notificationSuccess.remove();
+            }, 8000);
         <% } %>
       
         <% if (locals.flash && locals.flash.error) { %>
           const notificationError = document.createElement('div');
-          notificationError.classList.add('toast', 'toast-error');
-          notificationError.innerHTML = '<%= locals.flash.error %>';
-          contNot.appendChild(notificationError);
-          setTimeout(() => {
-            notificationError.classList.add('hide');
-          }, 6000);
-          setTimeout(() => {
-            notificationError.remove();
-          }, 8000);
+            notificationError.classList.add('toast', 'toast-error');
+            notificationError.innerHTML = '<%= locals.flash.error %>';
+            contNot.appendChild(notificationError);
+            setTimeout(() => {
+                notificationError.classList.add('hide');
+            }, 6000);
+            setTimeout(() => {
+                notificationError.remove();
+            }, 8000);
         <% } %>
-      </script>
+    </script>

@@ -69,4 +69,9 @@ router.get('/suggests', handlerController(nannyController.getNannySuggests));
 
 router.get('/diary', handlerController(nannyController.getNannyDiaries));
 
+/**
+ * Parent route for get all activities
+ */
+router.get('/activities', handlerController(nannyController.getNannyActivity));
+
 module.exports = router;

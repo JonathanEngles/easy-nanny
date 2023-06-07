@@ -1,0 +1,23 @@
+<%- include('partials/header.ejs') %>
+<div class="suggests-container">
+            <div class="some-suggests-container">
+              <% if (!suggests || suggests.length===0) { %>
+                <p> Vous n'avez pas encore de suggestions </p>
+                <% } else { %>
+                  <% let index=0; %>
+                    <% for (const suggest of suggests) { %>
+                      <div
+                        class="suggestion-container  <% if (index % 2 === 0) { %>blue-shadow<% } else { %>pink-shadow<% } %>">
+                        <p class="suggestion-date">
+                          <%= suggest.suggest_date %>
+                        </p>
+                        <p class="suggestion-text">
+                          <%= suggest.title %>
+                        </p>
+                      </div>
+                      <% index++; %>
+                        <% } %>
+                          <% } %>
+            </div>
+      </div>
+      <%- include('partials/footer.ejs') %>
