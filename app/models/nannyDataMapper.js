@@ -146,12 +146,12 @@ async getAllChildren(id) {
 };
 
 async getAllParents(id) {
-    const result = await client.query('SELECT * FROM "parent" WHERE "id" = $1', [id]);
+    const result = await client.query('SELECT * FROM "parent" WHERE "nanny_id" = $1', [id]);
     return result.rows;
 };
 
 async getSuggests(id) {
-    const result = await client.query('SELECT * FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC LIMIT 5', [id]);
+    const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY') as suggest_date FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC LIMIT 5`, [id]);
     return result.rows;
 };
 

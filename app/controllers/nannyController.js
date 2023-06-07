@@ -141,7 +141,7 @@ class NannyController extends CoreController {
 
             //add suggest to database
             await nannyDataMapper.createSuggest(title, parentId, user);
-            req.session.flash = { success: `Journal de suivi créé avec succès` }
+            req.session.flash = { success: `Suggestion créée avec succès` }
             res.redirect('/nanny/dashboard');
         } else {
             req.session.flash = { error: `Vous devez être connecté` }
@@ -158,11 +158,11 @@ class NannyController extends CoreController {
 
             // const activity = await nannyDataMapper.getAllActivity(user.id);
             const children = await nannyDataMapper.getAllChildren(user.id);
-            // const parent = await nannyDataMapper.getAllParents(user.id);
-            // const suggest = await nannyDataMapper.getSuggests(user.id);
+            const parents = await nannyDataMapper.getAllParents(user.id);
+            const suggests = await nannyDataMapper.getSuggests(user.id);
 
 
-            res.render('nannyDashboard', { user, children });
+            res.render('nannyDashboard', { user, children, parents, suggests });
 
         } else {
             req.session.flash = { error: `Vous devez être connecté` }

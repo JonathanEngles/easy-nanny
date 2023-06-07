@@ -2,7 +2,7 @@
 <div class="suggests-container">
             <div class="some-suggests-container">
               <% if (!suggests || suggests.length===0) { %>
-                <p> Vous n'avez pas encore de suggestions </p>
+                <p class="no-suggests"> Vous n'avez pas encore de suggestions </p>
                 <% } else { %>
                   <% let index=0; %>
                     <% for (const suggest of suggests) { %>
@@ -20,4 +20,12 @@
                           <% } %>
             </div>
       </div>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/locales/fr.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.6/index.global.min.js"></script>
+      <script src="/js/dashboard.js"></script>
+      <script src="/js/validation.js"></script>
+      <script src="/js/swipper.js"></script>
+      <script src="/js/calendar.js"></script>
       <%- include('partials/footer.ejs') %>

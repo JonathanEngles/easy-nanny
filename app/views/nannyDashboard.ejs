@@ -57,6 +57,46 @@
                 </div>
             </div>
             <div class="swiper-slide">
+                <div class="suggests-container">
+                    <% if (!parents || parents.lenght===0) { %>
+                        <p class="text-parent-nanny-suggest">Vous n'avez pas encore de parent lié à votre compte</p>
+                        <% } else { %>
+                          <form class="form suggest" action="/nanny/suggest" method="POST" enctype="multipart/form-data">
+                            <div class="form-item">
+                              <label class="text-parent-nanny-suggest" for="suggestion">Envoyer une suggestion à un parent</label>
+                              <textarea name="title" id="suggestion" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form-item selector-list-parent">
+                                <label for="select-parent">Choisir un parent :</label>
+                                <select name="parentId" id="select-parent">
+                                    <% for (const parent of parents) { %>
+                                  <option value="<%= parent.id %>"><%= parent.name %> <%= parent.first_name %></option>
+                                  <% } %>
+                                </select>
+                              </div>
+                            <input type="submit" value="Envoyer" class="submit">
+                          </form>
+                          <% } %>
+                            <div class="some-suggests-container">
+                              <% if (!suggests || suggests.length===0) { %>
+                                <p class ="no-suggests"> Vous n'avez pas encore de suggestions </p>
+                                <% } else { %>
+                                  <% let index=0; %>
+                                    <% for (const suggest of suggests) { %>
+                                      <div
+                                        class="suggestion-container  <% if (index % 2 === 0) { %>blue-shadow<% } else { %>pink-shadow<% } %>">
+                                        <p class="suggestion-date">
+                                          <%= suggest.suggest_date %>
+                                        </p>
+                                        <p class="suggestion-text">
+                                          <%= suggest.title %>
+                                        </p>
+                                      </div>
+                                      <% index++; %>
+                                        <% } %>
+                                          <% } %>
+                            </div>
+                      </div>
             </div>
         </div>
         <!-- If we need pagination -->

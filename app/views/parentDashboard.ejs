@@ -75,14 +75,14 @@
                 <div class="form-item">
                   <label class="text-parent-nanny-suggest" for="suggestion">Envoyer une suggestion à <%= nanny.first_name %>
                       <%= nanny.name %></label>
-                  <textarea name="title" id="suggestion" cols="35" rows="10"></textarea>
+                  <textarea name="title" id="suggestion" cols="30" rows="10"></textarea>
                 </div>
                 <input type="submit" value="Envoyer" class="submit">
               </form>
               <% } %>
                 <div class="some-suggests-container">
                   <% if (!suggests || suggests.length===0) { %>
-                    <p> Vous n'avez pas encore de suggestions </p>
+                    <p class ="no-suggests"> Vous n'avez pas encore de suggestions </p>
                     <% } else { %>
                       <% let index=0; %>
                         <% for (const suggest of suggests) { %>
@@ -162,7 +162,7 @@
         </div>
         <div class="form-item">
           <label class="description" for="description-modify-children">Infos Complémentaires :</label>
-          <textarea name="description" id="description-modify-children" cols="35" rows="10"></textarea>
+          <textarea name="description" id="description-modify-children" cols="30" rows="10"></textarea>
         </div>
         <input type="submit" value="Modifier l'enfant" class="submit">
       </form>
@@ -243,7 +243,7 @@
         </div>
         <div class="form-item">
           <label class="description" for="description">Infos Complémentaires :</label>
-          <textarea name="description" id="description" cols="35" rows="10"></textarea>
+          <textarea name="description" id="description" cols="30" rows="10"></textarea>
         </div>
         <input type="submit" value="Ajouter un enfant" class="submit">
       </form>

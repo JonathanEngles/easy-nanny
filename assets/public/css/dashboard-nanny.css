@@ -32,6 +32,11 @@
     text-align: center;
     margin-bottom: 1rem;
   }
+
+  .children-profil:hover {
+    background-color: var(--nanny);
+    transition-duration: 1s;
+  }
 @media screen and (min-width: 650px) {
     
 
