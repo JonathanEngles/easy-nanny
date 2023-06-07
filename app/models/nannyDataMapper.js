@@ -156,7 +156,7 @@ async getSuggests(id) {
 };
 
 async getAllSuggests(id) {
-    const result = await client.query('SELECT * FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC', [id]);
+    const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY') as suggest_date FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC`, [id]);
     return result.rows;
 };
 
