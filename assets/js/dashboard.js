@@ -152,14 +152,26 @@ const modal = {
     app.childFirstNameElement.textContent = childFirstName;
     app.childBirthdayElement.textContent = childBirthday;
     app.childDescriptionElement.textContent = childDescription;
-    app.nannyNameElement.textContent = nannyName;
-    app.nannyFirstNameElement.textContent = nannyFirstName;
+    if (nannyName && nannyFirstName) {
+      app.nannyNameElement.textContent = nannyName;
+      app.nannyFirstNameElement.textContent = nannyFirstName;
+    } else {
+      app.nannyNameElement.textContent = childFirstName + ` n'a pas encore de nounou`;
+      app.nannyFirstNameElement.textContent = "";
+    }
 
     app.deleteInput.value = childId;
 
     app.nameInput.placeholder = childName;
     app.firstNameInput.placeholder = childFirstName;
-    app.birthdayInput.valueAsDate = new Date(childBirthday);
+
+    //manage the timzone of the birthday's date
+    const birthday = new Date(childBirthday);
+const year = birthday.getFullYear();
+const month = birthday.getMonth();
+const day = birthday.getDate();
+const adjustedBirthday = new Date(year, month, day);
+    app.birthdayInput.valueAsDate = adjustedBirthday;
     app.descriptionInput.placeholder = childDescription;
 
     if (child.dataset.childSexe === 'M') {

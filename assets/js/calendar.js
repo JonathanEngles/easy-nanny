@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+
+
   fetch('/parent/activities')
     .then(response => response.json())
     .then(activities => {
@@ -67,8 +70,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
       updateButtonVisibility();
       window.addEventListener('resize', updateButtonVisibility);
-
       calendar.changeView(initialView);
+//manage the event on click on the event
+      var eventModal = document.getElementById('eventModal');
+      var eventTitle = document.getElementById('eventTitle');
+      var eventDescription = document.getElementById('eventDescription');
+
+    
+      calendar.on('eventClick', function (info) {
+     
+        var event = info.event;
+
+       
+        eventTitle.textContent = event.title;
+        eventDescription.textContent = event.extendedProps.description;
+
+        // Afficher la modal
+        eventModal.style.display = 'block';
+      });
+
+      // Gérer la fermeture de la modal lorsque l'utilisateur clique sur la croix
+      var closeBtn = document.getElementById('btn-close-event');
+      closeBtn.onclick = function () {
+        eventModal.style.display = 'none';
+      };
 
 
     });

@@ -212,6 +212,7 @@ padding: 2rem 0;;
    width: 90%;
    font-size: 2rem;
    font-weight: bold;
+   word-wrap: break-word;
   }
 
   @media screen and (min-width: 650px) {

@@ -21,8 +21,10 @@
                 <p class="text-parent-nanny">Vous n'êtes lié à aucune nounou</p>
                 <% } else { %>
                   <p class="text-parent-nanny">
-                    <span class="nanny-name"> <%= nanny.first_name %>
-                      <%= nanny.name %> </span>est la nounou de vos enfants
+                    <span class="nanny-name">
+                      <%= nanny.first_name %>
+                        <%= nanny.name %>
+                    </span>est la nounou de vos enfants
                   </p>
                   <% } %>
                     <button class="open-modal btn-profile" data-modal="profile-user-modal">voir mon profil</button>
@@ -42,17 +44,12 @@
               <p> Vous n'avez pas encore ajouté d'enfant </p>
               <% } else { %>
                 <% for (const child of children) { %>
-                  <div
-                   data-modal="profile-children-modal" 
-                   data-child-id="<%= child.child_id %>"
-                    data-child-picture="<%= child.child_picture %>"
-                    data-child-name="<%= child.child_name %>"
+                  <div data-modal="profile-children-modal" data-child-id="<%= child.child_id %>"
+                    data-child-picture="<%= child.child_picture %>" data-child-name="<%= child.child_name %>"
                     data-child-first-name="<%= child.child_first_name %>"
-                    data-child-birthday="<%= child.child_birthday %>"
-                    data-child-sexe="<%= child.child_sexe %>"
+                    data-child-birthday="<%= child.child_birthday %>" data-child-sexe="<%= child.child_sexe %>"
                     data-child-description="<%= child.child_description %>"
-                    data-nanny-first-name="<%= child.nanny_first_name %>"
-                    data-nanny-name="<%= child.nanny_name %>"
+                    data-nanny-first-name="<%= child.nanny_first_name %>" data-nanny-name="<%= child.nanny_name %>"
                     class="children-profil <% if (child.child_sexe === 'M') { %> is-a-boy <% } else { %> is-a-girl  <% } %> <% if (child.child_sexe === 'M') { %> pink-shadow <% } else { %> blue-shadow  <% } %>">
                     <div class="children-picture-container">
                       <img class="children-picture" src="/public/uploads/<%= child.child_picture %>"
@@ -69,7 +66,42 @@
           </div>
         </div>
       </div>
-      <div class="swiper-slide">Slide 3</div> ...
+      <div class="swiper-slide">
+        <div class="suggests-container">
+        <% if (!user.nanny_id) { %>
+          
+            <p class="text-parent-nanny-suggest">Vous n'êtes lié à aucune nounou</p>
+            <% } else { %>
+              <form class="form suggest" action="/parent/suggest" method="POST" enctype="multipart/form-data">
+                <div class="form-item">
+                  <label class="text-parent-nanny-suggest" for="suggestion">Envoyer une suggestion à <%= nanny.first_name %>
+                      <%= nanny.name %></label>
+                  <textarea name="title" id="suggestion" cols="35" rows="10"></textarea>
+                </div>
+                <input type="submit" value="Envoyer" class="submit">
+              </form>
+              <% } %>
+                <div class="some-suggests-container">
+                  <% if (!suggests || suggests.length===0) { %>
+                    <p> Vous n'avez pas encore de suggestions </p>
+                    <% } else { %>
+                      <% let index=0; %>
+                        <% for (const suggest of suggests) { %>
+                          <div
+                            class="suggestion-container  <% if (index % 2 === 0) { %>blue-shadow<% } else { %>pink-shadow<% } %>">
+                            <p class="suggestion-date">
+                              <%= suggest.suggest_date %>
+                            </p>
+                            <p class="suggestion-text">
+                              <%= suggest.title %>
+                            </p>
+                          </div>
+                          <% index++; %>
+                            <% } %>
+                              <% } %>
+                </div>
+          </div>
+      </div>
     </div>
     <!-- If we need pagination -->
     <div class="swiper-pagination"></div>
@@ -79,25 +111,20 @@
     <!-- If we need scrollbar -->
     <!-- <div class="swiper-scrollbar"></div> -->
   </div>
-
-
-<!-- modale to delete a children -->
-
-<aside class="modal delete-children-modal">
-  <i class="fas fa-times btn-close"></i>
-  <div class="form-container">
-    <form class="form delete-children-form" action="/parent/children/delete" method="POST" enctype="multipart/form-data">
-      <input id="input-delete-children" type="hidden" name="id" value="">
-      <p class="text-delete">Vous êtes sur le point de supprimer le profil de votre enfant définitivement. Appuyer sur Supprimer
-        pour confirmer</p>
-      <input type="submit" value="Supprimer" class="submit">
-    </form>
-  </div>
-</aside>
-
-
+  <!-- modale to delete a children -->
+  <aside class="modal delete-children-modal">
+    <i class="fas fa-times btn-close"></i>
+    <div class="form-container">
+      <form class="form delete-children-form" action="/parent/children/delete" method="POST"
+        enctype="multipart/form-data">
+        <input id="input-delete-children" type="hidden" name="id" value="">
+        <p class="text-delete">Vous êtes sur le point de supprimer le profil de votre enfant définitivement. Appuyer sur
+          Supprimer pour confirmer</p>
+        <input type="submit" value="Supprimer" class="submit">
+      </form>
+    </div>
+  </aside>
   <!-- modal to modify a children -->
-
   <aside class="modal modify-children-modal">
     <i class="fas fa-times btn-close"></i>
     <div class="form-container">
@@ -109,11 +136,11 @@
         </div>
         <div class="form-item">
           <label for="name-modify-children">Nom :</label>
-          <input type="text" id="name-modify-children" name="name" >
+          <input type="text" id="name-modify-children" name="name">
         </div>
         <div class="form-item">
           <label for="first_name-modify-children">Prénom :</label>
-          <input type="text" id="first_name-modify-children" name="first_name" >
+          <input type="text" id="first_name-modify-children" name="first_name">
         </div>
         <div class="form-item">
           <fieldset>
@@ -132,7 +159,7 @@
         </div>
         <div class="form-item">
           <label for="birthday-modify-children">Date d'anniversaire :</label>
-          <input type="date" name="birthday" id="birthday-modify-children" >
+          <input type="date" name="birthday" id="birthday-modify-children">
         </div>
         <div class="form-item">
           <label class="description" for="description-modify-children">Infos Complémentaires :</label>
@@ -142,44 +169,42 @@
       </form>
     </div>
   </aside>
-
-<!-- modal to get a children -->
-
-<aside class="modal profile-children-modal">
-  <i class="fas fa-times btn-close"></i>
-  <div class="modal-profile-container ">
-    <div class="modal-profile-picture-container shadow-blue">
-      <img id="child-picture" class="profile-picture"  alt="Profile Picture">
+  <!-- modal to get a children -->
+  <aside class="modal profile-children-modal">
+    <i class="fas fa-times btn-close"></i>
+    <div class="modal-profile-container ">
+      <div class="modal-profile-picture-container shadow-blue">
+        <img id="child-picture" class="profile-picture" alt="Profile Picture">
+      </div>
+      <div class="profile-item">
+        <p>Nom: <span id="child-name"></span>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Prénom: <span id="child-first-name"></span>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Date de naissance: <span id="child-birthday"></span>
+        </p>
+      </div>
+      <div class="profile-item infos-container">
+        <p>Infos Complémentaires:</p>
+        <p class="infos-complementaire"><span id="child-description"></span>
+        </p>
+      </div>
+      <div class="profile-item">
+        <p>Sa Nounou: <span id="nanny-name"></span> <span id="nanny-first-name"></span>
+        </p>
+      </div>
+      <div class="button-container">
+        <button class="open-modal btn-handler-profile modify-profile" data-modal="modify-children-modal">Modifier mon
+          enfant</button>
+        <button class="open-modal btn-handler-profile delete-profile" data-modal="delete-children-modal">Supprimer mon
+          enfant</button>
+      </div>
     </div>
-    <div class="profile-item">
-      <p>Nom: <span id="child-name"></span>
-      </p>
-    </div>
-    <div class="profile-item">
-      <p>Prénom: <span id="child-first-name"></span>
-      </p>
-    </div>
-    <div class="profile-item">
-      <p>Date de naissance: <span id="child-birthday"></span>
-      </p>
-    </div>
-    <div class="profile-item infos-container">
-      <p>Infos Complémentaires:</p> <p class="infos-complementaire"><span id="child-description" ></span>
-      </p>
-    </div>
-    <div class="profile-item">
-      <p>Sa Nounou: <span id="nanny-name"></span> <span id="nanny-first-name"></span>
-      </p>
-    </div>
-    <div class="button-container">
-      <button class="open-modal btn-handler-profile modify-profile" data-modal="modify-children-modal">Modifier mon
-      enfant</button>
-      <button class="open-modal btn-handler-profile delete-profile" data-modal="delete-children-modal">Supprimer mon
-        enfant</button>
-    </div>
-  </div>
-</aside>
-
+  </aside>
   <!-- modal to create a children -->
   <aside class="modal create-children-modal">
     <i class="fas fa-times btn-close"></i>
@@ -326,8 +351,7 @@
       </form>
     </div>
   </aside>
-
-<!-- modale to delete the user's profile -->
+  <!-- modale to delete the user's profile -->
   <aside class="modal delete-modal">
     <i class="fas fa-times btn-close"></i>
     <div class="form-container">
@@ -339,6 +363,16 @@
       </form>
     </div>
   </aside>
+
+  <!-- modale for event on click on event's calendar -->
+  <div id="eventModal" class="modal-event">
+    <div class="modal-content">
+      <i class="fas fa-times" id="btn-close-event"></i>
+      <h3 id="eventTitle"></h3>
+      <p id="eventDescription"></p>
+    </div>
+  </div>
+
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script type="module" src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/locales/fr.js"></script>

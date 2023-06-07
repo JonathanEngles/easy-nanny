@@ -48,12 +48,12 @@ class ParentDataMapper extends CoreDataMapper {
     };
 
     async getSuggests(id) {
-        const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY') FROM "suggest" WHERE "parent_id" = $1 ORDER BY "created_at" DESC LIMIT 5`, [id]);
+        const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY') as suggest_date FROM "suggest" WHERE "parent_id" = $1 ORDER BY "created_at" DESC LIMIT 5`, [id]);
         return result.rows;
     };
 
     async getAllSuggests(id) {
-        const result = await client.query('SELECT * FROM "suggest" WHERE "parent_id" = $1 ORDER BY "created_at" DESC', [id]);
+        const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY') as suggest_date FROM "suggest" WHERE "parent_id" = $1 ORDER BY "created_at" DESC`, [id]);
         return result.rows;
     };
 
