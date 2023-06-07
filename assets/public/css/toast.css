@@ -3,7 +3,7 @@
     position: fixed;
     top: 25%;
     left: 50%;
-    transform: translateX(-80%);
+    transform: translateX(-50%);
     margin: 2em;
     z-index: 30;
 }
@@ -11,6 +11,7 @@
     transition: opacity 1.5s;
     padding: 1.2rem;
     border-radius: .3rem;
+    text-align: center;
    
 }
 

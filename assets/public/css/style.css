@@ -223,7 +223,7 @@ button {
 
 
 @media screen and (min-width: 1050px) {
-    i:hover, .submit:hover, button:hover, .logo-container, .nanny, .parent, .children-profil:hover {
+    i:hover, .fc-event-title-container:hover, .submit:hover, button:hover, .logo-container, .nanny, .parent, .children-profil:hover {
         cursor: pointer;
     }
     .btn-desktop {

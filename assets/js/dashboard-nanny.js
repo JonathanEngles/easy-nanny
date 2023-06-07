@@ -1,24 +1,15 @@
 const app = {
   iconeBurgerMenu: null,
   formModifyProfile: document.querySelector('.modify-form'),
-  formModifyChildren: document.querySelector('.modify-children-form'),
   modal: document.querySelector('.profile-children-modal'),
   childPictureElement: document.getElementById('child-picture'),
   childNameElement: document.getElementById('child-name'),
   childFirstNameElement: document.getElementById('child-first-name'),
   childBirthdayElement: document.getElementById('child-birthday'),
   childDescriptionElement: document.getElementById('child-description'),
-  nannyNameElement: document.getElementById('nanny-name'),
-  nannyFirstNameElement: document.getElementById('nanny-first-name'),
+  parentNameElement: document.getElementById('parent-name'),
+  parentFirstNameElement: document.getElementById('parent-first-name'),
 
-  nameInput: document.getElementById('name-modify-children'),
-  firstNameInput: document.getElementById('first_name-modify-children'),
-  sexeMInput: document.getElementById('sexe-m-modify-children'),
-  sexeFInput: document.getElementById('sexe-f-modify-children'),
-  birthdayInput: document.getElementById('birthday-modify-children'),
-  descriptionInput: document.getElementById('description-modify-children'),
-
-  deleteInput: document.getElementById('input-delete-children'),
 
 
   init: function () {
@@ -54,8 +45,6 @@ const app = {
       });
     });
 
-
-    app.formModifyChildren.addEventListener('submit', app.submitFormModifyChildren)
   },
 
   /**
@@ -77,7 +66,7 @@ const app = {
       });
     });
   },
-// function to submit the modification of user
+  // function to submit the modification of user
   submitFormModify: (event) => {
     event.preventDefault();
 
@@ -111,13 +100,6 @@ const app = {
     event.target.submit();
   },
 
-  submitFormModifyChildren: (event) => {
-    event.preventDefault();
-
-    if (!confirm(`êtes vous sur de vouloir modifier le profil de votre enfant?`)) return;
-    event.target.submit();
-  },
-
 }
 
 const modal = {
@@ -144,42 +126,17 @@ const modal = {
     const childFirstName = child.dataset.childFirstName;
     const childBirthday = child.dataset.childBirthday;
     const childDescription = child.dataset.childDescription;
-    const nannyName = child.dataset.nannyName;
-    const nannyFirstName = child.dataset.nannyFirstName;
+    const parentName = child.dataset.parentName;
+    const parentFirstName = child.dataset.parentFirstName;
 
     app.childPictureElement.src = '/public/uploads/' + childPicture;
     app.childNameElement.textContent = childName;
     app.childFirstNameElement.textContent = childFirstName;
     app.childBirthdayElement.textContent = childBirthday;
     app.childDescriptionElement.textContent = childDescription;
-    if (nannyName && nannyFirstName) {
-      app.nannyNameElement.textContent = nannyName;
-      app.nannyFirstNameElement.textContent = nannyFirstName;
-    } else {
-      app.nannyNameElement.textContent = childFirstName + ` n'a pas encore de nounou`;
-      app.nannyFirstNameElement.textContent = "";
-    }
+    app.parentNameElement.textContent = parentName;
+    app.parentFirstNameElement.textContent = parentFirstName;
 
-    app.deleteInput.value = childId;
-
-    app.nameInput.placeholder = childName;
-    app.firstNameInput.placeholder = childFirstName;
-
-    //manage the timzone of the birthday's date
-    const birthday = new Date(childBirthday);
-const year = birthday.getFullYear();
-const month = birthday.getMonth();
-const day = birthday.getDate();
-const adjustedBirthday = new Date(year, month, day);
-    app.birthdayInput.valueAsDate = adjustedBirthday;
-    app.descriptionInput.placeholder = childDescription;
-
-    if (child.dataset.childSexe === 'M') {
-      app.sexeMInput.checked = true;
-    } else if (child.dataset.childSexe === 'F') {
-      app.sexeFInput.checked = true;
-    }
-    app.formModifyChildren.setAttribute('action', '/parent/children/patch/' + childId);
     app.modal.classList.add('active');
   },
 

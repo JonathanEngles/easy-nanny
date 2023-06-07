@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-  fetch('/parent/activities')
+  fetch('/nanny/activities')
     .then(response => response.json())
     .then(activities => {
-      let calendarEl = document.getElementById('calendar-parent');
+      let calendarEl = document.getElementById('calendar-nanny');
       let initialView = 'timeGridDay';
       if (window.innerWidth >= 1024) {
         initialView = 'timeGridWeek'; // 
