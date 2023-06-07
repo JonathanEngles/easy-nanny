@@ -151,7 +151,7 @@ async getAllParents(id) {
 };
 
 async getSuggests(id) {
-    const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY') as suggest_date FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC LIMIT 5`, [id]);
+    const result = await client.query(`SELECT *, to_char(created_at, 'TMDay DD TMMonth YYYY', 'NLS_DATE_LANGUAGE=FRENCH') as suggest_date FROM "suggest" WHERE "nanny_id" = $1 ORDER BY "created_at" DESC LIMIT 5`, [id]);
     return result.rows;
 };
 
